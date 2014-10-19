@@ -1,0 +1,108 @@
+---
+title:  Getting Started
+blurb:  Start with this article to learn how install <em>Middlemac</em> and see
+        that it’s running on your system.
+layout: template-logo-small
+order: 1
+---
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
+
+
+<%= current_page.data.title %>
+==============================
+
+Getting Started
+---------------
+
+_Middlemac_’s documentation is included in the starter project (and more than
+likely at [http://www.balthisar.com/manuals](http://www.balthisar.com/manuals)).
+There are multiple ways you could be reading this content now, but for now we
+will assume that you have not yet installed _Middlemac_ and its dependencies.
+
+To get started and read the full documentation, make sure that your system has
+Ruby installed (it comes pre-installed on Mac OS X and some Linuxes), and follow
+these steps below. 
+
+Note that this is untested on Windows.
+{:.note}
+
+Note that depending on your system’s setup you might have to prefix some of the
+commands below with `sudo`. For example if the instruction is given as
+`gem install bundler` and a permissions error is reported, you may probably
+have to use `sudo gem install bundler` instead.
+{:.note}
+
+If you’re behind a proxy and haven’t already setup an `http-proxy` environment
+variable, then that previous clause is a good hint and Google is your friend.
+{:.note}
+
+
+### Install XCode
+
+If you’re on a Mac you’ll have to install XCode first. It’s available in the App
+Store free of charge. XCode provides dependencies that Ruby and several of its
+gems require. It will also ensure that Apple’s help indexer is installed, which
+is required if you want to produce proper help files on Mac OS X.
+
+Dependencies on Linux are left up to you. Most modern Linuxes will prompt you to
+install packages that are missing. And, yes, _Middlemac_ works quite well on
+Linux. The only thing that won’t work is generating the required help index
+file. Linux is still perfectly suited for development of your help books,
+though.
+
+
+### Install bundler
+
+From your terminal, type:
+
+`gem install bundler`
+
+Ruby will download and install bundler.
+
+
+### Install the middlemac project template
+
+Although _Middlemac_ is a _Middleman_ extension, it’s mostly a project template
+and distributed as such. Installation is as easy as:
+
+`git clone http://github.com/balthisar/middlemac.git my_new_project`
+
+Then `cd` into the `my_new_project` folder, and:
+
+
+### Update gems (including _Middleman_ if needed)
+
+Gems are Ruby programs and extensions. From within your project direct, simply:
+
+`bundle install`
+
+This will cause several Ruby gems to begin downloading and install.
+
+
+### If gem install fails on Mac OS X because of json problems
+
+Try repeating the above using this command, instead:
+
+`ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future bundle install`
+
+The reasons are complex but if you really want to know, remember: Google is your
+friend.
+
+
+### Start the _Middleman_ server
+
+From the terminal, use _Middlemac_ to start the _Middleman_ server using our
+`free` target:
+
+`./middlemac.rb --server free`
+
+
+### Open the site in your browser
+
+Simply open the `middlemac.webloc` file from Finder to view the project results
+in your default browser.
+
+Or you prefer to open the help site manually, you can go to
+[http://localhost:4567/Resources/Base.lproj/](http://localhost:4567/Resources/Base.lproj/)
+

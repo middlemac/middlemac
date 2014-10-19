@@ -1,0 +1,11 @@
+.navigate_prev_next
+  - p_prev = brethren_previous
+  - p_next = brethren_next
+  - if p_prev.nil?
+    %span Previous
+  - else
+    = link_to 'Previous', p_prev
+  - if p_next.nil?
+    %span Next
+  - else
+    = link_to 'Next', p_next

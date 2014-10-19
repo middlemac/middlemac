@@ -1,0 +1,26 @@
+---
+title:  Reference and Conventions
+blurb:  The more comprehensive information in this section offers a clear look at
+        how <em>Middlemac</em> works and provides an introduction to
+        <em>Middleman</em>.
+layout: template-logo-large
+order: 3
+---
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
+
+<% content_for :seeAlso do %>
+Sidebar stuff can go here.
+<% end %>
+
+
+<%= current_page.data.title %>
+==============================
+
+<%= current_page.data.blurb %>
+
+* * *
+
+<%= partial 'legitimate_children' %>
+
+* * *

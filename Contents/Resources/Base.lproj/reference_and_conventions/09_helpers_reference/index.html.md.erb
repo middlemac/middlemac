@@ -1,0 +1,24 @@
+---
+title: Basics and First Steps
+blurb: Blurb goes here.
+layout: template-logo-large
+order: 2
+---
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
+
+<% content_for :seeAlso do %>
+Sidebar stuff can go here.
+<% end %>
+
+
+<%= current_page.data.title %>
+==============================
+
+Body content goes here.
+
+* * *
+
+<%= partial 'legitimate_children' %>
+
+* * *

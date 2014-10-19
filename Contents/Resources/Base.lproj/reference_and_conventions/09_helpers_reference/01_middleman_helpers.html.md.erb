@@ -1,0 +1,17 @@
+---
+title: Middleman helpers
+blurb: Blurb goes here.
+layout: template-logo-medium
+---
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
+
+<% content_for :seeAlso do %>
+Sidebar stuff can go here.
+<% end %>
+
+
+<%= current_page.data.title %>
+==============================
+
+Body content goes here.
