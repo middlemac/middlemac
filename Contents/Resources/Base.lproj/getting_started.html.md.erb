@@ -55,6 +55,27 @@ environment.
 {:.note} 
 
 
+Quick version, if you don’t want to read details
+------------------------------------------------
+
+In your Terminal, do each of the following:
+
+~~~ bash
+gem install bundler
+git clone http://github.com/balthisar/middlemac.git middlemac_demo
+bundle install
+./middlemac.rb --server free
+open middlemac.webloc
+~~~
+
+If you’re on Linux and `open middlemac.webloc` command doesn’t work for you,
+then use your preferred web browser and go to
+[http://localhost:4567/Resources/Base.lproj/](http://localhost:4567/Resources/Base.lproj/).
+
+
+Same as above, with a bit of handholding
+----------------------------------------
+
 ### Install bundler
 
 [Bundler](http://bundler.io/) is the ubiquitous Ruby
@@ -98,6 +119,9 @@ friend.
 
 ### Start the _Middleman_ server
 
+_Middleman_ comes with its own http server and requires no configuration. It
+simply works, serving your helpbook as a website.
+
 From the terminal, use _Middlemac_ to start the _Middleman_ server using our
 `free` target:
 
@@ -109,6 +133,9 @@ From the terminal, use _Middlemac_ to start the _Middleman_ server using our
 Simply open the `middlemac.webloc` file from Finder to view the project results
 in your default browser.
 
-Or you prefer to open the help site manually, you can go to
-[http://localhost:4567/Resources/Base.lproj/](http://localhost:4567/Resources/Base.lproj/)
+Or can open the bookmark file from Terminal with `open middleman.webloc`.
+
+Or you prefer to open the help site manually, or if the .webloc file doesn’t
+work on your Linux distro, you can go to
+[http://localhost:4567/Resources/Base.lproj/](http://localhost:4567/Resources/Base.lproj/).
 
