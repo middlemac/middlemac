@@ -1,6 +1,8 @@
 ---
-title: Technology and skills overview
-blurb: Blurb goes here.
+title:  Technology and skills overview
+blurb:  This very brief article highlights some of the tools that
+        <em>Middlemac</em> depends on and clarifies some of the skills you will
+        need in order to use them.
 layout: template-logo-medium
 order: 2
 ---
@@ -15,20 +17,73 @@ Sidebar stuff can go here.
 <%= current_page.data.title %>
 ==============================
 
-_Middlemac_ uses tools you may already know, or may not know: 
+<%= current_page.data.blurb %>
 
-- _Middleman_ is a static HTML site generator, and is the heart of _Middlemac_’s
-  abilities, as well as an inspiration for the name.
-- Ruby is language that _Middlemac_, _Middlemac_, and much of the others tools
-  are written with. _You do not have to learn Ruby to take advantage of
-  *Middlemac*_.
-- helpbook.rb is the extension to _Middleman_ that makes it effortlessly build
+_Middlemac_ uses tools you may already know. Or not.
+----------------------------------------------------
+
+- [_Middleman_](http://middlemanapp.com) is a static HTML site generator, and is
+  the heart of _Middlemac_’s abilities, as well as an inspiration for the name.
+- [Ruby](https://www.ruby-lang.org/en/) is the language that _Middlemac_,
+  _Middleman_, and many of the others tools are written with. _You do not have
+  to learn Ruby to take advantage of *Middlemac*_, although some ability to work
+  with it will be invaluable to you.
+- `middlemac.rb` is the extension to _Middleman_ that makes it effortlessly build
   Apple HelpBooks. It’s also the command-line tool that makes it easier to work
-  with Middleman.
-- HTML is the markup language that Apple requires for HelpBooks. But _Middlemac_
+  with _Middleman_.
+- HTML is the markup language that Apple requires for helpbooks. But _Middlemac_
   promises to make things easy for you, and so…
-- Markdown is the text-based, human-readable, easy to use format that will
-  make writing your documentation a real pleasure. This file is written using
-  Markup.
+- [Markdown](http://kramdown.gettalong.org/) is the text-based, human-readable,
+  easy to use format that will make writing your documentation a real pleasure.
+  This file is written using Markup.
 
 
+Ruby may surprise you
+---------------------
+
+If you’re a software developer, then it’s highly likely that you will be able to
+read most Ruby code immediately. Coming from an Objective-C background, these
+are a few things that may surprise you.
+
+### symbols
+NOTE: Ruby has a type of variable called a `symbol`, which are used
+quite extensively and look like `:this_symbol`. Except they’re not really
+variables, but identifiers; you can’t assign values to them. Their value is
+themselves, though they have useful string representations
+(`:this_symbol.to_s`). You can even get the symbol representation of
+`this_string.to_sym`. Because they're unique, they make excellent array/hash
+keys and excellent, guaranteed unique values.
+
+### Everything is an object
+Everything is an object, including what are fundamental datatypes in other
+languages. Need to convert the integer `i` to a float? It’s as easy as
+`i.to_f`.
+              
+### Everything has a return value
+In Ruby you don’t require `return value`, or `result := value`, or
+`function_name = value`. Just `value`, alone, will return its value.
+
+
+Just enough Ruby
+----------------
+To work effectively with _Middlemac_ you’ll only have to learn enough Rbuy to
+do a few simple things:
+
+- Set variables in the `config.rb` file.
+- Use a few helper functions from within files, e.g., `partial 'my_file'`.
+- Use conditionals, if you want them. You know: simply `if/else/end`.
+
+
+Markdown
+--------
+_Middlemac_ takes care of a lot of the details for generating Apple HelpBooks,
+and that may be reason enough to use _Middlemac_. However if you decide _not_ to
+use Markdown, then you’re throwing away the single, largest contributor to your
+help file building productivity that there is.
+
+
+_Middleman_’s conventions
+-------------------------
+_Middleman’s_ conventions contribute enormously toward the overall helpbook
+build system. In general as you work your way through this documentation you
+will become aware of _Middleman_’s conventions.
