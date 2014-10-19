@@ -14,4 +14,27 @@ Sidebar stuff can go here.
 <%= current_page.data.title %>
 ==============================
 
-Body content goes here.
+Files
+-----
+
+None of these files become standalone HTML documents, and as such should have
+a single `.erb` or `.haml` extension.
+
+For organization, the convention is to name HTML containers with a `layout`
+prefix and visual templates with a `template` prefix.
+
+ - `layout-html4.haml` - This is just an HTML 4.01 wrapper template and if you
+   follow all of the conventions there's nothing you should have to change
+   here.
+
+ - `layout-xhtml.haml` - Apple's help landing page (the main page) is
+   supposed to be an XHTML 1.0 Strict document. If you follow all of the
+   conventions there's nothing you should have to change here.
+
+ - `template-logo-large.haml` - This visual template is suitable for “main”-like
+   pages. If you follow conventions you should not have to change anything here.
+
+ - `template-logo-medium.erb`  and `template-logo-small.erb` are other
+    additional visual templates. If you follow the image conventions there is
+    no reason you should have to modify these templates.
+

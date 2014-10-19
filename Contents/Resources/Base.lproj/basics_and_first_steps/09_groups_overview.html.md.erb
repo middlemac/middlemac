@@ -15,4 +15,18 @@ Sidebar stuff can go here.
 <%= current_page.data.title %>
 ==============================
 
-Body content goes here.
+
+
+Groups
+------
+
+- A GROUP is a bunch of files in a directory at a single level.
+- A GROUP landing-page should begin with 000_
+- Using the table_contents partial will include a TOC for all files at this
+  group level except for 000_ files.
+- Can include another group's toc by specifying a :group in locals, where the
+  GROUP is really just the directory name.
+- WANT to include a gather_toc, which looks in the top level of all of the
+  directories at the current level to look for 000_ files. Build a list with
+  blurbs. 
+  
