@@ -21,8 +21,8 @@ There are multiple ways you could be reading this content now, but for now we
 will assume that you have not yet installed _Middlemac_ and its dependencies.
 
 To get started and read the full documentation, make sure that your system has
-Ruby installed (it comes pre-installed on Mac OS X and some Linuxes), and follow
-these steps below. 
+[Ruby](https://www.ruby-lang.org/) installed (it comes pre-installed on Mac OS X
+and some Linuxes), and follow these steps below. 
 
 Note that this is untested on Windows.
 {:.note}
@@ -46,34 +46,40 @@ gems require. It will also ensure that Apple’s help indexer is installed, whic
 is required if you want to produce proper help files on Mac OS X.
 
 Dependencies on Linux are left up to you. Most modern Linuxes will prompt you to
-install packages that are missing. And, yes, _Middlemac_ works quite well on
-Linux. The only thing that won’t work is generating the required help index
-file. Linux is still perfectly suited for development of your help books,
-though.
+install packages that are missing.
+ 
+_Middlemac_ works quite well on Linux, but keep in mind that Linux doesn’t have
+the help indexing tool that’s required in order to build a proper helpbook.
+Other than for generating your final helpbook, Linux makes a fine development
+environment.
+{:.note} 
 
 
 ### Install bundler
 
-From your terminal, type:
+[Bundler](http://bundler.io/) is the ubiquitous Ruby
+[gem](http://guides.rubygems.org/what-is-a-gem/) management tool. You can
+install if from your terminal easily:
 
 `gem install bundler`
 
-Ruby will download and install bundler.
+Ruby will download and install Bundler.
 
 
-### Install the middlemac project template
+### Install the _middlemac_ project template
 
-Although _Middlemac_ is a _Middleman_ extension, it’s mostly a project template
-and distributed as such. Installation is as easy as:
+Although _Middlemac_ is a [_Middleman_](http://middlemanapp.com) extension, it’s
+mostly a project template and distributed as such. Installation is as easy as:
 
-`git clone http://github.com/balthisar/middlemac.git my_new_project`
+`git clone http://github.com/balthisar/middlemac.git middlemac_demo`
 
-Then `cd` into the `my_new_project` folder, and:
+Then `cd` into the `middlemac_demo` folder, and:
 
 
 ### Update gems (including _Middleman_ if needed)
 
-Gems are Ruby programs and extensions. From within your project direct, simply:
+Gems are Ruby programs and extensions. From within your project directory,
+simply:
 
 `bundle install`
 
