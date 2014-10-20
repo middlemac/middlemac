@@ -46,13 +46,12 @@ read most Ruby code immediately. Coming from an Objective-C background, these
 are a few things that may surprise you.
 
 ### symbols
-NOTE: Ruby has a type of variable called a `symbol`, which are used
-quite extensively and look like `:this_symbol`. Except they’re not really
-variables, but identifiers; you can’t assign values to them. Their value is
-themselves, though they have useful string representations
-(`:this_symbol.to_s`). You can even get the symbol representation of
-`this_string.to_sym`. Because they're unique, they make excellent array/hash
-keys and excellent, guaranteed unique values.
+Ruby has a type of identifier called a `symbol`. They are used quite extensively
+and look like `:this_symbol`. As identifiers and not variables, you can’t assign
+values to them. Their value is themselves, though they have useful string
+representations (`:this_symbol.to_s`). You can even get the symbol
+representation of `this_string.to_sym`. Because they're unique, they make
+excellent array/hash keys and excellent, guaranteed unique values.
 
 ### Everything is an object
 Everything is an object, including what are fundamental datatypes in other
@@ -66,12 +65,15 @@ In Ruby you don’t require `return value`, or `result := value`, or
 
 Just enough Ruby
 ----------------
-To work effectively with _Middlemac_ you’ll only have to learn enough Rbuy to
+To work effectively with _Middlemac_ you’ll only have to learn enough Ruby to
 do a few simple things:
 
 - Set variables in the `config.rb` file.
 - Use a few helper functions from within files, e.g., `partial 'my_file'`.
 - Use conditionals, if you want them. You know: simply `if/else/end`.
+
+Examples of these last two points can be seen when we take a look at
+[Filetype basics][04_filetype_basics].
 
 
 Markdown
