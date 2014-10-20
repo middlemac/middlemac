@@ -1,18 +1,69 @@
 ---
-title: Middleman basics
-blurb: Blurb goes here.
+title:  Middleman basics
+blurb:  <em>Middleman</em> is the engine that makes <em>Middlemac</em> possible.
+        It’s critical to know a little bit about this tool.
 layout: template-logo-medium
 order: 5
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% content_for :seeAlso do %>
-Sidebar stuff can go here.
-<% end %>
-
-
 <%= current_page.data.title %>
 ==============================
 
-Body content goes here.
+<%= current_page.data.blurb %>
+
+_Middleman_ is a [static site generator using all the shortcuts and tools in
+modern web development](http://middlemanapp.com). It was intended to have been
+a tool to create static websites with most of the dynamism of websites running
+on technologies such as PHP and Ruby on Rails. Static websites are fast and
+secure.
+
+Apple Helpbooks, in their essence, are static websites. 
+
+_Middleman_ with the help of _Middlemac_ is the perfect tool in your help file
+development toolchain.
+
+Builder _and_ server
+--------------------
+_Middleman_ doesn’t merely build final output; it includes a non-configuration
+server that makes it much easier to develop your website or helpbook. Features
+such as live reload mean that when you change your source file, the site in
+your web browser will update automatically.
+
+The server captures changes to most of your source files. However if you make
+changes to `config.rb`, you will have to restart the server.
+
+
+Basic concepts
+--------------
+_Middleman_’s basic concepts are these:
+
+- Organize your site in a source directory that mirrors the desired structure
+  on the server (or in our case, in our helpbook).
+- Add file extensions to the source files to indicate the type of pre-processing
+  that you want to perform on each of them.
+- Provide the ability to include partials and use helpers to improve your
+  content development productivity.
+- Provide the ability to use templates and layouts to bring uniformity to your
+  website (in our case, to your helpbook).
+- Act as a server in developer mode, building content dynamically as you develop
+  it.
+- Build final output, ready to use wherever you need it.
+
+
+You can use _Middleman_ directly
+--------------------------------
+_Middlemac_ is an extension and project template for _Middleman_. As such, you
+can ignore _Middlemac_’s command line tool that abstracts some of how
+_Middleman_ works, and use _Middleman_ directly.
+
+`middleman build` (or `bundle exec middleman build`) will build the default
+target specified in `config.rb`.
+
+`HBTARGET=target middleman build` (or `HBTARGET=target bundle exec middleman build`)
+will build the target specified by _target_.
+
+`middleman` will start the server using the default target.
+
+`HBTARGET=target middleman` will start the server using the specified _target_.
