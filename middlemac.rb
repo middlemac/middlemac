@@ -549,9 +549,14 @@ end #helpers
         while File.extname(base_name) != '' do
             base_name = File.basename( base_name, '.*' )
         end
-        next if base_name.start_with?('_')
+        next if base_name.start_with?('_') # || base_name == 'index'
 
-        shortcut = "[#{base_name}]:"
+        if base_name == 'index'
+          shortcut = "[#{File.split(File.split(fileName)[0])[1]}_index]:"
+
+        else
+          shortcut = "[#{base_name}]:"
+        end
 
         # Make a fake absolute path
         path = Pathname.new(fileName).relative_path_from(Pathname.new(app.source))

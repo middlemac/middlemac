@@ -1,6 +1,8 @@
 ---
-title: Configure your help project
-blurb: Blurb goes here.
+title:  Configure your help project
+blurb:  You will configure your helpbook project in <code>config.rb</code>,
+        which will specify the settings that <em>Middlemac</em> uses to build
+        one or more valid Apple HelpBooks.
 layout: template-logo-medium
 order: 3
 ---
@@ -15,4 +17,82 @@ Sidebar stuff can go here.
 <%= current_page.data.title %>
 ==============================
 
-Body content goes here.
+<%= current_page.data.blurb %>
+
+The file `config.rb` has settings which both affect how _Middleman_ operates as
+well as how _Middlemac_ builds your helpbooks. **If you follow the _Middlemac_
+conventions, there should be no reason to change the _Middleman_ settings.**
+
+When you open `config.rb` in your text editor, near the top you will readily
+identify the start of the _Middlemac_ configuration block, which is delimited
+by this block at the beginning:
+
+~~~ ruby
+################################################################
+# Configuration. Change the option values to suit your needs.
+################################################################
+~~~
+
+And terminated by this block at the end:
+
+~~~ ruby
+################################################################
+# STOP! There's nothing below here that you should have to
+# change. Just follow the conventions and framework provided.
+################################################################
+~~~
+
+This file is very well documented, and as such not much is to be gained by
+repeating its content here. Some points of explanation are in order, however.
+
+`options.Target = (ENV['HBTARGET'] || :pro).to_sym`
+  : In general you should use `middlemac` in the terminal instead of using
+    `middleman` or `bundle exec` directly. However if you choose to use them,
+    then know that you must specify a target with the HBTARGET environment
+    variable, or use the default target specified by this setting. The default,
+    `:pro` in this example, can be built using `middleman build` or
+    `bundle exec middleman build` without specifying an environment variable.
+    Or, as recommended, simply use `middlemac` instead.
+    
+`options.CFBundleName = 'Middlemac'`
+  : The `CFBundleName` is one of the pieces of data that link your Mac OS X
+    application to its help file. It is intended to be the same for all of your
+    help targets. _Middlemac_ will use this value to configure the help system
+    for your targets automatically.
+    
+`options.Help_Output_Location = nil`
+  : When you build your targets, they will be placed into the directory
+    specified by this setting. The default, `nil`, will put builds into your
+    project directory.
+    
+    We recommend that you set the output location to the location that XCode
+    expects to find your `.help` bundles, so that whenever you build your
+    XCode targets the latest-built help will always be included.
+    {:.note}
+
+`Targets`
+  : The `Targets` hash contains all of the settings for each of your build
+    targets. The _Middlemac_ documentation consists of a `free` and a `pro`
+    target for demonstration purposes. Most of the fields are self-explanatory,
+    but there’s some mention of `CFBundleID` and `Features` below.
+    
+`CFBundleID`
+  : Each help target must have a unique `CFBundleID` that matches a unique
+    `CFBundleHelpBookName` in your applications’ `Info.plist` files. This
+    pairing is the mechanism by which Mac OS X knows which help bundle belongs
+    to which application. If they are not unique, Mac OS X _will_ become
+    confused, and you end-users, if they have multiple versions of your product
+    install will not be very satisfied.
+    
+`ProductName` and `ProductURI`
+  : The default templates use these in a prominent way, and they’re also
+    available to you using [_Middlemac_’s helpers][01_middleman_helpers].
+ 
+`Features`
+  : Aside from **targets** the use of **features** can give you fine-grained
+    control over what content appears in each target. It’s considered a 
+    best-practice to include all of the same features in the hash for each
+    target, and specify a boolean (true/false) value for each key, as
+    appropriate for your target. _Middlemac_ documentation has four features
+    defined, and we will [look at examples later][08_features_overview].
+  
