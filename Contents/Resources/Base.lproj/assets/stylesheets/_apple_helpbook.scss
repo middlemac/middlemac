@@ -563,8 +563,11 @@ pre
 	margin: 2ex 2em 2ex 2em;
 	padding: 1em;
 	font-family: Menlo, Courier, monospace;
-	white-space: pre-line;
+	white-space: pre; //pre-line;
+	word-wrap: normal;
+	overflow: auto;
 }
+
 
 
 // for highlighting important information
