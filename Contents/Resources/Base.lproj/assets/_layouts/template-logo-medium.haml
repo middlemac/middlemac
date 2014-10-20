@@ -2,7 +2,7 @@
   .container-logo-medium
     %div
       .yield-content
-        = yield
+        ~ yield
         - if current_page.parent && current_page.parent.data['navigate']
           %hr
           = partial 'prev_next'
