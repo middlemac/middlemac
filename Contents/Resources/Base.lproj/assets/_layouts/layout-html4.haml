@@ -5,7 +5,7 @@
     %meta{:content => 'text/html; charset=utf-8', :'http-equiv' => 'Content-Type'}/
     = stylesheet_link_tag 'style'
     = javascript_include_tag  'all'
-  %body{:class => "#{page_group} #{page_name}"}
+  %body{:class => "#{current_page.page_group} #{current_page.page_name}"}
     %nav#breadcrumbs
       = partial 'breadcrumbs-alt'
     = yield

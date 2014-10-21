@@ -14,6 +14,17 @@ order: 7
 <%= current_page.data.blurb %>
 
 
+New Methods
+-----------
+
+- current_page.page_name = <%= current_page.page_name %>
+- current_page.page_group = <%= current_page.page_group %>
+- current_page.parent.page_name = <%= current_page.parent.page_name %>
+- current_page.parent.page_group = <%= current_page.parent.page_group %>
+- current_page.parent.parent.page_name = <%= current_page.parent.parent.page_name %>
+- current_page.parent.parent.page_group = <%= current_page.parent.parent.page_group %>
+
+
 Demonstration
 --------------
 <% if target_name?(:pro) %>

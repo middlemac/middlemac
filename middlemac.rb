@@ -217,6 +217,12 @@ def initialize(app, options_hash={}, &block)
     exit 1
   end
 
+  #==============================================
+  #  Callback before each page is rendered.
+  #==============================================
+  app.before do
+    true
+  end
 end #initialize
 
 
@@ -267,6 +273,44 @@ end
 def after_build
     run_help_indexer
 end
+
+
+
+#===============================================================
+#  Sitemap manipulators.
+#    Add new methods to each resource.
+#===============================================================
+def manipulate_resource_list(resources)
+  resources.each do |resource|
+
+    #--------------------------------------------------------
+    # page_name
+    #    Make page_name available for each page. This is the
+    #    file base name. Useful for assigning classes, etc.
+    #--------------------------------------------------------
+    def resource.page_name
+      File.basename( self.url, '.*' )
+    end
+
+
+    #--------------------------------------------------------
+    #  page_group
+    #    Make page_group available for each page. This is
+    #    the source parent directory (not the request path).
+    #    Useful for for assigning classes, and/or group
+    #    conditionals.
+    #--------------------------------------------------------
+    def resource.page_group
+      File.basename(File.split(self.source_file)[0])
+    end
+
+
+  end
+
+  resources
+end
+
+
 
 
 #===============================================================
@@ -331,7 +375,7 @@ helpers do
   # target_name?
   #   Is the current target `proposal`?
   #--------------------------------------------------------
-  def target_name?(proposal)
+  def target_name?( proposal )
     extensions[:Middlemac].options.Target == proposal.to_sym
   end
 
@@ -340,32 +384,10 @@ helpers do
   # target_feature?
   #   Does the target have the feature `feature`?
   #--------------------------------------------------------
-  def target_feature?(feature)
+  def target_feature?( feature )
     options = extensions[:Middlemac].options
     features = options.Targets[options.Target][:Features]
     features.key?(feature) && features[feature]
-  end
-
-
-  #--------------------------------------------------------
-  #  page_name
-  #    Make page_name available for each page. This is the
-  #    file base name. Useful for assigning classes, etc.
-  #--------------------------------------------------------
-  def page_name
-    File.basename( current_page.url, '.*' )
-  end
-
-
-  #--------------------------------------------------------
-  #  page_group
-  #    Make page_group available for each page. This is the
-  #    source parent directory (not the request path).
-  #    Useful for for assigning classes, and/or group
-  #    conditionals.
-  #--------------------------------------------------------
-  def page_group
-    File.basename(File.split(current_page.source_file)[0])
   end
 
 
@@ -390,7 +412,8 @@ helpers do
       p.ext == '.html' &&
           p != current_page &&
           p.data.title &&
-          p.data.key?('order') &&
+          #(p.data.key?('order') || File.basename(p.source_file)[0..2].to_i != 0) &&
+          !sort_order(p).nil? &&
           ( !p.data.key?('target') || (p.data['target'].include?(target_name) || p.data['target'].count{ |t| target_feature?(t) } > 0) ) &&
           ( !p.data.key?('exclude') || !(p.data['exclude'].include?(target_name) || p.data['exclude'].count{ |t| target_feature?(t) } > 0) )
     end
@@ -401,6 +424,7 @@ helpers do
       else
         p.add_metadata(:page => {:order => File.basename(p.source_file)[0..2].to_i} )
       end
+      p.add_metadata(:page => {:order => sort_order(p)} )
     end
     pages.sort_by { |p| p.metadata[:page][:order].to_i }
   end
@@ -411,9 +435,9 @@ helpers do
   #    Returns the next sibling based on order or nil.
   #--------------------------------------------------------
   def brethren_next( page = current_page )
-    if page.metadata[:page][:order]
-      brethren(page).select { |p| p.metadata[:page][:order] == page.metadata[:page][:order] + 1 }[0]
-    end
+    #unless sort_order(page).nil?
+    #  return brethren(page).select { |p| p.metadata[:page][:order] == page.metadata[:page][:order] + 1 }[0]
+    #end
   end
 
 
@@ -422,13 +446,42 @@ helpers do
   #    Returns the next sibling based on order or nil.
   #--------------------------------------------------------
   def brethren_previous( page = current_page )
-    if page.metadata[:page][:order]
-      brethren(page).select { |p| p.metadata[:page][:order] == page.metadata[:page][:order] - 1 }[0]
+    #unless sort_order(page).nil?
+    #  return brethren(page).select { |p| p.metadata[:page][:order] == page.metadata[:page][:order] - 1 }[0]
+    #end
+  end
+
+
+  #--------------------------------------------------------
+  #  sort_order
+  #    Returns the page sort order or nil
+  #--------------------------------------------------------
+  def sort_order( page = current_page )
+    if page.data.key?('order')
+      page.data['order']
+    elsif File.basename(page.source_file)[0..2].to_i != 0
+      File.basename(page.source_file)[0..2].to_i
+    else
+      nil
     end
   end
 
 
   #--------------------------------------------------------
+  #  navigator_eligible?
+  #    Determine whether a page is eligible to include a
+  #    previous/next page control based on:
+  #      - the group is set to allow navigation.
+  #      - this page is not excluded from navigation.
+  #      - this page has a page order.
+  #--------------------------------------------------------
+  def navigator_eligible?( page = current_page )
+    (page.parent && page.parent.data.key?('navigate') && page.parent.data['navigate'] == true) &&
+        !(page.data.key?('navigate') && page.data['navigate'] == false) &&
+        (!sort_order(page).nil?)
+  end
+
+    #--------------------------------------------------------
   #  legitimate_children
   #    Returns an array of all of the children of the
   #    specified page, taking into account their
@@ -447,17 +500,19 @@ helpers do
     pages = page.children.find_all do |p|
       p.ext == '.html' &&
           p.data.title &&
-          ( p.data.key?('order') || File.basename(p.source_file)[0..2].to_i != 0 ) &&
+          #( p.data.key?('order') || File.basename(p.source_file)[0..2].to_i != 0 ) &&
+          !sort_order(p).nil? &&
           ( !p.data.key?('target') || (p.data['target'].include?(target_name) || p.data['target'].count{ |t| target_feature?(t) } > 0) ) &&
           ( !p.data.key?('exclude') || !(p.data['exclude'].include?(target_name) || p.data['exclude'].count{ |t| target_feature?(t) } > 0) )
     end
     pages.each do |p|
       p.add_metadata(:link => p.url )
-      if p.data['order']
-        p.add_metadata(:page => {:order => p.data['order']} )
-      else
-        p.add_metadata(:page => {:order => File.basename(p.source_file)[0..2].to_i} )
-      end
+      # if p.data['order']
+      #   p.add_metadata(:page => {:order => p.data['order']} )
+      # else
+      #   p.add_metadata(:page => {:order => File.basename(p.source_file)[0..2].to_i} )
+      # end
+      p.add_metadata(:page => {:order => sort_order(p)} )
     end
     pages.sort_by { |p| p.metadata[:page][:order].to_i }
   end
