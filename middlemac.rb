@@ -315,7 +315,7 @@ def manipulate_resource_list(resources)
     #--------------------------------------------------------
     def resource.sort_order
       if self.data.key?('order')
-        self.data['order']
+        self.data['order'].to_i
       elsif self.page_name[0..2].to_i != 0
         self.page_name[0..2].to_i
       else
@@ -357,6 +357,22 @@ def manipulate_resource_list(resources)
           !self.sort_order.nil? &&
           ( !self.data['target'] || (self.data['target'].include?(target_name) || (self.data['target'] & self.valid_features).count > 0) ) &&
           ( !self.data['exclude'] || !(self.data['exclude'].include?(target_name) || (self.data['exclude'] & self.valid_features).count > 0) )
+    end
+
+
+    #--------------------------------------------------------
+    #  brethren
+    #    Returns an array of all of the siblings of the
+    #    specified page, taking into account their
+    #    eligibility for display.
+    #      - is not already the current page, and
+    #      - is targeted for the current build.
+    #    Returned array will be:
+    #      - sorted by the "order" key.
+    #--------------------------------------------------------
+    def resource.brethren
+      pages = self.siblings.find_all { |p| p.targeted? && p != app.current_page }
+      pages.sort_by { |p| p.sort_order.to_i }
     end
 
 
@@ -460,27 +476,27 @@ helpers do
   #    Returned array will be:
   #      - sorted by the "order" key.
   #--------------------------------------------------------
-  def brethren( page = current_page )
-    pages = page.siblings.find_all do |p|
-      p.ext == '.html' &&
-          p != current_page &&
-          p.data.title &&
-          #(p.data.key?('order') || File.basename(p.source_file)[0..2].to_i != 0) &&
-          !sort_order(p).nil? &&
-          ( !p.data.key?('target') || (p.data['target'].include?(target_name) || p.data['target'].count{ |t| target_feature?(t) } > 0) ) &&
-          ( !p.data.key?('exclude') || !(p.data['exclude'].include?(target_name) || p.data['exclude'].count{ |t| target_feature?(t) } > 0) )
-    end
-    pages.each do |p|
-      p.add_metadata(:link => p.url )
-      if p.data['order']
-        p.add_metadata(:page => {:order => p.data['order']} )
-      else
-        p.add_metadata(:page => {:order => File.basename(p.source_file)[0..2].to_i} )
-      end
-      p.add_metadata(:page => {:order => sort_order(p)} )
-    end
-    pages.sort_by { |p| p.metadata[:page][:order].to_i }
-  end
+  # def brethren( page = current_page )
+  #   pages = page.siblings.find_all do |p|
+  #     p.ext == '.html' &&
+  #         p != current_page &&
+  #         p.data.title &&
+  #         #(p.data.key?('order') || File.basename(p.source_file)[0..2].to_i != 0) &&
+  #         !sort_order(p).nil? &&
+  #         ( !p.data.key?('target') || (p.data['target'].include?(target_name) || p.data['target'].count{ |t| target_feature?(t) } > 0) ) &&
+  #         ( !p.data.key?('exclude') || !(p.data['exclude'].include?(target_name) || p.data['exclude'].count{ |t| target_feature?(t) } > 0) )
+  #   end
+  #   pages.each do |p|
+  #     p.add_metadata(:link => p.url )
+  #     if p.data['order']
+  #       p.add_metadata(:page => {:order => p.data['order']} )
+  #     else
+  #       p.add_metadata(:page => {:order => File.basename(p.source_file)[0..2].to_i} )
+  #     end
+  #     p.add_metadata(:page => {:order => sort_order(p)} )
+  #   end
+  #   pages.sort_by { |p| p.metadata[:page][:order].to_i }
+  # end
 
 
   #--------------------------------------------------------

@@ -5,8 +5,6 @@ blurb:  Targets let you build help files that are specific to each version of
 layout: template-logo-medium
 target:
  - :free
-exclude:
- - :free
 
 order: 7
 ---
@@ -32,7 +30,7 @@ New Methods
 
 - current_page.valid_features = <%= current_page.valid_features %>
 - current_page.targeted? = <%= current_page.targeted? %>
-
+- current_page.brethren = <%= current_page.brethren[0].page_name %>
 
 Demonstration
 --------------
