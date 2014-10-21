@@ -3,6 +3,11 @@ title:  Targets overview
 blurb:  Targets let you build help files that are specific to each version of
         your Mac OS X application.
 layout: template-logo-medium
+target:
+ - :free
+exclude:
+ - :free
+
 order: 7
 ---
 <%= partial 'markdown-links' %>
@@ -23,6 +28,10 @@ New Methods
 - current_page.parent.page_group = <%= current_page.parent.page_group %>
 - current_page.parent.parent.page_name = <%= current_page.parent.parent.page_name %>
 - current_page.parent.parent.page_group = <%= current_page.parent.parent.page_group %>
+- current_page.sort_order = <%= current_page.sort_order %>
+
+- current_page.valid_features = <%= current_page.valid_features %>
+- current_page.targeted? = <%= current_page.targeted? %>
 
 
 Demonstration

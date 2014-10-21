@@ -281,6 +281,7 @@ end
 #    Add new methods to each resource.
 #===============================================================
 def manipulate_resource_list(resources)
+
   resources.each do |resource|
 
     #--------------------------------------------------------
@@ -305,12 +306,64 @@ def manipulate_resource_list(resources)
     end
 
 
-  end
+    #--------------------------------------------------------
+    #  sort_order
+    #    Returns the page sort order or nil.
+    #      - If there's and `order` key, use it.
+    #      - Otherwise if there's a three digit prefix.
+    #      - Else nil.
+    #--------------------------------------------------------
+    def resource.sort_order
+      if self.data.key?('order')
+        self.data['order']
+      elsif self.page_name[0..2].to_i != 0
+        self.page_name[0..2].to_i
+      else
+        nil
+      end
+    end
+
+
+    #--------------------------------------------------------
+    #  valid_features
+    #    Returns an array of valid features for this page
+    #    based on the current target, i.e., features that
+    #    are true for the current target. These are the
+    #    only features that can be used with frontmatter
+    #    :target or :exclude.
+    #--------------------------------------------------------
+    def resource.valid_features
+      options = app.extensions[:Middlemac].options
+      options.Targets[options.Target][:Features].select { |k, v| v }.keys
+    end
+
+
+    #--------------------------------------------------------
+    #  targeted?
+    #    Determines if this pages is eligible for inclusion
+    #    in the current build/server environment based on:
+    #      - is an HTML file, and
+    #      - has a sort_order, and
+    #      - if frontmatter:target is used, the target or
+    #        feature appears in the frontmatter, and
+    #      - if frontmatter:exclude is used, the target or
+    #        enabled feature does NOT appear in the
+    #        frontmatter.
+    #--------------------------------------------------------
+    def resource.targeted?
+      target_name = app.extensions[:Middlemac].options.Target
+      self.ext == '.html' &&
+          self.data.key?('title') &&
+          !self.sort_order.nil? &&
+          ( !self.data['target'] || (self.data['target'].include?(target_name) || (self.data['target'] & self.valid_features).count > 0) ) &&
+          ( !self.data['exclude'] || !(self.data['exclude'].include?(target_name) || (self.data['exclude'] & self.valid_features).count > 0) )
+    end
+
+
+  end # .each
 
   resources
 end
-
-
 
 
 #===============================================================
@@ -481,7 +534,7 @@ helpers do
         (!sort_order(page).nil?)
   end
 
-    #--------------------------------------------------------
+  #--------------------------------------------------------
   #  legitimate_children
   #    Returns an array of all of the children of the
   #    specified page, taking into account their
@@ -536,7 +589,6 @@ end #helpers
 #===============================================================
 #  Instance Methods
 #===============================================================
-
 
   #--------------------------------------------------------
   #  build_mdimages
