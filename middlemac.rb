@@ -392,7 +392,7 @@ helpers do
           p.data.title &&
           p.data.key?('order') &&
           ( !p.data.key?('target') || (p.data['target'].include?(target_name) || p.data['target'].count{ |t| target_feature?(t) } > 0) ) &&
-          ( !p.data.key?('exclude') || !(p.data['exclude'].include?(target_name) || p.data['exclude'].count{ |t| target_feature(t) } > 0) )
+          ( !p.data.key?('exclude') || !(p.data['exclude'].include?(target_name) || p.data['exclude'].count{ |t| target_feature?(t) } > 0) )
     end
     pages.each do |p|
       p.add_metadata(:link => p.url )
@@ -411,7 +411,9 @@ helpers do
   #    Returns the next sibling based on order or nil.
   #--------------------------------------------------------
   def brethren_next( page = current_page )
-    brethren(page).select { |p| p.data['order'] == page.data['order'] + 1 }[0]
+    if page.metadata[:page][:order]
+      brethren(page).select { |p| p.metadata[:page][:order] == page.metadata[:page][:order] + 1 }[0]
+    end
   end
 
 
@@ -420,7 +422,9 @@ helpers do
   #    Returns the next sibling based on order or nil.
   #--------------------------------------------------------
   def brethren_previous( page = current_page )
-    brethren(page).select { |p| p.data['order'] == page.data['order'] - 1 }[0]
+    if page.metadata[:page][:order]
+      brethren(page).select { |p| p.metadata[:page][:order] == page.metadata[:page][:order] - 1 }[0]
+    end
   end
 
 
@@ -445,7 +449,7 @@ helpers do
           p.data.title &&
           ( p.data.key?('order') || File.basename(p.source_file)[0..2].to_i != 0 ) &&
           ( !p.data.key?('target') || (p.data['target'].include?(target_name) || p.data['target'].count{ |t| target_feature?(t) } > 0) ) &&
-          ( !p.data.key?('exclude') || !(p.data['exclude'].include?(target_name) || p.data['exclude'].count{ |t| target_feature(t) } > 0) )
+          ( !p.data.key?('exclude') || !(p.data['exclude'].include?(target_name) || p.data['exclude'].count{ |t| target_feature?(t) } > 0) )
     end
     pages.each do |p|
       p.add_metadata(:link => p.url )
