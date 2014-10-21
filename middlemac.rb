@@ -368,11 +368,81 @@ def manipulate_resource_list(resources)
     #      - is not already the current page, and
     #      - is targeted for the current build.
     #    Returned array will be:
-    #      - sorted by the "order" key.
+    #      - sorted by sort_order.
     #--------------------------------------------------------
     def resource.brethren
       pages = self.siblings.find_all { |p| p.targeted? && p != app.current_page }
-      pages.sort_by { |p| p.sort_order.to_i }
+      pages.sort_by { |p| p.sort_order }
+    end
+
+
+    #--------------------------------------------------------
+    #  brethren_next
+    #    Returns the next sibling based on order or nil.
+    #--------------------------------------------------------
+    def resource.brethren_next
+      if self.sort_order.nil?
+        puts 'NEXT reports no sort order.'
+        return nil
+      else
+        return self.brethren.select { |p| p.sort_order == app.current_page.sort_order + 1 }[0]
+      end
+    end
+
+
+    #--------------------------------------------------------
+    #  brethren_previous
+    #    Returns the previous sibling based on order or nil.
+    #--------------------------------------------------------
+    def resource.brethren_previous
+      if self.sort_order.nil?
+        puts 'PREV reports no sort order.'
+        return nil
+      else
+        return self.brethren.select { |p| p.sort_order == app.current_page.sort_order - 1 }[0]
+      end
+    end
+
+
+    #--------------------------------------------------------
+    #  navigator_eligible?
+    #    Determine whether a page is eligible to include a
+    #    previous/next page control based on:
+    #      - the group is set to allow navigation.
+    #      - this page is not excluded from navigation.
+    #      - this page has a sort_order.
+    #--------------------------------------------------------
+    def resource.navigator_eligible?
+      (self.parent && self.parent.data.key?('navigate') && self.parent.data['navigate'] == true) &&
+          !(self.data.key?('navigate') && self.data['navigate'] == false) &&
+          (!self.sort_order.nil?)
+    end
+
+
+    #--------------------------------------------------------
+    #  legitimate_children
+    #    Returns an array of all of the children of the
+    #    specified page, taking into account their
+    #    eligibility for display.
+    #      - is targeted for the current build.
+    #    Returned array will be:
+    #      - sorted by sort_order.
+    #--------------------------------------------------------
+    def resource.legitimate_children
+      pages = self.children.find_all { |p| p.targeted? }
+      pages.sort_by { |p| p.sort_order }
+    end
+
+
+    #--------------------------------------------------------
+    #  breadcrumbs
+    #    Returns an array of pages leading to the current
+    #    page.
+    #--------------------------------------------------------
+    def resource.breadcrumbs
+      hierarchy = [] << self
+      hierarchy.unshift hierarchy.first.parent while hierarchy.first.parent
+      hierarchy
     end
 
 
@@ -457,145 +527,6 @@ helpers do
     options = extensions[:Middlemac].options
     features = options.Targets[options.Target][:Features]
     features.key?(feature) && features[feature]
-  end
-
-
-  #--------------------------------------------------------
-  #  brethren
-  #    Returns an array of all of the siblings of the
-  #    specified page, taking into account their
-  #    eligibility for display.
-  #      - is not already the current page, and
-  #      - has an order specified in frontmatter or as a
-  #        prefix to the filename, and
-  #      - if frontmatter:target is used, the target or
-  #        feature appears in the frontmatter
-  #      - if frontmatter:exclude is used, that target or
-  #        enabled feature does NOT appear in the
-  #        frontmatter.
-  #    Returned array will be:
-  #      - sorted by the "order" key.
-  #--------------------------------------------------------
-  # def brethren( page = current_page )
-  #   pages = page.siblings.find_all do |p|
-  #     p.ext == '.html' &&
-  #         p != current_page &&
-  #         p.data.title &&
-  #         #(p.data.key?('order') || File.basename(p.source_file)[0..2].to_i != 0) &&
-  #         !sort_order(p).nil? &&
-  #         ( !p.data.key?('target') || (p.data['target'].include?(target_name) || p.data['target'].count{ |t| target_feature?(t) } > 0) ) &&
-  #         ( !p.data.key?('exclude') || !(p.data['exclude'].include?(target_name) || p.data['exclude'].count{ |t| target_feature?(t) } > 0) )
-  #   end
-  #   pages.each do |p|
-  #     p.add_metadata(:link => p.url )
-  #     if p.data['order']
-  #       p.add_metadata(:page => {:order => p.data['order']} )
-  #     else
-  #       p.add_metadata(:page => {:order => File.basename(p.source_file)[0..2].to_i} )
-  #     end
-  #     p.add_metadata(:page => {:order => sort_order(p)} )
-  #   end
-  #   pages.sort_by { |p| p.metadata[:page][:order].to_i }
-  # end
-
-
-  #--------------------------------------------------------
-  #  brethren_next
-  #    Returns the next sibling based on order or nil.
-  #--------------------------------------------------------
-  def brethren_next( page = current_page )
-    #unless sort_order(page).nil?
-    #  return brethren(page).select { |p| p.metadata[:page][:order] == page.metadata[:page][:order] + 1 }[0]
-    #end
-  end
-
-
-  #--------------------------------------------------------
-  #  brethren_previous
-  #    Returns the next sibling based on order or nil.
-  #--------------------------------------------------------
-  def brethren_previous( page = current_page )
-    #unless sort_order(page).nil?
-    #  return brethren(page).select { |p| p.metadata[:page][:order] == page.metadata[:page][:order] - 1 }[0]
-    #end
-  end
-
-
-  #--------------------------------------------------------
-  #  sort_order
-  #    Returns the page sort order or nil
-  #--------------------------------------------------------
-  def sort_order( page = current_page )
-    if page.data.key?('order')
-      page.data['order']
-    elsif File.basename(page.source_file)[0..2].to_i != 0
-      File.basename(page.source_file)[0..2].to_i
-    else
-      nil
-    end
-  end
-
-
-  #--------------------------------------------------------
-  #  navigator_eligible?
-  #    Determine whether a page is eligible to include a
-  #    previous/next page control based on:
-  #      - the group is set to allow navigation.
-  #      - this page is not excluded from navigation.
-  #      - this page has a page order.
-  #--------------------------------------------------------
-  def navigator_eligible?( page = current_page )
-    (page.parent && page.parent.data.key?('navigate') && page.parent.data['navigate'] == true) &&
-        !(page.data.key?('navigate') && page.data['navigate'] == false) &&
-        (!sort_order(page).nil?)
-  end
-
-  #--------------------------------------------------------
-  #  legitimate_children
-  #    Returns an array of all of the children of the
-  #    specified page, taking into account their
-  #    eligibility for display.
-  #      - has an order specified in frontmatter or as a
-  #        prefix to the filename, and
-  #      - if frontmatter:target is used, the target or
-  #        feature appears in the frontmatter
-  #      - if frontmatter:exclude is used, that target or
-  #        enabled feature does NOT appear in the
-  #        frontmatter.
-  #    Returned array will be:
-  #      - sorted by the "order" key.
-  #--------------------------------------------------------
-  def legitimate_children( page = current_page )
-    pages = page.children.find_all do |p|
-      p.ext == '.html' &&
-          p.data.title &&
-          #( p.data.key?('order') || File.basename(p.source_file)[0..2].to_i != 0 ) &&
-          !sort_order(p).nil? &&
-          ( !p.data.key?('target') || (p.data['target'].include?(target_name) || p.data['target'].count{ |t| target_feature?(t) } > 0) ) &&
-          ( !p.data.key?('exclude') || !(p.data['exclude'].include?(target_name) || p.data['exclude'].count{ |t| target_feature?(t) } > 0) )
-    end
-    pages.each do |p|
-      p.add_metadata(:link => p.url )
-      # if p.data['order']
-      #   p.add_metadata(:page => {:order => p.data['order']} )
-      # else
-      #   p.add_metadata(:page => {:order => File.basename(p.source_file)[0..2].to_i} )
-      # end
-      p.add_metadata(:page => {:order => sort_order(p)} )
-    end
-    pages.sort_by { |p| p.metadata[:page][:order].to_i }
-  end
-
-
-  #--------------------------------------------------------
-  #  breadcrumbs
-  #    Returns an array of pages leading to the current
-  #    page.
-  #--------------------------------------------------------
-  def breadcrumbs( page = current_page )
-    hierarchy = [] << page
-    hierarchy.unshift hierarchy.first.parent while hierarchy.first.parent
-    hierarchy
   end
 
 

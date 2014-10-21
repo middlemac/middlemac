@@ -1,5 +1,5 @@
 - commence = (defined?(start) && start) || current_page
-- pages = legitimate_children( commence )
+- pages = commence.legitimate_children
 - unless pages.to_a.empty?
   %ul
     - pages.each do |p|

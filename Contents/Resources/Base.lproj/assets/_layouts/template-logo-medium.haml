@@ -3,7 +3,7 @@
     %div
       .yield-content
         ~ yield
-        - if navigator_eligible?
+        - if current_page.navigator_eligible?
           %hr
           = partial 'prev_next'
 
