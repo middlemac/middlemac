@@ -38,29 +38,13 @@ variable, then that previous clause is a good hint and Google is your friend.
 {:.note}
 
 
-### Install XCode
-
-If you’re on a Mac you’ll have to install XCode first. It’s available in the App
-Store free of charge. XCode provides dependencies that Ruby and several of its
-gems require. It will also ensure that Apple’s help indexer is installed, which
-is required if you want to produce proper help files on Mac OS X.
-
-Dependencies on Linux are left up to you. Most modern Linuxes will prompt you to
-install packages that are missing.
- 
-_Middlemac_ works quite well on Linux, but keep in mind that Linux doesn’t have
-the help indexing tool that’s required in order to build a proper helpbook.
-Other than for generating your final helpbook, Linux makes a fine development
-environment.
-{:.note} 
-
-
 Quick version, if you don’t want to read details
 ------------------------------------------------
 
 In your Terminal, do each of the following:
 
 ~~~ bash
+xcode-select --install
 gem install bundler
 git clone http://github.com/balthisar/middlemac.git middlemac_demo
 bundle install
@@ -73,8 +57,33 @@ then use your preferred web browser and go to
 [http://localhost:4567/Resources/Base.lproj/](http://localhost:4567/Resources/Base.lproj/).
 
 
-Same as above, with a bit of handholding
+Similar to above, with a bit of handholding
 ----------------------------------------
+
+### Install XCode
+
+If you’re on a Mac you’ll have to install XCode first, or at least the XCode
+command line tools. You can _try_ just installing the tools first:
+
+~~~ bash
+xcode-select --install
+~~~
+
+If that fails or the rest of the installation fails, then install all of XCode.
+It’s available in the App Store. It’s free of charge. And you’re using this
+project to develop help for Mac OS X applications that you’re developing using
+XCode anyway. Install it, already. Then you’ll have no dependency issues for the
+rest of this procedure.
+
+Dependencies on Linux are left up to you. Most modern Linuxes will prompt you to
+install packages that are missing.
+ 
+_Middlemac_ works quite well on Linux, but keep in mind that Linux doesn’t have
+the help indexing tool that’s required in order to build a proper helpbook.
+Other than for generating your final helpbook, Linux makes a fine development
+environment.
+{:.note} 
+
 
 ### Install bundler
 
