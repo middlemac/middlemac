@@ -285,6 +285,12 @@ nav#breadcrumbs
 		&:last-child
 		{
 			color: #555555;
+
+			a
+			{
+				background: none;
+				cursor: default;
+			}
 		}
 	}
 }
