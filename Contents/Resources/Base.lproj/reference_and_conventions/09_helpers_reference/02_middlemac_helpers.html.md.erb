@@ -1,19 +1,17 @@
 ---
-title: Middlemac helpers
-blurb: Blurb goes here.
+title:  Middlemac helpers
+blurb:  <em>Middlemac</em> adds helpers to <em>Middleman</em>, with an emphasis
+        on features that aid in helpbook development.
 layout: template-logo-medium
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% content_for :seeAlso do %>
-Sidebar stuff can go here.
-<% end %>
-
 
 <%= current_page.data.title %>
 ==============================
 
+<%= current_page.data.blurb %>
 
 
 Helpful Helpers

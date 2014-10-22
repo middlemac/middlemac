@@ -1,17 +1,14 @@
 ---
-title: Middleman helpers
-blurb: Blurb goes here.
+title:  Middleman helpers
+blurb:  <em>Middleman</em> brings several useful helpers into your development
+        process. This reference touches upon many of them.
 layout: template-logo-medium
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% content_for :seeAlso do %>
-Sidebar stuff can go here.
-<% end %>
-
 
 <%= current_page.data.title %>
 ==============================
 
-Body content goes here.
+<%= current_page.data.blurb %>

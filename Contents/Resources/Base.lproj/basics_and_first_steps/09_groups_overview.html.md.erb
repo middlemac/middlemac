@@ -60,7 +60,8 @@ Group member’s sort/navigation order is determined two ways. Files in the grou
 can have an `:order` key in the frontmatter, or the first three digits of the
 filename can specify a sort order, e.g., `004`, or `23_`. If both are present,
 the `:order` key takes precedence. If two pages end up with the same sort order,
-then the actual behavior is undefined.
+then the actual behavior is undefined. Parent `index.html` files cannot be
+prefixed, and so must include an `:order` key in their frontmatter.
  
 Pages without a sort order are _not_ present in any of the automatic navigation
 or contents partials. This is by design. You can still link to them, however.

@@ -1,18 +1,17 @@
 ---
-title: Partials reference
-blurb: Blurb goes here.
+title:  Partials reference
+blurb:  A reference to <em>Middlemac</em>’s included partials, and a brief
+        introduction to writing your own.
 layout: template-logo-medium
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% content_for :seeAlso do %>
-Sidebar stuff can go here.
-<% end %>
-
 
 <%= current_page.data.title %>
 ==============================
+
+<%= current_page.data.blurb %>
 
 
 Helpful Partials

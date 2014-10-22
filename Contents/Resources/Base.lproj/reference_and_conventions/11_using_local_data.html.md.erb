@@ -1,17 +1,14 @@
 ---
-title: Using local data
-blurb: Blurb goes here.
+title:  Using local data
+blurb:  You can use a local file as a datasource to generate data-based pages
+        automatically. Learn how in this reference section.
 layout: template-logo-medium
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% content_for :seeAlso do %>
-Sidebar stuff can go here.
-<% end %>
-
 
 <%= current_page.data.title %>
 ==============================
 
-Body content goes here.
+<%= current_page.data.blurb %>

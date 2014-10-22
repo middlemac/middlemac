@@ -1,17 +1,14 @@
 ---
-title: Apple .help bundle setup
-blurb: Blurb goes here.
+title:  Apple .help bundle setup
+blurb:  A reference to what <em>Middlemac</em> does to ensure that you build a
+        proper, working Apple Helpbook.
 layout: template-logo-medium
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% content_for :seeAlso do %>
-Sidebar stuff can go here.
-<% end %>
-
 
 <%= current_page.data.title %>
 ==============================
 
-Body content goes here.
+<%= current_page.data.blurb %>
