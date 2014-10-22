@@ -1,0 +1,33 @@
+---
+title: Middlemac extended <em>page</em> methods
+blurb: Blurb goes here.
+layout: template-logo-medium
+---
+<%= partial 'markdown-links' %>
+<%= partial 'markdown-images' %>
+
+<% content_for :seeAlso do %>
+Sidebar stuff can go here.
+<% end %>
+
+
+<%= current_page.data.title %>
+==============================
+
+
+
+Helpful Helpers
+---------------
+cfBundleIdentifier
+cfBundleName
+product_name
+product_uri
+target_name
+target_name?
+target_feature?
+page_name
+page_group
+current_group_pages
+related_pages
+pages_related_to
+legitimate_children
