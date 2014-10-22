@@ -408,13 +408,13 @@ def manipulate_resource_list(resources)
     #  navigator_eligible?
     #    Determine whether a page is eligible to include a
     #    previous/next page control based on:
-    #      - the group is set to allow navigation.
-    #      - this page is not excluded from navigation.
+    #      - the group is set to allow navigation (:navigate)
+    #      - this page is not excluded from navigation. (:navigator => false)
     #      - this page has a sort_order.
     #--------------------------------------------------------
     def resource.navigator_eligible?
       (self.parent && self.parent.data.key?('navigate') && self.parent.data['navigate'] == true) &&
-          !(self.data.key?('navigate') && self.data['navigate'] == false) &&
+          !(self.data.key?('navigator') && self.data['navigator'] == false) &&
           (!self.sort_order.nil?)
     end
 
