@@ -32,7 +32,8 @@ such as live reload mean that when you change your source file, the site in
 your web browser will update automatically.
 
 The server captures changes to most of your source files. However if you make
-changes to `config.rb`, you will have to restart the server.
+changes to `config.rb`, or add files and are counting on `_markdown-links.erb`,
+you will have to restart the server.
 
 
 Basic concepts
@@ -44,7 +45,7 @@ _Middleman_’s basic concepts are these:
 - Add file extensions to the source files to indicate the type of pre-processing
   that you want to perform on each of them.
 - Provide the ability to include partials and use helpers to improve your
-  content development productivity.
+  content development productivity, while keeping yourself DRY.
 - Provide the ability to use templates and layouts to bring uniformity to your
   website (in our case, to your helpbook).
 - Act as a server in developer mode, building content dynamically as you develop
@@ -58,10 +59,10 @@ _Middlemac_ is an extension and project template for _Middleman_. As such, you
 can ignore _Middlemac_’s command line tool that abstracts some of how
 _Middleman_ works, and use _Middleman_ directly.
 
-`middleman build` (or `bundle exec middleman build`) will build the default
+`middleman build` or `bundle exec middleman build` will build the default
 target specified in `config.rb`.
 
-`HBTARGET=target middleman build` (or `HBTARGET=target bundle exec middleman build`)
+`HBTARGET=target middleman build` or `HBTARGET=target bundle exec middleman build`
 will build the target specified by _target_.
 
 `middleman` will start the server using the default target.

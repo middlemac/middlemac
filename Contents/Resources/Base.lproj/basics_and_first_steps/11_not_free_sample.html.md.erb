@@ -1,9 +1,9 @@
 ---
-title:    Invisible On Free
-blurb:    This page is not completely available for target `:free`, as a demonstration of
-          the use of targets.
-layout:   template-logo-large
-navigate: false
+title:     Invisible On Free
+blurb:     This page is not completely available for target `:free`, as a demonstration of
+           the use of targets.
+layout:    template-logo-large
+navigator: false
 exclude:
  - :free
 ---
@@ -42,11 +42,11 @@ that this is page should be hidden from _Middleman_’s navigation system.
 
 ~~~ yaml
 ---
-title:    Invisible On Free
-blurb:    This page is not completely available for target `:free`, as a demonstration of
-          the use of targets.
-layout:   template-logo-large
-navigate: false
+title:     Invisible On Free
+blurb:     This page is not completely available for target `:free`, as a demonstration of
+           the use of targets.
+layout:    template-logo-large
+navigator: false
 exclude:
  - :free
 ---
@@ -73,8 +73,9 @@ by bracketing it using the **target_name?** helper. For example.
 
 ~~~ erb
 <%% unless target_name?(:free) %>
-   You can only read this if that target is not `:free`.
-   All of the page content here will _not_ be included in the build,
+   However since you’re not reading this via the `:free` target, this is the
+   last paragraph, instead. You can only read this if that target is not
+   `:free`. All of the page content here will _not_ be included in the build,
    although the empty page will be. Since there’s nothing for the help indexer
    to index, and there will be no automatic links to this page, it effectively
    doesn’t exist.
@@ -85,8 +86,9 @@ If you’re still reading this via the `:free` target, the next paragraph won’
 present, and this is the end of the article.
 
 <% unless target_name?(:free) %>
-   You can only read this if that target is not `:free`.
-   All of the page content here will _not_ be included in the build,
+   However since you’re not reading this via the `:free` target, this is the
+   last paragraph, instead. You can only read this if that target is not
+   `:free`. All of the page content here will _not_ be included in the build,
    although the empty page will be. Since there’s nothing for the help indexer
    to index, and there will be no automatic links to this page, it effectively
    doesn’t exist.

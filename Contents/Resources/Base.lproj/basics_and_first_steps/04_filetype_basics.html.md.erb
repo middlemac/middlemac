@@ -47,13 +47,13 @@ extensions and will process them accordingly.
   : Markdown is a plain-text formatting syntax that is exceedingly easy to read
     and write in its source form, and mostly internally logically consistent.
     _Middlemac_ uses [kramdown](http://kramdown.gettalong.org/) as its
-     text-to-HTML engine, and offeres several useful features not found in
+     text-to-HTML engine, and offers several useful features not found in
      plain vanilla Markdown.
      
 `.scss`
   : “Sassy” CSS files use SASS markup and render into standard `.css` files.
     You can use SASS as you see fit; it’s fully compatible with CSS, and all
-    SCSS is valid CSS. Why “SASS” and “SCSS”? SASS is the name of the project
+    CSS is valid SCSS. Why “SASS” and “SCSS”? SASS is the name of the project
     as well as an older, non-CSS compatible format. So, SASS is the project,
     and SCSS is the file format.
 
@@ -61,8 +61,8 @@ extensions and will process them accordingly.
 Files with leading underscore
 -----------------------------
 
-Regardless of the file type, files with a leading underscore (“_”) will be
-processed by _Middleman_ (if it’s a type that _Middleman_ recognizes), and
+Regardless of the file type, files with a leading underscore (“\_”) will be
+processed by _Middleman_ (if it’s a type that _Middleman_ recognizes), but
 _will not_ be copied to your build directory. An example of this type of file
 is a partial, which we want _Middleman_ to process and make ready for use, but
 which we don’t want copied to the output directory because its content will be
