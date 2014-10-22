@@ -1,7 +1,7 @@
 ---
-title:  Templates and content
-blurb:  <em>Middlemac</em> separates your content from most of the framing and
-        operation details of your helpbook via templates and content.
+title:  Templates
+blurb:  <em>Middlemac</em> separates your content from the overall visual
+        appearance of your helpbook via the use of templates.
 layout: template-logo-medium
 ---
 <%= partial 'markdown-links' %>
@@ -12,3 +12,38 @@ layout: template-logo-medium
 ==============================
 
 <%= current_page.data.blurb %>
+
+Templates
+---------
+
+_Middlemac_ comes with three templates inspired by recent Mac OS X help files.
+Although you can certainly use any of the templates you desire (or create your
+own!), the included templates were designed with specific purposes in mind.
+
+`template-logo-large`
+ : This template features your help icon in a large size with your target’s
+   `ProductName` and `ProductURI` below it, in a left frame-like area. Your
+   content is in the right frame-like area. This template was designed to be
+   suited for the main landing page and for main section landing pages
+   consisting primarily of links and descriptions of other pages.
+
+`template-logo-medium`
+ : This template places a smaller logo in a frame-like area to the right,
+   followed by automatically placed “related links” to other pages in the same
+   group. Your content will occupy the large, left side of the window. This
+   template is idea for multiple, related pages within a group.
+
+`template-logo-small`
+ : The template places a very small logo at the top of your page. Related links
+   will appear at the bottom of the page after your content. This template is
+   most suite for topics that stand somewhat alone.
+
+
+Layouts
+-------
+
+The included templates will wrap a layout around them. By default they will
+always use `layout-html4`, although you can force _Middlemac_ to use the
+`layout-xhtml` template with the `:xhtml` frontmatter key. You should never do
+this, though, as Apple requires your content -- except the top level landing
+page -- to be HTML4.

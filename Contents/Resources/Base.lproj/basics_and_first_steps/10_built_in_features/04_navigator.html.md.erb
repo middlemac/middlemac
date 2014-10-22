@@ -12,3 +12,15 @@ layout: template-logo-medium
 ==============================
 
 <%= current_page.data.blurb %>
+
+Near the bottom of this page you can see the navigator. It’s visible because
+this page’s parent `index.html` file includes `navigate: true` in its
+frontmatter.
+
+Setting `:navigate` in the frontmatter will cause all pages with an
+[order][09_groups_overview] to display the navigator. This can be overridden
+on a page-per-page basis by using the `:navigator` frontmatter key, e.g.,
+`navigator: false`.
+
+The partial `prev_next` provides the navigator structure, and the appearance is
+set in CSS.

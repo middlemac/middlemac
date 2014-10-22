@@ -13,3 +13,49 @@ layout: template-logo-medium
 ==============================
 
 <%= current_page.data.blurb %>
+
+You’ll notice (as you look at the source files for this help content) that the
+first ERB instructions immiedately after the headmatter are:
+
+~~~ erb
+<%%= partial 'markdown-links' %>
+<%%= partial 'markdown-images' %>
+~~~
+
+These convenience partials make it relatively simply to include Markdown links
+and images using the reference format.
+ 
+Links
+-----
+
+~~~ erb
+[all help content][all_help_content]
+~~~
+
+…will generate the following link:
+
+[all help content][all_help_content]
+
+This is especially useful if your page source filenames stay constant, which is
+a risk if you use filename prefixes to set page order.
+
+The reference name will always be the base name of the source file. For index
+files, the format will be `groupname_index`, where the groupname is the name of
+the containing directory, as you should already know.
+
+You should strive to use unique filenames if you use this feature, for
+obvious reasons.
+
+Images
+------
+
+Markdown also supports a reference format for images. It looks like this:
+
+~~~ erb
+![this is alt tag content][icon_32x32@2x]
+~~~
+
+And will generate this:
+
+![this is alt tag content][icon_32x32@2x]
+
