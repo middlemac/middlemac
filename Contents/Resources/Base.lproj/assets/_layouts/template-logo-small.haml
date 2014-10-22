@@ -3,9 +3,9 @@
     .yield-content
       = image_tag '/Resources/shared/icon_256x256@2x.png', :alt => 'logo'
       ~ yield
-        - if current_page.navigator_eligible?
-          %hr
-          = partial 'prev_next'
+      - if current_page.navigator_eligible?
+        %hr
+        = partial 'prev_next'
 
     - if !current_page.brethren.to_a.empty? || content_for?(:seeAlso)
       %hr/
