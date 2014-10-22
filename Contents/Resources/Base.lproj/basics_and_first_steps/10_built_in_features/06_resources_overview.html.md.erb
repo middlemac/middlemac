@@ -12,3 +12,56 @@ layout: template-logo-medium
 ==============================
 
 <%= current_page.data.blurb %>
+
+_Resources_ in _Middleman_-speak generally refers to pages in _Middleman_’s
+internal site-map. As Ruby objects, resources have a lot of useful information
+about them.
+
+Note: there’s a lot you can do with _Middlemac_ without manipulating or using
+resources directly. The _Middlemac_ framework does a lot of this manipulation
+for you. There’s nothing in this documentation helpbook, for example, that uses
+features not provided by the conventions.
+{:.note}
+
+
+Common resources
+----------------
+
+`current_page`
+ : The `current_page` resource is available in all of your help pages, as well
+   as the partials that your help pages include.
+
+`current_page.breadcrumbs.first`
+ : This refers to the top level landing page of your help file.
+ 
+`resource.parent`
+ : This references the parent resource.
+ 
+`resource.brethren_next` and `resource.brethren_previous`
+ : These _Middlemac_ supplied references refer to the next and previous pages,
+   respectively, in the current group.
+ 
+ 
+Common arrays of resources
+--------------------------
+
+`resource.breadcrumbs`
+ : This _Middlemac_ supplied array is an array of resources, starting from root,
+   that lead to this resource.
+
+`resource.children`
+ : This array consists of all of the children of resource.
+   
+`resource.legitimate_children`
+ : This arrays consists of all of the qualifed children of resource, taking into
+   account the presence of a sort order, and whether they’re allowed per the
+   current target and features settings.
+
+`resource.siblings`
+ : This array consists of all of the siblings of resource.
+
+`resource.brethren`
+ : This arrays consists of all of the qualifed siblings of resource, taking into
+   account the presence of a sort order, and whether they’re allowed per the
+   current target and features settings.
+

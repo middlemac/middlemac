@@ -11,3 +11,32 @@ layout: template-logo-medium
 ==============================
 
 <%= current_page.data.blurb %>
+
+_Middleman_ has several useful, built-in helpers documented on its 
+[web site](http://middlemanapp.com/basics/helpers/) and in this document’s
+[reference section][01_middleman_helpers].
+
+_Middlemac_ introduces several other helpers that are available in your files.
+
+`cfBundleIdentifier`
+ : Returns the product `CFBundleIdentifier` for the current target.
+
+`cfBundleName`
+ : Returns the product `CFBundleName` for the current
+   target.
+
+`product_name`
+  : Returns the `ProductName` for the current target.
+
+`product_uri`
+  : Returns the `ProductURI` for the current target.
+
+`target_name`
+  : Return the current build target.
+
+`target_name?(proposal)`
+  : Is the current target `proposal`?
+
+`target_feature?(proposal)`
+  : Does the target have the feature `feature`?
+
