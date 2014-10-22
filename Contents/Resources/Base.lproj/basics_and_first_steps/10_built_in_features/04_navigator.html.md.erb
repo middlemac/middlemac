@@ -1,18 +1,14 @@
 ---
-title: Navigator partial
-blurb: Blurb goes here.
+title:  Navigator
+blurb:  Learn how the page navigator can make navigation easy for your users, as
+        well as how to turn it on or off for groups and individual pages.
 layout: template-logo-medium
-order: 4
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
-
-<% content_for :seeAlso do %>
-Sidebar stuff can go here.
-<% end %>
 
 
 <%= current_page.data.title %>
 ==============================
 
-Body content goes here.
+<%= current_page.data.blurb %>

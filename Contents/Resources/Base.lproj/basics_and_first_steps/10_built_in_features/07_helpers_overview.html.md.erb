@@ -1,18 +1,13 @@
 ---
-title: Helpers overview
-blurb: Blurb goes here.
+title:  Helpers overview
+blurb:  A brief look at how <em>Middlemac</em>’s Helpers can help you out.
 layout: template-logo-medium
-order: 7
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
-
-<% content_for :seeAlso do %>
-Sidebar stuff can go here.
-<% end %>
 
 
 <%= current_page.data.title %>
 ==============================
 
-Body content goes here.
+<%= current_page.data.blurb %>

@@ -1,18 +1,14 @@
 ---
-title: Partials overview
-blurb: Blurb goes here.
+title:  Partials overview
+blurb:  Take advantage of <em>Middlemac</em>’s partials, and maybe even learn to
+        write your own!
 layout: template-logo-medium
-order: 8
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
-
-<% content_for :seeAlso do %>
-Sidebar stuff can go here.
-<% end %>
 
 
 <%= current_page.data.title %>
 ==============================
 
-Body content goes here.
+<%= current_page.data.blurb %>

@@ -1,18 +1,14 @@
 ---
-title: Breadcrumbs
-blurb: Blurb goes here.
+title:  Breadcrumbs
+blurb:  Breadcrumbs help prevent your users from becoming lost, especially if
+        you have deeply nested content. Get to know your options here.
 layout: template-logo-medium
-order: 3
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
-
-<% content_for :seeAlso do %>
-Sidebar stuff can go here.
-<% end %>
 
 
 <%= current_page.data.title %>
 ==============================
 
-Body content goes here.
+<%= current_page.data.blurb %>

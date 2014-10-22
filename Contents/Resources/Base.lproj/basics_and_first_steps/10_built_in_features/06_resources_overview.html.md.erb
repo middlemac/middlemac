@@ -1,18 +1,14 @@
 ---
-title: Resources overview
-blurb: Blurb goes here.
+title:  Resources overview
+blurb:  Learn how to work with <em>Middleman</em> resources and the extensions
+        that <em>Middlemac</em> brings to them.
 layout: template-logo-medium
-order: 6
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
-
-<% content_for :seeAlso do %>
-Sidebar stuff can go here.
-<% end %>
 
 
 <%= current_page.data.title %>
 ==============================
 
-Body content goes here.
+<%= current_page.data.blurb %>

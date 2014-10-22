@@ -1,18 +1,15 @@
 ---
-title: markdown_links and markdown_images
-blurb: Blurb goes here.
+title:  markdown_links and markdown_images
+blurb:  Every time you start the server or build your helpbook,
+        <em>Middlemac</em> builds these two helpful files for you. Learn to take
+        advantage of them.
 layout: template-logo-medium
-order: 5
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
-
-<% content_for :seeAlso do %>
-Sidebar stuff can go here.
-<% end %>
 
 
 <%= current_page.data.title %>
 ==============================
 
-Body content goes here.
+<%= current_page.data.blurb %>

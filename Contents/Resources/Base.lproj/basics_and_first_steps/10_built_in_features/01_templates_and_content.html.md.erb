@@ -1,18 +1,14 @@
 ---
-title: Templates and content
-blurb: Blurb goes here.
+title:  Templates and content
+blurb:  <em>Middlemac</em> separates your content from most of the framing and
+        operation details of your helpbook via templates and content.
 layout: template-logo-medium
-order: 1
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
-
-<% content_for :seeAlso do %>
-Sidebar stuff can go here.
-<% end %>
 
 
 <%= current_page.data.title %>
 ==============================
 
-Body content goes here.
+<%= current_page.data.blurb %>

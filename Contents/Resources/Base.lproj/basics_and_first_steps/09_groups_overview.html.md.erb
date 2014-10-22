@@ -1,32 +1,72 @@
 ---
-title: Groups overview
-blurb: Blurb goes here.
+title:  Groups overview
+blurb:  Groups make automatic page management, navigation, and tables of contents
+        contents very simple to implement, and help you stay organized.
 layout: template-logo-medium
 order: 9
 ---
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% content_for :seeAlso do %>
-Sidebar stuff can go here.
-<% end %>
-
 
 <%= current_page.data.title %>
 ==============================
 
+<%= current_page.data.blurb %>
+
+What are groups?
+----------------
+
+A Group is one of more files in a single level of directory, and also any
+`index.html` file of immediate subdirectories of the group.
+
+Group directories require one file that will compile into `index.html` file in
+that directory, e.g., `index.html.md.erb`. This file _is not part of the group_;
+it serves as the _parent_ to the group. The files in the group are all 
+_children_ of the `index.html` file. Each file in the group is a _sibling_ of
+the other files in the group.
+
+Groups are named based on their containing directory. The highest level group is
+`Base.lproj` and cannot be changed. Group names are generally not user-facing,
+and the Apple Help system requires this directory name, so don’t worry about it.
+
+Example:
+
+~~~
+Base.lproj/
+  index.html
+  introduction.html
+  basics/
+    index.html
+    counters.html
+~~~
+
+The `Base.lproj` consists of two pages: `introduction.html`, and
+`basics/index.html`. The highest-level `index.html` is the parent of this
+group.
+
+Groups can be nested to arbitrary levals.
 
 
-Groups
-------
+Page order in groups
+--------------------
 
-- A GROUP is a bunch of files in a directory at a single level.
-- A GROUP landing-page should begin with 000_
-- Using the table_contents partial will include a TOC for all files at this
-  group level except for 000_ files.
-- Can include another group's toc by specifying a :group in locals, where the
-  GROUP is really just the directory name.
-- WANT to include a gather_toc, which looks in the top level of all of the
-  directories at the current level to look for 000_ files. Build a list with
-  blurbs. 
-  
+Using the included [partials][08_partials_reference], you can design tables of
+contents, related pages, indices, etc., for groups with a single line of code.
+In addition _Middlemac_ includes built-in navigation widgets for groups, should
+you like to use them.
+
+Group member’s sort/navigation order is determined two ways. Files in the group
+can have an `:order` key in the frontmatter, or the first three digits of the
+filename can specify a sort order, e.g., `004`, or `23_`. If both are present,
+the `:order` key takes precedence. If two pages end up with the same sort order,
+then the actual behavior is undefined.
+ 
+Pages without a sort order are _not_ present in any of the automatic navigation
+or contents partials. This is by design. You can still link to them, however.
+
+Prefixing file names can be convenient so that source files are sorted in your
+file system the same way they will be displayed in your help system. Keep in
+mind, though, that if you’re using the automatic markdown links from the
+`_markdown-links.erb` partial, and change the order via filename, all of the
+links in your existing documents will become invalid.

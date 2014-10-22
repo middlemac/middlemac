@@ -1,6 +1,7 @@
 ---
 title:     Built-in features
-blurb:     Blurb goes here.
+blurb:     Explore some of the many built-in features that <em>Middlemac</em>
+           brings to you.
 layout:    template-logo-large
 order:     10
 navigate:  true
@@ -9,15 +10,11 @@ navigator: false
 <%= partial 'markdown-links' %>
 <%= partial 'markdown-images' %>
 
-<% content_for :seeAlso do %>
-Sidebar stuff can go here.
-<% end %>
-
 
 <%= current_page.data.title %>
 ==============================
 
-Body content goes here.
+<%= current_page.data.blurb %>
 
 * * *
 
