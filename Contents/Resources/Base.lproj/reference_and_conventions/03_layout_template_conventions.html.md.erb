@@ -14,8 +14,8 @@ layout: template-logo-medium
 <%= current_page.data.blurb %>
 
 
-Files
------
+Files in `layouts`
+------------------
 
 None of these files become standalone HTML documents, and as such should have
 a single `.erb` or `.haml` extension.
@@ -23,18 +23,20 @@ a single `.erb` or `.haml` extension.
 For organization, the convention is to name HTML containers with a `layout`
 prefix and visual templates with a `template` prefix.
 
- - `layout-html4.haml` - This is just an HTML 4.01 wrapper template and if you
-   follow all of the conventions there's nothing you should have to change
-   here.
+Per convention _actual_ file extensions in the list below have been left off.
 
- - `layout-xhtml.haml` - Apple's help landing page (the main page) is
-   supposed to be an XHTML 1.0 Strict document. If you follow all of the
-   conventions there's nothing you should have to change here.
+- `layout-html4` - This is just an HTML 4.01 wrapper template and if you
+  follow all of the conventions there's nothing you should have to change
+  here, unless you’re unhappy with the default [breadcrumbs][03_breadcrumbs].
 
- - `template-logo-large.haml` - This visual template is suitable for “main”-like
-   pages. If you follow conventions you should not have to change anything here.
+- `layout-xhtml` - Apple's help landing page (the main page) is
+  supposed to be an XHTML 1.0 Strict document. If you follow all of the
+  conventions there's nothing you should have to change here.
 
- - `template-logo-medium.erb`  and `template-logo-small.erb` are other
-    additional visual templates. If you follow the image conventions there is
-    no reason you should have to modify these templates.
+- `template-logo-large` - This visual template is suitable for “main”-like
+  pages. If you follow conventions you should not have to change anything here.
+
+- `template-logo-medium`  and `template-logo-small` are other
+   additional visual templates. If you follow the image conventions there is
+   no reason you should have to modify these templates.
 

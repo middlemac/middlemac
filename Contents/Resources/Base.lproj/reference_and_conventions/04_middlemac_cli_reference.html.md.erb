@@ -11,3 +11,45 @@ layout: template-logo-medium
 ==============================
 
 <%= current_page.data.blurb %>
+
+
+Getting help and identifying valid targets
+------------------------------------------
+
+If you run _Middlemac_ with an invalid target, with no parameters, or with the
+`-h` or `--help` switch, _Middlemac_ will display its documentation.
+
+
+Middlemac command signature
+---------------------------
+
+`./middlemac.rb TARGET... | all  [--verbose | -v] [--quiet | -q] [--help | -h] [--server | -s]`
+
+`TARGET...`
+ : One or more valid targets as configured in `config.rb`. If you specify a mix
+   of valid and invalid targets, _Middlemac_ will fail with an explanation.
+   
+`all`
+ : The `all` target will build  all of the targets that are configured in
+   `config.rb`. If specified with valid targets, the valid targets will be
+   ignored in the command, but built as they are included in `all`. However
+   `all` specified with invalid targets will fail with an explanation.
+   
+`--verbose`
+`-v`
+ : Executes _Middleman_ in verbose mode for each build target.
+ 
+`--quiet`
+`-q`
+ : Silences _Middleman_ output, even if --verbose is specified.
+ 
+`--help`
+`-h`
+ : Displays help and doesn’t process files or run server.
+
+`--server`
+`-s`
+ : Runs _Middleman_ in server mode. Server target is undefined if more than one
+   or all is specified!
+   
+   

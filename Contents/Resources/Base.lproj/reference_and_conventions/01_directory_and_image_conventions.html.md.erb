@@ -12,3 +12,146 @@ layout: template-logo-medium
 ==============================
 
 <%= current_page.data.blurb %>
+
+Directory conventions
+---------------------
+
+You will have notice by now that your content root appears to be two levels
+below the actual project root. This is a result of the Apple Help directory
+structure. Remember, _Middleman_ depends on building an output project that
+mirrors the input project. In order for links, images, and other content to
+be accessed properly, _Middlemac_ uses Apple’s convention.
+
+Fortunately once inside the `Base.lproj` directory, we -- as helpbook 
+developers -- are free to organize files as we see fit, despite the examples
+you may have seen in Apple’s documentation. _Middlemac_, though, has setup a
+hierarchy that “just works,” and the explanation follows. Starting at the top,
+let’s look at a _Middleman_ project layout. Also don’t forget to have a look
+later at [Apple Help setup][10_apple_help_setup].
+
+`Contents/`
+
+ : Contains everything in your help project that will be compiled into or
+   contribute to the final `.help` project.
+   
+`Contents/_Info.plist` and (maybe)
+`Contents/Info.plist`
+
+ : The `_Info.plist` file is a template file that _Middlemac_ will process into
+   the final `Info.plist` that your Mac OS X application needs in order to work
+   with your helpbook. For a basic project you shouldn’t have to modify anything
+   in this file, but if you want or need to have other key-value pairs in the
+   final `Info.plist`, then add them here, and _not_ in the `Info.plist` file
+   (which is overwritten every time you build your project or start the server).
+   
+   The template should _not_ be moved, and there’s no master `.plist` or
+   `.strings` template directory because _Middlemac_ will search for and process
+   _any_ of these two file types, anywhere in the project, and place the output
+   version in the same location.
+   {:.note}
+   
+`Contents/Resources/shared`
+
+ : This directory contains assets that are common between all of your different
+   help language projects. Although _Middlemac_ is not a multilingual solution
+   _per se_, this is maintained because you can simply have a different
+   _Middlemac_ project per language, and then merge in the other language
+   `.lproj` directories into your final helpbook, sharing assets in this
+   directory.
+   
+`Contents/Resources/Base.lproj`
+
+ : This directory serves as your base [group][09_groups_overview] and contains
+   all of your helpbook’s content as well as pieces that will contribute to your
+   content (such as templates).
+   
+   Any other files that result in `.html` in this directory level, except for
+   `index.html` constitute part of the `Base.lproj` group. At this level you
+   should start adding directories to contain your other groups.
+   
+`Contents/Resources/Base.lproj/index.html`
+
+ : This is the top level file in your entire project, and is also the Apple
+   Help System main landing page.
+ 
+`Contents/Resources/Base.lproj/_InfoPlist.strings` and (maybe)
+`Contents/Resources/Base.lproj/InfoPlist.strings`
+
+ : The `_InfoPlist.strings` file is a template file that _Middlemac_ will 
+   process into `InfoPlist.strings`, which contains the localized version of
+   your applications’ human-readable `Info.plist` data (specifically,
+   `CFBundleName` and `HPDBookTitle`).
+   
+   _Middlemac_ is a multi-target solution for a single language, and not a
+   multi-language solution _per se_, and so the `CFBundleName` in your
+   `config.rb` will be used, whether it’s English or German or Chinese. This is
+   one of the strengths of `Base.lproj`: it’s agnostic.
+
+   The template should _not_ be moved, and there’s no master `.plist` or
+   `.strings` template directory because _Middlemac_ will search for and process
+   _any_ of these two file types, anywhere in the project, and place the output
+   version in the same location.
+   {:.note}
+
+`Contents/Resources/Base.lproj/assets/`
+
+ : This directory contains all of the non-content assets used in your helpbook
+   such as stylesheets, images, etc., as well as data source files, templates,
+   layouts and partials.
+   
+   You will notice that some of these classes of items are in unconventional
+   locations compared to a default _Middleman_ project. This was done on your
+   behalf for the sake of portability and for having a non-distracting directory
+   environment.
+   
+   `_data/`
+    : This directory contains data files that you can use to supply data for
+      [using local data][11_using_local_data]. This directory will not be
+      output in the final build.
+    
+   `_layouts/`
+    : All layouts and templates should go here. This directory will not be
+      output in the final build.
+ 
+   `javascripts/`
+    : Javascripts, if any, should go here. You should prefix each script with
+      and underscore so that they will _not_ be included. The already-present
+      file `all.js` will bundle them into a single file -- `all.js` -- and
+      _that’s_ the file loaded by the _Middlemac_ layouts.
+
+   `partials/`
+    : All partials should go here, and be prefaced with an underscore so that
+      they will not generate build output.
+
+   `stylesheets/`
+    : Your `.css` and `.scss` files should go here. Read more about _Middlemac_
+      CSS organization [here][02_css].
+
+ 
+Images
+------
+
+Most images, of course, should go into the `images` directory of the `assets`
+directory.
+
+However _Middlemac_ also depends on two magic images being placed in
+`Contents/Resources/Shared/`:
+
+`icon_32x32@2x.png`
+
+ : This file is your help file icon at 64 × 64 pixels, and will be used by the
+   included templates automatically. More importantly, however, your main
+   landing page is linked to this icon so that Apple Help Viewer knows what
+   the help icon is.
+
+`icon_256x256@2x.png`
+
+ : The same as above, but at 512 × 512 pixels.
+
+
+Images Organization
+-------------------
+
+When you content images are located in the `assets/images` directory,
+_Middleman_’s [helpers][01_middleman_helpers] can find them automatically
+without any worry about relative or absolute file paths.

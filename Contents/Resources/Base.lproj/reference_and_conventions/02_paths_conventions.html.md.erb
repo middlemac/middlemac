@@ -17,15 +17,15 @@ layout: template-logo-medium
 “Absolute” Paths
 ----------------
 
-When using Middleman's helpers, absolute paths will be converted to relative
-paths during the build. Absolute paths are relative to the `Contents (source)`
-directory and _not_ the filesystem root.
+When using _Middleman_’s [helpers][01_middleman_helpers], absolute paths will be
+converted to relative paths during the build. Absolute paths are relative to the
+`Contents` directory and _not_ the filesystem root.
 
 In general it’s _not_ recommended to use absolute paths unless you need assets
-outside of Middleman's configuration. Middleman will automatically build the
+outside of _Middlemac_’s configuration. _Middleman_ will automatically build the
 correct path using only the asset name when you use its helpers, if the assets
 are in the correct directories (e.g., images in `images`).
 
 However you will use absolute paths to refer to items in the `shared` directory
-since this it outside of Middleman's normal search scope. The view templates
+since this it outside of _Middlemac_’s normal search scope. The view templates
 use this approach, for example.
