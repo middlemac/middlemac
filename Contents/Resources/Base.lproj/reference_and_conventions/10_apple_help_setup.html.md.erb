@@ -12,3 +12,104 @@ layout: template-logo-medium
 ==============================
 
 <%= current_page.data.blurb %>
+
+While it’s true that an Apple Helpbook is simply a glorified web site, there
+are details that are required to be satisfied in order to make them work with
+your Mac OS X applications. Luckily _Middlemac_ takes care of most of these
+details for you.
+
+
+CFBundleName and Targets
+------------------------
+
+The first thing we need to do is come up with a `CFBundleName` for our help
+projects, and decide what the targets are going to be. This will help us setup
+XCode shortly.
+
+XCode doesn’t know or care what the help bundle’s `CFBundleName` is, but
+_Middlemac_ uses it and the target to name the final, built help bundle, and
+XCode _does_ have to know the name of those.
+
+All of your targets will share the same `CFBundleName`, so it should be
+descriptive of all of your targets adn related to your product name. If the
+examples on this page, we’ll use `Middlemac`. This project also has the targets
+`pro` and `free`. What this means is _Middlemac_ will build help bundles named
+`Middlemac (pro).help` and `Middlemac (free).help`.
+
+Let’s use this information and start to setup XCode.
+
+
+XCode Configuration
+-------------------
+
+### Add Files 
+
+Let’s first tell your XCode targets that the help bundle files are available. In
+your XCode project, create folders named `Middlemac (pro).help` and `Middlemac
+(free).help`. They typically go into your project’s `Resources` folder. Mac OS
+will automatically display them as bundles. For now, these are just proxies for
+the bundles we’ll build later.
+
+Next you can add these files to XCode the usual way (“Add files…”). **Make sure
+you add these by creating folder references. This is critical.**
+
+Just in case the bold sentence wasn’t reminder enough: make sure you select the
+option to create folder references when adding files.
+{:.note}
+
+Assuming you have a Pro and Free target in XCode, you can use the file inspector
+to make sure the Pro `.help` and the Free `.help` have the appropriate, obvious
+target memberships.
+
+### Configure your applications’ `Info.plist` files
+
+If you have multiple XCode targets, you may be using a different `Info.plist`
+file for each target. If not, then you’ll have to start because they contain
+information unique to each helpbook.
+ 
+Alternatively you can setup an `Info.plist` pre-processor (this is my preferred
+approach) that generates an `Info.plist` for each target when you build.
+_That’s_ beyond the scope of this document, though. You can begin by looking at
+your XCode targets’ **Build Settings -> Packaging**.
+{:.note}
+
+In each of your `Info.plist` files, find or create the following keys:
+
+`Help Book directory name` (XCode name)
+`CFBundleHelpBookFolder` (raw key name)
+
+ : Ensure you use the appropriate `Middlemac (pro).help` or
+   `Middlemac (free).help`, depending on which target’s `.plist` this is.
+
+`Help Book identifier` (XCode name)
+`CFBundleHelpBookName` (raw key name)
+
+ : This must match the unique `CFBundleID` that you set for each of your
+   help targets in the help project’s `config.rb` file. If you’ve not setup
+   the `config.rb` yet, now is a good time to decide on the keys that you will
+   use. 
+   
+   This sample project uses `com.balthisar.middlemac.free.help` and
+   `com.balthisar.middlemac.pro.help`.
+
+
+Setup `config.rb` and especially `options.Help_Output_Location`
+-------------------------------------------------------------------
+
+Next make sure you [setup `config.rb`][05_config_rb_reference] with matching
+values from above.
+
+We setup empty proxy `.help` bundles for XCode above. Make sure that you set
+your `config.rb`’s `options.Help_Output_Location` to the directory that you
+created the proxy files. Then, any time you build your help projects with
+_Middlemac_, they will be ready to go in XCode automatically, the next time you
+build your XCode project.
+
+
+_Middlemac_ takes care of everything else
+-----------------------------------------
+
+Once your `config.rb` is setup, _Middlemac_ takes care of setting all of the
+required keys and data in all of the help bundle `.plist`, `.strings`, and
+main `index.html` file, managing them for each target.
+
