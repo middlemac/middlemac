@@ -14,19 +14,80 @@ layout: template-logo-medium
 
 <%= current_page.data.blurb %>
 
+Be sure to also see the [resources overview][06_resources_overview] article for
+a couple of examples.
 
-Helpful Helpers
----------------
-cfBundleIdentifier
-cfBundleName
-product_name
-product_uri
-target_name
-target_name?
-target_feature?
-page_name
-page_group
-current_group_pages
-related_pages
-pages_related_to
-legitimate_children
+
+`page_name`
+ : Make `page_name` available for each page. This is the file base name. Useful
+   for assigning classes, etc.
+
+`page_group`
+  : Make `page_group` available for each page. This is the source parent
+    directory (not the request path). Useful for for assigning classes, and/or
+    group conditionals.
+
+`sort_order`
+  : Returns the page sort order or nil.
+  
+    - If there's an `order` key, use it.
+    - Otherwise if there's a three digit prefix.
+    - Else nil.
+    
+`valid_features`
+  : Returns an array of valid features for this page
+    based on the current target, i.e., features that
+    are true for the current target. These are the
+    only features that can be used with frontmatter
+    `target` or `exclude`.
+
+`targeted?`
+  : Determines if this pages is eligible for inclusion
+    in the current build/server environment based on:
+  
+    - is an HTML file, and
+    - has a sort_order, and
+    - if frontmatter:target is used, the target or feature appears in the 
+      frontmatter, and
+    - if frontmatter:exclude is used, the target or enabled feature does _not_
+      appear in the frontmatter.
+
+`brethren`
+  : Returns an array of all of the siblings of the
+    specified page, taking into account their
+    eligibility for display.
+    
+    - is not already the current page, and
+    - is targeted for the current build.
+    
+    Returned array will be:
+  
+    - sorted by `sort_order`.
+
+`brethren_next`
+  : Returns the next sibling based on order or nil.
+
+`brethren_previous`
+  : Returns the previous sibling based on order or nil.
+
+`navigator_eligible?`
+  : Determine whether a page is eligible to include a
+    previous/next page control based on:
+    
+    - the group is set to allow navigation (`navigate`)
+    - this page is not excluded from navigation. (`navigator => false`)
+    - this page has a `sort_order`.
+
+`legitimate_children`
+  : Returns an array of all of the children of the specified page, taking into
+    account their eligibility for display.
+    
+    - is targeted for the current build.
+    
+    Returned array will be:
+    
+    - sorted by `sort_order`.
+
+
+`breadcrumbs`
+  : Returns an array of pages leading to the current page.

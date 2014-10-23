@@ -14,18 +14,26 @@ layout: template-logo-medium
 <%= current_page.data.blurb %>
 
 
-Helpful Helpers
----------------
-cfBundleIdentifier
-cfBundleName
-product_name
-product_uri
-target_name
-target_name?
-target_feature?
-page_name
-page_group
-current_group_pages
-related_pages
-pages_related_to
-legitimate_children
+`cfBundleIdentifier`
+ : Returns the product `CFBundleIdentifier` for the current target.
+
+`cfBundleName`
+ : Returns the product `CFBundleName` for the current
+   target.
+
+`product_name`
+  : Returns the `ProductName` for the current target.
+
+`product_uri`
+  : Returns the `ProductURI` for the current target.
+
+`target_name`
+  : Return the current build target.
+
+`target_name?(proposal)`
+  : Is the current target `proposal`?
+
+`target_feature?(proposal)`
+  : Does the target have the feature `feature`?
+
+

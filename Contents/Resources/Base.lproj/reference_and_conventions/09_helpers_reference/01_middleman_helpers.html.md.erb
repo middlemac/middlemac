@@ -12,3 +12,54 @@ layout: template-logo-medium
 ==============================
 
 <%= current_page.data.blurb %>
+
+_Middleman_ has several useful, built-in helpers documented on its 
+[web site](http://middlemanapp.com/basics/helpers/). These are some of the most
+common ones you will use.
+
+`link_to`
+
+ : This helper greatly simplifies links when you’re not able or willing to use
+   Markdown links.
+   
+   `link_to 'Content text', 'http://example.com'`
+   
+   Will produce
+    
+   `<a href="http://example.com">Content text</a>`.
+   
+   You can even use a _Middleman_ resource for the second parameter:
+   
+   `link_to 'Main Page', current_page.breadcrumbs.first`
+   
+   And you can specify one or more attributes like so:
+   
+   `link_to 'test', '#', :title => 'test' , :'data-test' => 'data attribute test'`
+   
+
+`image_tag`
+
+ : This helper simplifies adding images to your documents. It knows the location
+   of your images if you’ve followed the conventions.
+   
+   `image_tag 'my_image.png`
+   
+   You can also specify attributes:
+   
+   `image_tag 'my_image.png', :alt => 'A murder of crows', :title => 'Birds'
+
+
+`content_for`
+
+ : The built-in templates include an area for “See Also” where you might want to
+   include links in addition to the automatically generated links. You can do
+   this with the `contentfor` helper.
+   
+   ~~~ erb
+   <%% content_for :seeAlso do %>
+   <%%= link_to 'Some interesting site', 'http://example.com' %>
+   <%% end %>
+   ~~~
+
+   As you get more advanced with your use of _Middleman_, you will certainly
+   think of more uses for this.
