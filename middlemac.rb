@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 ###############################################################################
-#  middlemac.rb
+#  middlemac.rb - v1.0dev
 #
 #    Consists of both:
 #    - the `middlemac` command-line tool for invoking Middleman with multiple
