@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Layout and template conventions</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <link href="../assets/stylesheets/style.css" rel="stylesheet" type="text/css" />
+    <script src="../assets/javascripts/all.js" type="text/javascript"></script>
+  </head>
+  <body class='reference_and_conventions 03_layout_template_conventions'>
+    <nav id='breadcrumbs'>
+      <div class='breadcrumbs'>
+        <ul>
+          <li><a href="../index.html">Middlemac Help</a></li>
+          <li><a href="index.html">Reference and Conventions</a></li>
+          <li><a href="03_layout_template_conventions.html">Layout and template conventions</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class='container-logo-medium'>
+      <div>
+        <div class='yield-content'>
+          
+          <h1 id="layout-and-template-conventions">Layout and template conventions</h1>
+          
+          <p>Learn the details about how templates and layouts work with each other as well as some best practices for their use.</p>
+          
+          <h2 id="files-in-layouts">Files in <code>layouts</code></h2>
+          
+          <p>None of these files become standalone HTML documents, and as such should have
+          a single <code>.erb</code> or <code>.haml</code> extension.</p>
+          
+          <p>For organization, the convention is to name HTML containers with a <code>layout</code>
+          prefix and visual templates with a <code>template</code> prefix.</p>
+          
+          <p>Per convention <em>actual</em> file extensions in the list below have been left off.</p>
+          
+          <ul>
+            <li>
+              <p><code>layout-html4</code> - This is just an HTML 4.01 wrapper template and if you
+          follow all of the conventions there's nothing you should have to change
+          here, unless you’re unhappy with the default <a title="Breadcrumbs" href="../basics_and_first_steps/10_built_in_features/03_breadcrumbs.html">breadcrumbs</a>.</p>
+            </li>
+            <li>
+              <p><code>layout-xhtml</code> - Apple's help landing page (the main page) is
+          supposed to be an XHTML 1.0 Strict document. If you follow all of the
+          conventions there's nothing you should have to change here.</p>
+            </li>
+            <li>
+              <p><code>template-logo-large</code> - This visual template is suitable for “main”-like
+          pages. If you follow conventions you should not have to change anything here.</p>
+            </li>
+            <li>
+              <p><code>template-logo-medium</code>  and <code>template-logo-small</code> are other
+           additional visual templates. If you follow the image conventions there is
+           no reason you should have to modify these templates.</p>
+            </li>
+          </ul>
+          <hr>
+          <div class='navigate_prev_next'>
+            <a href="02_paths_conventions.html">Previous</a>
+            <a href="04_middlemac_cli_reference.html">Next</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <img alt="logo" src="../../shared/icon_256x256@2x.png" />
+        </div>
+        <div class='related_topics'>
+          <h1>Related Topics</h1>
+          <ul>
+            <li><a href="01_directory_and_image_conventions.html">Directory, filename, and image organization conventions</a></li>
+            <li><a href="02_paths_conventions.html">Path reference conventions</a></li>
+            <li><a href="04_middlemac_cli_reference.html">Middlemac command line reference</a></li>
+            <li><a href="05_config_rb_reference.html">config.rb reference</a></li>
+            <li><a href="06_frontmatter_keys.html">Frontmatter and keys</a></li>
+            <li><a href="07_including_excluding.html">Including and excluding targets and features</a></li>
+            <li><a href="08_partials_reference.html">Partials reference</a></li>
+            <li><a href="09_helpers_reference/index.html">Helpers and  methods reference</a></li>
+            <li><a href="10_apple_help_setup.html">Apple .help bundle setup</a></li>
+            <li><a href="11_using_local_data.html">Using local data</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

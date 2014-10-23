@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Invisible On Free</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <link href="../assets/stylesheets/style.css" rel="stylesheet" type="text/css" />
+    <script src="../assets/javascripts/all.js" type="text/javascript"></script>
+  </head>
+  <body class='basics_and_first_steps 11_not_free_sample'>
+    <nav id='breadcrumbs'>
+      <div class='breadcrumbs'>
+        <ul>
+          <li><a href="../index.html">Middlemac Help</a></li>
+          <li><a href="index.html">Basics and First Steps</a></li>
+          <li><a href="11_not_free_sample.html">Invisible On Free</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class='container-logo-large'>
+      <div>
+        <div>
+          <img alt="logo" src="../../shared/icon_256x256@2x.png" />
+          <h1>Middlemac Pro 1.0 Help</h1>
+          <a href='http://www.balthisar.com/developer'>http://www.balthisar.com/developer</a>
+        </div>
+        <div class='related_topics'>
+          <h1>See Also</h1>
+          Sidebar stuff can go here.
+        </div>
+      </div>
+      <div>
+        <div class='yield-content'>
+          
+          <h1 id="invisible-on-free">Invisible On Free</h1>
+          
+          <p>This page is not completely available for target <code>:free</code>, as a demonstration of the use of targets.</p>
+          
+          <p>If you’ve landed here despite using the <code>:free</code> target, you may be thinking
+          that targeting isn’t working properly. This isn’t ideal, but there’s no way to
+          prevent <em>Middleman</em> from actually copying the files.</p>
+          
+          <p>However you will notice that the page is, in fact, hidden from all tables of
+          contents and index pages. There’s no way to navigate to this page unless you
+          accidentally include a direct link not protected by <strong>target_name?</strong> or
+          <strong>target_feature</strong> helpers.</p>
+          
+          <pre><code class="highlight erb"><span class="cp">&lt;%</span> <span class="n">link_to</span> <span class="s1">'sample page excludes target `:free`'</span><span class="p">,</span> <span class="s1">'11_not_free_sample'</span> <span class="k">unless</span> <span class="n">target_name?</span><span class="p">(</span><span class="ss">:free</span><span class="p">)</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
+          
+          <h2 id="how-is-this-accomplished">How is this accomplished?</h2>
+          
+          <p>This is the frontmatter for this page. Note the key <code>exclude</code>, which indicates
+          that this is page should be hidden from <em>Middleman</em>’s navigation system.</p>
+          
+          <pre><code class="highlight yaml"><span class="nn">---</span>&#x000A;<span class="s">title</span><span class="pi">:</span>     <span class="s">Invisible On Free</span>&#x000A;<span class="s">blurb</span><span class="pi">:</span>     <span class="s">This page is not completely available for target `:free`, as a demonstration of</span>&#x000A;           <span class="s">the use of targets.</span>&#x000A;<span class="s">layout</span><span class="pi">:</span>    <span class="s">template-logo-large</span>&#x000A;<span class="s">navigator</span><span class="pi">:</span> <span class="s">false</span>&#x000A;<span class="s">exclude</span><span class="pi">:</span>&#x000A; <span class="pi">-</span> <span class="s">:free</span>&#x000A;<span class="nn">---</span>&#x000A;</code></pre>
+          
+          <p>The opposite of <code>exclude</code> is <code>target</code>. If you use <code>target</code>, only those targets
+          included in the target list will be included in <em>Middlemac</em> navigation.
+          Using <code>exclude</code> overrides <code>target</code>.</p>
+          
+          <p>Note that <code>target</code> and <code>exclude</code> are lists; you can specify multiple targets and
+          <a title="Features overview" href="08_features_overview.html">features</a> (which also can be used).</p>
+          
+          <h2 id="hide-content-from-the-help-indexer-too">Hide content from the help indexer, too</h2>
+          
+          <p>Although <em>Middlemac</em>’s tools automatically hide links to excluded content, these
+          pages will still end up in the <code>.help</code> bundle. This means that the final step
+          in building your helpbook – indexing – will index these hidden pages, too,
+          making them available for viewing by the help system.</p>
+          
+          <p>Therefore it’s a best practice to <em>also</em> exclude all of the content on the page
+          by bracketing it using the <strong>target_name?</strong> helper. For example.</p>
+          
+          <pre><code class="highlight erb"><span class="cp">&lt;%</span> <span class="k">unless</span> <span class="n">target_name?</span><span class="p">(</span><span class="ss">:free</span><span class="p">)</span> <span class="cp">%&gt;</span>&#x000A;   However since you’re not reading this via the `:free` target, this is the&#x000A;   last paragraph, instead. You can only read this if that target is not&#x000A;   `:free`. All of the page content here will _not_ be included in the build,&#x000A;   although the empty page will be. Since there’s nothing for the help indexer&#x000A;   to index, and there will be no automatic links to this page, it effectively&#x000A;   doesn’t exist.&#x000A;<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
+          
+          <p>If you’re still reading this via the <code>:free</code> target, the next paragraph won’t be
+          present, and this is the end of the article.</p>
+          
+          <p>However since you’re not reading this via the <code>:free</code> target, this is the
+             last paragraph, instead. You can only read this if that target is not
+             <code>:free</code>. All of the page content here will <em>not</em> be included in the build,
+             although the empty page will be. Since there’s nothing for the help indexer
+             to index, and there will be no automatic links to this page, it effectively
+             doesn’t exist.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,7 +1,7 @@
 Middlemac, the Middleman Build System for Mac OS X Help Projects (README)
 =========================================================================
 
-version 1.0dev, 2014-October-23
+version 1.0RC1, 2014-October-23
 -------------------------------
 
 _Middlemac_ is the specialized Apple HelpBook building system that uses the

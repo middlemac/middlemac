@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Resources overview</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <link href="../../assets/stylesheets/style.css" rel="stylesheet" type="text/css" />
+    <script src="../../assets/javascripts/all.js" type="text/javascript"></script>
+  </head>
+  <body class='10_built_in_features 06_resources_overview'>
+    <nav id='breadcrumbs'>
+      <div class='breadcrumbs'>
+        <ul>
+          <li><a href="../../index.html">Middlemac Help</a></li>
+          <li><a href="../index.html">Basics and First Steps</a></li>
+          <li><a href="index.html">Built-in features</a></li>
+          <li><a href="06_resources_overview.html">Resources overview</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class='container-logo-medium'>
+      <div>
+        <div class='yield-content'>
+          
+          <h1 id="resources-overview">Resources overview</h1>
+          
+          <p>Learn how to work with <em>Middleman</em> resources and the extensions that <em>Middlemac</em> brings to them.</p>
+          
+          <p><em>Resources</em> in <em>Middleman</em>-speak generally refers to pages in <em>Middleman</em>’s
+          internal site-map. As Ruby objects, resources have a lot of useful information
+          about them.</p>
+          
+          <p class="note">Note: there’s a lot you can do with <em>Middlemac</em> without manipulating or using
+          resources directly. The <em>Middlemac</em> framework does a lot of this manipulation
+          for you. There’s nothing in this documentation helpbook, for example, that uses
+          features not provided by the conventions.</p>
+          
+          <h2 id="common-resources">Common resources</h2>
+          
+          <dl>
+            <dt><code>current_page</code></dt>
+            <dd>The <code>current_page</code> resource is available in all of your help pages, as well
+          as the partials that your help pages include.</dd>
+            <dt><code>current_page.breadcrumbs.first</code></dt>
+            <dd>This refers to the top level landing page of your help file.</dd>
+            <dt><code>resource.parent</code></dt>
+            <dd>This references the parent resource.</dd>
+            <dt><code>resource.brethren_next</code> and <code>resource.brethren_previous</code></dt>
+            <dd>These <em>Middlemac</em> supplied references refer to the next and previous pages,
+          respectively, in the current group.</dd>
+          </dl>
+          
+          <h2 id="common-arrays-of-resources">Common arrays of resources</h2>
+          
+          <dl>
+            <dt><code>resource.breadcrumbs</code></dt>
+            <dd>This <em>Middlemac</em> supplied array is an array of resources, starting from root,
+          that lead to this resource.</dd>
+            <dt><code>resource.children</code></dt>
+            <dd>This array consists of all of the children of resource.</dd>
+            <dt><code>resource.legitimate_children</code></dt>
+            <dd>This arrays consists of all of the qualified children of resource, taking into
+          account the presence of a sort order, and whether they’re allowed per the
+          current target and features settings.</dd>
+            <dt><code>resource.siblings</code></dt>
+            <dd>This array consists of all of the siblings of resource.</dd>
+            <dt><code>resource.brethren</code></dt>
+            <dd>This arrays consists of all of the qualified siblings of resource, taking into
+          account the presence of a sort order, and whether they’re allowed per the
+          current target and features settings.</dd>
+          </dl>
+          <hr>
+          <div class='navigate_prev_next'>
+            <a href="05_markdown_links_images.html">Previous</a>
+            <a href="07_helpers_overview.html">Next</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <img alt="logo" src="../../../shared/icon_256x256@2x.png" />
+        </div>
+        <div class='related_topics'>
+          <h1>Related Topics</h1>
+          <ul>
+            <li><a href="01_templates_and_content.html">Templates</a></li>
+            <li><a href="02_css.html">CSS and image_widths.css</a></li>
+            <li><a href="03_breadcrumbs.html">Breadcrumbs</a></li>
+            <li><a href="04_navigator.html">Navigator</a></li>
+            <li><a href="05_markdown_links_images.html">markdown_links and markdown_images</a></li>
+            <li><a href="07_helpers_overview.html">Helpers overview</a></li>
+            <li><a href="08_partials_overview.html">Partials overview</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

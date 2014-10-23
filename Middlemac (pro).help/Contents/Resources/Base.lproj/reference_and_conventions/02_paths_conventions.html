@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>Path reference conventions</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <link href="../assets/stylesheets/style.css" rel="stylesheet" type="text/css" />
+    <script src="../assets/javascripts/all.js" type="text/javascript"></script>
+  </head>
+  <body class='reference_and_conventions 02_paths_conventions'>
+    <nav id='breadcrumbs'>
+      <div class='breadcrumbs'>
+        <ul>
+          <li><a href="../index.html">Middlemac Help</a></li>
+          <li><a href="index.html">Reference and Conventions</a></li>
+          <li><a href="02_paths_conventions.html">Path reference conventions</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class='container-logo-medium'>
+      <div>
+        <div class='yield-content'>
+          
+          <h1 id="path-reference-conventions">Path reference conventions</h1>
+          
+          <p>Discover how (and why) to properly use paths in your <em>Middlemac</em> project.</p>
+          
+          <h2 id="absolute-paths">“Absolute” Paths</h2>
+          
+          <p>When using <em>Middleman</em>’s <a title="Middleman helpers" href="09_helpers_reference/01_middleman_helpers.html">helpers</a>, absolute paths will be
+          converted to relative paths during the build. Absolute paths are relative to the
+          <code>Contents</code> directory and <em>not</em> the filesystem root.</p>
+          
+          <p>In general it’s <em>not</em> recommended to use absolute paths unless you need assets
+          outside of <em>Middlemac</em>’s configuration. <em>Middleman</em> will automatically build the
+          correct path using only the asset name when you use its helpers, if the assets
+          are in the correct directories (e.g., images in <code>images</code>).</p>
+          
+          <p>However you will use absolute paths to refer to items in the <code>shared</code> directory
+          since this it outside of <em>Middlemac</em>’s normal search scope. The view templates
+          use this approach, for example.</p>
+          <hr>
+          <div class='navigate_prev_next'>
+            <a href="01_directory_and_image_conventions.html">Previous</a>
+            <a href="03_layout_template_conventions.html">Next</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <img alt="logo" src="../../shared/icon_256x256@2x.png" />
+        </div>
+        <div class='related_topics'>
+          <h1>Related Topics</h1>
+          <ul>
+            <li><a href="01_directory_and_image_conventions.html">Directory, filename, and image organization conventions</a></li>
+            <li><a href="03_layout_template_conventions.html">Layout and template conventions</a></li>
+            <li><a href="04_middlemac_cli_reference.html">Middlemac command line reference</a></li>
+            <li><a href="05_config_rb_reference.html">config.rb reference</a></li>
+            <li><a href="06_frontmatter_keys.html">Frontmatter and keys</a></li>
+            <li><a href="07_including_excluding.html">Including and excluding targets and features</a></li>
+            <li><a href="08_partials_reference.html">Partials reference</a></li>
+            <li><a href="09_helpers_reference/index.html">Helpers and  methods reference</a></li>
+            <li><a href="10_apple_help_setup.html">Apple .help bundle setup</a></li>
+            <li><a href="11_using_local_data.html">Using local data</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
