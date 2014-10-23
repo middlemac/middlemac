@@ -14,10 +14,56 @@ layout: template-logo-medium
 <%= current_page.data.blurb %>
 
 
-Helpful Partials
-----------------
-legitimate_children
-table_contents
-markdown_images
-markdown_links
+The [partials overview][08_partials_overview] already describes the included
+partials, but what if you want to write your own?
 
+The included partials are purely functional, i.e., they provide service to key
+parts of _Middlemac_’s framework. You can write your partials that provide
+functionality, too, such as rendering something from a
+[local data file][11_using_local_data].
+
+You can also use partials to contain oft-used content. Maybe pieces of a change
+long, should you want to present that information to your users in multiple
+places. Maybe common warnings that can be included in multiple pages.
+
+
+Conventions
+-----------
+Partials should be placed into the correct `partials` directory so that
+_Middleman_’s `partial` helper can find them.
+
+Because partials are not rendered into final HTML output files, you should
+prefix their filenames with and underscore, and _not_ include `.html` in the
+extensions chain.
+
+When using the `partial` helper, _Middleman_ already expects the actual file to
+be prefixed with an underscore, therefore you should _not_ include the
+underscore when you use the helper.
+
+~~~ erb
+<%%= partial 'include_me' %>
+~~~
+
+_not_
+
+~~~ erb
+<%%= partial '_include_me' %>
+~~~
+
+You can pass data to partials as local variable context within the partial.
+For example:
+
+~~~ erb
+<%%= partial 'hello_world', :locals => { :one => 'Rabbit', :color => 'pink' } %>
+~~~
+
+Then, within the code of the partial, you will have local variables `one` and
+`color` available to you with their respective values.
+
+Note: these hash key-values use a symbol as a key, and a value as the value for
+the key. This is not the same as assigning a value to the Ruby symbol, because
+the symbol’s value is simply itself. The hash key is like an `id` object in an
+`NSDictionary`. Then when passed to the partial, there will exist a new local
+variable using the symbol name. The symbol `:one` becomes the variable `one`
+having a string value “pink” in this example.
+{:.note}

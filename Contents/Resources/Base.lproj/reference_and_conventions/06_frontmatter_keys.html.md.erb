@@ -1,5 +1,5 @@
 ---
-title:  Frontmatter keys
+title:  Frontmatter and keys
 blurb:  Examine all of the different frontmatter keys and their use in a single
         location.
 layout: template-logo-medium
@@ -14,16 +14,75 @@ layout: template-logo-medium
 <%= current_page.data.blurb %>
 
 
-Applicable Frontmatter Keys
----------------------------
+Frontmatter
+-----------
+Frontmatter is metadata that is included at the top of every content page but
+will not be present in the output. It is used to provide information to
+_Middleman_ and _Middlemac_ on a page by page and group basis.
 
-You can add your own, but Middlemac will use these:
+Here is the frontmatter from this very page’s source file:
 
-- title
-- blurb
-- layout
-- order
-- xhtml
-- navigate
+~~~ yaml
+---
+title:  Frontmatter and keys
+blurb:  Examine all of the different frontmatter keys and their use in a single
+        location.
+layout: template-logo-medium
+---
+~~~
 
-Frontmatter must use HTML; cannot use MD.
+You can also specify your own frontmatter keys and values. All frontmatter is
+available for use in your pages and templates via `current_page.data`, e.g.,
+`current_page.data.title`.
+
+Also know that if you want to style content that will be rendered to HTML in
+the frontmatter, such as in a blurb, then HTML is required. HAML and Markdown
+do not touch content in the frontmatter. For example, if you want to emphasize
+text in a blurb, you will have to something like this example:
+
+~~~ yaml
+blurb: I must <em>emphasize</em> that going to war with an empty treasury is bad.
+~~~
+
+
+Middlemac Frontmatter Keys
+--------------------------
+
+`title`
+ : The page title will be used in to the HTML `<title>` tag for every page,
+   and more importantly, will be the text displayed for links by all of
+   _Middlemac_’s built-in partials.
+
+`blurb`
+ : The blurb will be used as a description for a link for the included
+   _Middlemac_ partials that render indexes. This help documentation also
+   repeats the blurb at the top of every article.
+
+`layout`
+ : Specify the layout or template to use to render the page. If you don’t
+   specify a layout, then the `layout-html4` layout will be used by default.
+
+`xhtml`
+ : Specify this key if you want to force a page to use the `layout-xhtml`
+   layout instead of an html4 layout. You should never do this, though, except
+   for the main, top-level landing page. Apple’s help specifications require
+   HTML4.
+
+`order`
+ : Set the sorting/display order for a particular file within its group.
+
+`navigate`
+ : When used in a group’s parent (i.e., the `index.html` for the group) then
+   members of the group will display the page navigator buttons.
+
+`navigator`
+ : When set to `false`, overrides the display of the page navigator for this
+   page only.
+
+`target`
+ : Indicates which [targets][07_targets_overview] and
+   [features][08_features_overview] this page is applicable for.
+
+`exclude`
+ : Indicates which [targets][07_targets_overview] and
+   [features][08_features_overview] this page should be hidden from.
