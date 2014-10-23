@@ -309,7 +309,7 @@ def manipulate_resource_list(resources)
     #--------------------------------------------------------
     #  sort_order
     #    Returns the page sort order or nil.
-    #      - If there's and `order` key, use it.
+    #      - If there's an `order` key, use it.
     #      - Otherwise if there's a three digit prefix.
     #      - Else nil.
     #--------------------------------------------------------
