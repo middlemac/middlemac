@@ -3,8 +3,8 @@
   <head>
     <title>Frontmatter and keys</title>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <link href="../assets/stylesheets/style.css" rel="stylesheet" type="text/css" />
-    <script src="../assets/javascripts/all.js" type="text/javascript"></script>
+    <link href="../assets/stylesheets/style.css" rel="stylesheet" />
+    <script src="../assets/javascripts/all.js"></script>
   </head>
   <body class='reference_and_conventions 06_frontmatter_keys'>
     <nav id='breadcrumbs'>
@@ -31,7 +31,7 @@
           
           <p>Here is the frontmatter from this very page’s source file:</p>
           
-          <pre><code class="highlight yaml"><span class="nn">---</span>&#x000A;<span class="s">title</span><span class="pi">:</span>  <span class="s">Frontmatter and keys</span>&#x000A;<span class="s">blurb</span><span class="pi">:</span>  <span class="s">Examine all of the different frontmatter keys and their use in a single</span>&#x000A;        <span class="s">location.</span>&#x000A;<span class="s">layout</span><span class="pi">:</span> <span class="s">template-logo-medium</span>&#x000A;<span class="nn">---</span>&#x000A;</code></pre>
+          <pre class="highlight yaml"><code><span class="nn">---</span>&#x000A;<span class="s">title</span><span class="pi">:</span>  <span class="s">Frontmatter and keys</span>&#x000A;<span class="s">blurb</span><span class="pi">:</span>  <span class="s">Examine all of the different frontmatter keys and their use in a single</span>&#x000A;        <span class="s">location.</span>&#x000A;<span class="s">layout</span><span class="pi">:</span> <span class="s">template-logo-medium</span>&#x000A;<span class="nn">---</span>&#x000A;</code></pre>
           
           <p>You can also specify your own frontmatter keys and values. All frontmatter is
           available for use in your pages and templates via <code>current_page.data</code>, e.g.,
@@ -42,7 +42,7 @@
           do not touch content in the frontmatter. For example, if you want to emphasize
           text in a blurb, you will have to something like this example:</p>
           
-          <pre><code class="highlight yaml"><span class="s">blurb</span><span class="pi">:</span> <span class="s">I must &lt;em&gt;emphasize&lt;/em&gt; that going to war with an empty treasury is bad.</span>&#x000A;</code></pre>
+          <pre class="highlight yaml"><code><span class="s">blurb</span><span class="pi">:</span> <span class="s">I must &lt;em&gt;emphasize&lt;/em&gt; that going to war with an empty treasury is bad.</span>&#x000A;</code></pre>
           
           <h2 id="middlemac-frontmatter-keys">Middlemac Frontmatter Keys</h2>
           

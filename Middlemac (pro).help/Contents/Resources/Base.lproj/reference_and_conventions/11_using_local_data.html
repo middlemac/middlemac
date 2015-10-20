@@ -3,8 +3,8 @@
   <head>
     <title>Using local data</title>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <link href="../assets/stylesheets/style.css" rel="stylesheet" type="text/css" />
-    <script src="../assets/javascripts/all.js" type="text/javascript"></script>
+    <link href="../assets/stylesheets/style.css" rel="stylesheet" />
+    <script src="../assets/javascripts/all.js"></script>
   </head>
   <body class='reference_and_conventions 11_using_local_data'>
     <nav id='breadcrumbs'>
@@ -36,7 +36,7 @@
           
           <p>These previous sentences were generated with this ERB code:</p>
           
-          <pre><code class="highlight erb"><span class="cp">&lt;%</span> <span class="n">data</span><span class="p">.</span><span class="nf">globals</span><span class="p">.</span><span class="nf">famous_writers</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">writer</span><span class="o">|</span> <span class="cp">%&gt;</span>&#x000A;- A sample work of <span class="cp">&lt;%=</span> <span class="n">writer</span><span class="p">.</span><span class="nf">author</span> <span class="cp">%&gt;</span> is _<span class="cp">&lt;%=</span> <span class="n">writer</span><span class="p">.</span><span class="nf">sample_work</span> <span class="cp">%&gt;</span>_.&#x000A;<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
+          <pre class="highlight erb"><code><span class="cp">&lt;%</span> <span class="n">data</span><span class="p">.</span><span class="nf">globals</span><span class="p">.</span><span class="nf">famous_writers</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">writer</span><span class="o">|</span> <span class="cp">%&gt;</span>&#x000A;- A sample work of <span class="cp">&lt;%=</span> <span class="n">writer</span><span class="p">.</span><span class="nf">author</span> <span class="cp">%&gt;</span> is _<span class="cp">&lt;%=</span> <span class="n">writer</span><span class="p">.</span><span class="nf">sample_work</span> <span class="cp">%&gt;</span>_.&#x000A;<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
           
           <h2 id="accessing-data">Accessing data</h2>
           

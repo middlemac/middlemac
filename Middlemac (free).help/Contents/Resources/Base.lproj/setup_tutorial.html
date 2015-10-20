@@ -3,8 +3,8 @@
   <head>
     <title>Setting up for the first time</title>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <link href="assets/stylesheets/style.css" rel="stylesheet" type="text/css" />
-    <script src="assets/javascripts/all.js" type="text/javascript"></script>
+    <link href="assets/stylesheets/style.css" rel="stylesheet" />
+    <script src="assets/javascripts/all.js"></script>
   </head>
   <body class='Base.lproj setup_tutorial'>
     <nav id='breadcrumbs'>
@@ -30,7 +30,7 @@
         
         <p>To get started and read the full documentation, make sure that your system has
         <a href="https://www.ruby-lang.org/">Ruby</a> installed (it comes pre-installed on Mac OS X
-        and some Linuxes), and follow these steps below. </p>
+        and some Linuxes), and follow these steps below.</p>
         
         <p class="note">Note that this is untested on Windows.</p>
         
@@ -46,7 +46,7 @@
         
         <p>In your Terminal, do each of the following:</p>
         
-        <pre><code class="highlight shell">xcode-select --install&#x000A;gem install bundler&#x000A;git clone http://github.com/balthisar/middlemac.git middlemac_demo&#x000A;bundle install&#x000A;./middlemac.rb --server free&#x000A;open middlemac.webloc&#x000A;</code></pre>
+        <pre class="highlight shell"><code>xcode-select --install&#x000A;gem install bundler&#x000A;git clone http://github.com/balthisar/middlemac.git middlemac_demo&#x000A;bundle install&#x000A;./middlemac.rb --server free&#x000A;open middlemac.webloc&#x000A;</code></pre>
         
         <p>If you’re on Linux and <code>open middlemac.webloc</code> command doesn’t work for you,
         then use your preferred web browser and go to
@@ -59,7 +59,7 @@
         <p>If you’re on a Mac you’ll have to install XCode first, or at least the XCode
         command line tools. You can <em>try</em> just installing the tools first:</p>
         
-        <pre><code class="highlight shell">xcode-select --install&#x000A;</code></pre>
+        <pre class="highlight shell"><code>xcode-select --install&#x000A;</code></pre>
         
         <p>If that fails or the rest of the installation fails, then install all of XCode.
         It’s available in the App Store. It’s free of charge. And you’re using this

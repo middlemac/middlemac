@@ -3,8 +3,8 @@
   <head>
     <title>markdown_links and markdown_images</title>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <link href="../../assets/stylesheets/style.css" rel="stylesheet" type="text/css" />
-    <script src="../../assets/javascripts/all.js" type="text/javascript"></script>
+    <link href="../../assets/stylesheets/style.css" rel="stylesheet" />
+    <script src="../../assets/javascripts/all.js"></script>
   </head>
   <body class='10_built_in_features 05_markdown_links_images'>
     <nav id='breadcrumbs'>
@@ -28,14 +28,14 @@
           <p>You’ll notice (as you look at the source files for this help content) that the
           first ERB instructions immiedately after the headmatter are:</p>
           
-          <pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">partial</span> <span class="s1">'markdown-links'</span> <span class="cp">%&gt;</span>&#x000A;<span class="cp">&lt;%=</span> <span class="n">partial</span> <span class="s1">'markdown-images'</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
+          <pre class="highlight erb"><code><span class="cp">&lt;%=</span> <span class="n">partial</span> <span class="s1">'markdown-links'</span> <span class="cp">%&gt;</span>&#x000A;<span class="cp">&lt;%=</span> <span class="n">partial</span> <span class="s1">'markdown-images'</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
           
           <p>These convenience partials make it relatively simply to include Markdown links
           and images using the reference format.</p>
           
           <h2 id="links">Links</h2>
           
-          <pre><code class="highlight erb">[all help content][all_help_content]&#x000A;</code></pre>
+          <pre class="highlight erb"><code>[all help content][all_help_content]&#x000A;</code></pre>
           
           <p>…will generate the following link:</p>
           
@@ -55,7 +55,7 @@
           
           <p>Markdown also supports a reference format for images. It looks like this:</p>
           
-          <pre><code class="highlight erb">![this is alt tag content][icon_32x32@2x]&#x000A;</code></pre>
+          <pre class="highlight erb"><code>![this is alt tag content][icon_32x32@2x]&#x000A;</code></pre>
           
           <p>And will generate this:</p>
           

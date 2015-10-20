@@ -3,8 +3,8 @@
   <head>
     <title>Filetype basics</title>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <link href="../assets/stylesheets/style.css" rel="stylesheet" type="text/css" />
-    <script src="../assets/javascripts/all.js" type="text/javascript"></script>
+    <link href="../assets/stylesheets/style.css" rel="stylesheet" />
+    <script src="../assets/javascripts/all.js"></script>
   </head>
   <body class='basics_and_first_steps 04_filetype_basics'>
     <nav id='breadcrumbs'>
@@ -84,22 +84,22 @@
           <p>Middleman will produce a file (that’s then copied to the build output) named
           <code>hello_world.html</code> after processing it as an <code>.erb</code> file. For example:</p>
           
-          <pre><code class="highlight html"><span class="nt">&lt;body&gt;</span>&#x000A;   <span class="nt">&lt;p&gt;</span><span class="err">&lt;</span>%= hello_world_function %&gt;<span class="nt">&lt;/p&gt;</span>&#x000A;<span class="nt">&lt;/body&gt;</span>&#x000A;</code></pre>
+          <pre class="highlight html"><code><span class="nt">&lt;body&gt;</span>&#x000A;   <span class="nt">&lt;p&gt;</span><span class="err">&lt;</span>%= hello_world_function %&gt;<span class="nt">&lt;/p&gt;</span>&#x000A;<span class="nt">&lt;/body&gt;</span>&#x000A;</code></pre>
           
           <p>Will produce a <code>hello_world.html</code> file containing this (assuming that
           <code>hello_world_function</code> exists):</p>
           
-          <pre><code class="highlight html"><span class="nt">&lt;body&gt;</span>&#x000A;   <span class="nt">&lt;p&gt;</span>Hello, world!<span class="nt">&lt;/p&gt;</span>&#x000A;<span class="nt">&lt;/body&gt;</span>&#x000A;</code></pre>
+          <pre class="highlight html"><code><span class="nt">&lt;body&gt;</span>&#x000A;   <span class="nt">&lt;p&gt;</span>Hello, world!<span class="nt">&lt;/p&gt;</span>&#x000A;<span class="nt">&lt;/body&gt;</span>&#x000A;</code></pre>
           
           <p>What if we try this?</p>
           
           <p><code>hello_world.html.md.erb</code></p>
           
-          <pre><code class="highlight markdown"><span class="gh"># Introduction</span>&#x000A;<span class="err">&lt;</span>%= hello_world_function %&gt;&#x000A;</code></pre>
+          <pre class="highlight markdown"><code><span class="gh"># Introduction</span>&#x000A;<span class="err">&lt;</span>%= hello_world_function %&gt;&#x000A;</code></pre>
           
           <p>Accounting for removing all of the HTML head section, etc., we end up with:</p>
           
-          <pre><code class="highlight html"><span class="nt">&lt;body&gt;</span>&#x000A;   <span class="nt">&lt;h1&gt;</span>Introduction<span class="nt">&lt;/h1&gt;</span>&#x000A;   <span class="nt">&lt;p&gt;</span>Hello, world!<span class="nt">&lt;/p&gt;</span>&#x000A;<span class="nt">&lt;/body&gt;</span>&#x000A;</code></pre>
+          <pre class="highlight html"><code><span class="nt">&lt;body&gt;</span>&#x000A;   <span class="nt">&lt;h1&gt;</span>Introduction<span class="nt">&lt;/h1&gt;</span>&#x000A;   <span class="nt">&lt;p&gt;</span>Hello, world!<span class="nt">&lt;/p&gt;</span>&#x000A;<span class="nt">&lt;/body&gt;</span>&#x000A;</code></pre>
           
           <p>It’s important to understand that file type chaining works from right to left.
           The last extension is processed first, then the penultimate extension, then the
@@ -115,7 +115,7 @@
           <p>HAML includes filters and support for Ruby directly, and so it rarely needs to
           be chained. For example:</p>
           
-          <pre><code class="highlight haml"><span class="nt">%h1</span> Introduction&#x000A;<span class="nt">%p</span><span class="p">=</span> <span class="n">hello_world_function</span>&#x000A;<span class="p">-</span> <span class="k">if</span> <span class="kp">true</span> <span class="o">==</span> <span class="kp">true</span>&#x000A;  <span class="nt">%p</span> Well, duh.&#x000A;<span class="nt">%p</span>&#x000A;  <span class="nd">:markdown&#x000A;</span>    <span class="ge">_Today_</span>a computer told me “Hello, world.” It was <span class="gs">**only**</span> addressing me,&#x000A;    and so I don’t know why it addressed me as the whole world.&#x000A;</code></pre>
+          <pre class="highlight haml"><code><span class="nt">%h1</span> Introduction&#x000A;<span class="nt">%p</span><span class="p">=</span> <span class="n">hello_world_function</span>&#x000A;<span class="p">-</span> <span class="k">if</span> <span class="kp">true</span> <span class="o">==</span> <span class="kp">true</span>&#x000A;  <span class="nt">%p</span> Well, duh.&#x000A;<span class="nt">%p</span>&#x000A;  <span class="nd">:markdown&#x000A;</span>    <span class="ge">_Today_</span>a computer told me “Hello, world.” It was <span class="gs">**only**</span> addressing me,&#x000A;    and so I don’t know why it addressed me as the whole world.&#x000A;</code></pre>
           
           <p>The use of <code>=</code> in the <code>%p=</code> tag is a flag that indicates HAML should be
           expecting Ruby code. Likewise, the solitary <code>-</code> indicates Ruby code and will not

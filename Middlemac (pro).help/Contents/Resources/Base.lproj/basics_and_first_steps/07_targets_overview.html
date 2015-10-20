@@ -3,8 +3,8 @@
   <head>
     <title>Targets overview</title>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <link href="../assets/stylesheets/style.css" rel="stylesheet" type="text/css" />
-    <script src="../assets/javascripts/all.js" type="text/javascript"></script>
+    <link href="../assets/stylesheets/style.css" rel="stylesheet" />
+    <script src="../assets/javascripts/all.js"></script>
   </head>
   <body class='basics_and_first_steps 07_targets_overview'>
     <nav id='breadcrumbs'>
@@ -33,7 +33,7 @@
           <p>The source file uses a simple conditional and helper to display content based on
           the target name. Here’s the (nearly) exact code that was used:</p>
           
-          <pre><code class="highlight erb"><span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">target_name?</span><span class="p">(</span><span class="ss">:pro</span><span class="p">)</span> <span class="cp">%&gt;</span>&#x000A;You are reading this helpbook using the `:pro` target. You can try rebuilding&#x000A;the project or starting the server with the `:free` target to get a different&#x000A;result.&#x000A;<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>&#x000A;<span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">target_name?</span><span class="p">(</span><span class="ss">:free</span><span class="p">)</span> <span class="cp">%&gt;</span>&#x000A;You are reading this helpbook using the `:free` target. You can try rebuilding&#x000A;the project or starting the server with the `:pro` target to get a different&#x000A;result.&#x000A;<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
+          <pre class="highlight erb"><code><span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">target_name?</span><span class="p">(</span><span class="ss">:pro</span><span class="p">)</span> <span class="cp">%&gt;</span>&#x000A;You are reading this helpbook using the `:pro` target. You can try rebuilding&#x000A;the project or starting the server with the `:free` target to get a different&#x000A;result.&#x000A;<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>&#x000A;<span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">target_name?</span><span class="p">(</span><span class="ss">:free</span><span class="p">)</span> <span class="cp">%&gt;</span>&#x000A;You are reading this helpbook using the `:free` target. You can try rebuilding&#x000A;the project or starting the server with the `:pro` target to get a different&#x000A;result.&#x000A;<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
           
           <p>Why “nearly” exact code? If you examine the <code>.md.erb</code> file you will see how to
           escape ERB delimiters so that ERB doesn’t try to process them as Ruby code.

@@ -3,8 +3,8 @@
   <head>
     <title>Features overview</title>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <link href="../assets/stylesheets/style.css" rel="stylesheet" type="text/css" />
-    <script src="../assets/javascripts/all.js" type="text/javascript"></script>
+    <link href="../assets/stylesheets/style.css" rel="stylesheet" />
+    <script src="../assets/javascripts/all.js"></script>
   </head>
   <body class='basics_and_first_steps 08_features_overview'>
     <nav id='breadcrumbs'>
@@ -41,10 +41,10 @@
           
           <hr />
           
-          <p>I made a special, pink rectangle just for you!
+          <p>I made a special, pink rectangle just for you!</p>
           <svg style="width:50px; height:35px; display:block; margin:auto;">
-            <rect width="50" height="35" style="fill:pink;stroke-width:0"></rect>
-          </svg></p>
+            <rect width="50" height="35" style="fill:pink;stroke-width:0" />
+          </svg>
           
           <hr />
           
@@ -52,11 +52,11 @@
           
           <p>Our <code>:free</code> target uses these Feature settings:</p>
           
-          <pre><code class="highlight ruby"><span class="ss">:feature_advertise_pro</span>        <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>&#x000A;<span class="ss">:feature_performs_miracles</span>    <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span>&#x000A;<span class="ss">:feature_insults_user</span>         <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>&#x000A;<span class="ss">:feature_shows_pink_rectangle</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>&#x000A;</code></pre>
+          <pre class="highlight ruby"><code><span class="ss">:feature_advertise_pro</span>        <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>&#x000A;<span class="ss">:feature_performs_miracles</span>    <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span>&#x000A;<span class="ss">:feature_insults_user</span>         <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>&#x000A;<span class="ss">:feature_shows_pink_rectangle</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>&#x000A;</code></pre>
           
           <p>And <code>:pro</code> was setup with these Feature settings:</p>
           
-          <pre><code class="highlight ruby"><span class="ss">:feature_advertise_pro</span>        <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span>&#x000A;<span class="ss">:feature_performs_miracles</span>    <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>&#x000A;<span class="ss">:feature_insults_user</span>         <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span>&#x000A;<span class="ss">:feature_shows_pink_rectangle</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>&#x000A;</code></pre>
+          <pre class="highlight ruby"><code><span class="ss">:feature_advertise_pro</span>        <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span>&#x000A;<span class="ss">:feature_performs_miracles</span>    <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>&#x000A;<span class="ss">:feature_insults_user</span>         <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span>&#x000A;<span class="ss">:feature_shows_pink_rectangle</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>&#x000A;</code></pre>
           
           <p>Depending on the target that you are currently viewing, you should very easily
           be able to correlate what appears in the <strong>Demonstrations</strong> section with the
@@ -81,7 +81,7 @@
           using the <code>target_name?</code> helper, use the <code>target_feature?</code> helper instead. For
           example:</p>
           
-          <pre><code class="highlight erb"><span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">target_feature?</span><span class="p">(</span><span class="ss">:feature_insults_user</span><span class="p">)</span> <span class="cp">%&gt;</span>&#x000A;If you have made it this far, dear reader, you should know that if brains were&#x000A;dynamite, you wouldn’t have enough to blow your nose.&#x000A;<span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span>&#x000A;If you have made it this far, dear reader, you should know that you are one of&#x000A;the best people in the world.&#x000A;<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
+          <pre class="highlight erb"><code><span class="cp">&lt;%</span> <span class="k">if</span> <span class="n">target_feature?</span><span class="p">(</span><span class="ss">:feature_insults_user</span><span class="p">)</span> <span class="cp">%&gt;</span>&#x000A;If you have made it this far, dear reader, you should know that if brains were&#x000A;dynamite, you wouldn’t have enough to blow your nose.&#x000A;<span class="cp">&lt;%</span> <span class="k">else</span> <span class="cp">%&gt;</span>&#x000A;If you have made it this far, dear reader, you should know that you are one of&#x000A;the best people in the world.&#x000A;<span class="cp">&lt;%</span> <span class="k">end</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
           
           <h2 id="include-or-exclude-entire-pages">Include or exclude entire pages</h2>
           

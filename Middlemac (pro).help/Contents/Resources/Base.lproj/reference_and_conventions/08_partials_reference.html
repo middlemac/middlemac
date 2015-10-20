@@ -3,8 +3,8 @@
   <head>
     <title>Partials reference</title>
     <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <link href="../assets/stylesheets/style.css" rel="stylesheet" type="text/css" />
-    <script src="../assets/javascripts/all.js" type="text/javascript"></script>
+    <link href="../assets/stylesheets/style.css" rel="stylesheet" />
+    <script src="../assets/javascripts/all.js"></script>
   </head>
   <body class='reference_and_conventions 08_partials_reference'>
     <nav id='breadcrumbs'>
@@ -48,16 +48,16 @@
           be prefixed with an underscore, therefore you should <em>not</em> include the
           underscore when you use the helper.</p>
           
-          <pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">partial</span> <span class="s1">'include_me'</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
+          <pre class="highlight erb"><code><span class="cp">&lt;%=</span> <span class="n">partial</span> <span class="s1">'include_me'</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
           
           <p><em>not</em></p>
           
-          <pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">partial</span> <span class="s1">'_include_me'</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
+          <pre class="highlight erb"><code><span class="cp">&lt;%=</span> <span class="n">partial</span> <span class="s1">'_include_me'</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
           
           <p>You can pass data to partials as local variable context within the partial.
           For example:</p>
           
-          <pre><code class="highlight erb"><span class="cp">&lt;%=</span> <span class="n">partial</span> <span class="s1">'hello_world'</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:one</span> <span class="o">=&gt;</span> <span class="s1">'Rabbit'</span><span class="p">,</span> <span class="ss">:color</span> <span class="o">=&gt;</span> <span class="s1">'pink'</span> <span class="p">}</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
+          <pre class="highlight erb"><code><span class="cp">&lt;%=</span> <span class="n">partial</span> <span class="s1">'hello_world'</span><span class="p">,</span> <span class="ss">:locals</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="ss">:one</span> <span class="o">=&gt;</span> <span class="s1">'Rabbit'</span><span class="p">,</span> <span class="ss">:color</span> <span class="o">=&gt;</span> <span class="s1">'pink'</span> <span class="p">}</span> <span class="cp">%&gt;</span>&#x000A;</code></pre>
           
           <p>Then, within the code of the partial, you will have local variables <code>one</code> and
           <code>color</code> available to you with their respective values.</p>
