@@ -1,0 +1,15 @@
+- pages = current_page.breadcrumbs
+- unless pages.to_a.empty?
+  %div{:class => (defined?(klass) && klass) || nav_breadcrumbs_alt_class}
+    %ul
+      - pages[0...pages.count-1].each do |p|
+        %li= link_to p.data.title, p
+      %li= (defined?(label) && label) || nav_breadcrumbs_alt_label
+
+-#
+  - This partial renders links into an <ul>.
+  - You probably need a class in order to render this properly.
+  - This alternate version replaces the last link with the extension's
+    `nav_breadcrumbs_alt_label` value.
+  - :label - pass in this local instead of using the default.
+  - :klass - pass in this local to specify a class for the containing div.

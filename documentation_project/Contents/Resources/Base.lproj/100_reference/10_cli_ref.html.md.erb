@@ -1,0 +1,72 @@
+---
+title:  Command Line Interfaces
+blurb:  Discover the CLI’s offered by the various Ruby gems that compose
+        <em>Middlemac</em>.
+layout: template-logo-medium
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.title %>
+==============================
+
+<%= current_page.data.blurb %>
+
+`middleman` command signature
+-----------------------------
+
+You will use `middleman` to build `middlemac` projects.
+
+~~~ bash
+bundle exec middleman [[build|server] [--target xxx]] | [build_all|all]
+~~~
+
+You can determine what the valid targets are by simply omitting a target after
+the `--target` option. This will cause an invalid target error and present you
+with a list of targets defined in the project.
+
+
+`middlemac` command signature
+-----------------------------
+
+_Middlemac_ offers its own commands for generating new projects and getting
+help.
+
+~~~ bash
+middlemac [init|documentation|help|--version]
+~~~
+
+Use `init` to generate the structure for a new, empty project, and use
+`documentation` to generate a project that can build this very documentation.
+
+
+`middlemac-extras` command signature
+------------------------------------
+
+~~~ bash
+middlemac-extras [documentation|help|--version]
+~~~
+
+Use `documentation` to generate a project that can build complete documentation.
+
+
+`middleman-pagegroups` command signature
+----------------------------------------
+
+~~~ bash
+middleman-pagegroups [documentation|partials|help|--version]
+~~~
+
+Use `documentation` to generate a project that can build complete documentation,
+or use `partials` to generate the partial files that you can use instead of
+helpers.
+
+
+`middlemac-targets` command signature
+-------------------------------------
+
+~~~ bash
+middlemac-targets [documentation|help|--version]
+~~~
+
+Use `documentation` to generate a project that can build complete documentation.

@@ -1,0 +1,54 @@
+---
+title:  Front Matter
+blurb:  <em>Middleman</em> (and hence <em>Middlemac</em>) source files use
+        front matter to control many features of pages.
+layout: template-logo-medium
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.title %>
+==============================
+
+<%= current_page.data.blurb %>
+
+Front matter is a document header section that contains key-value data that
+applies to a page. This data can be referred to later for output or control.
+For example, the title of this page was specified with a `title:` key in the
+source document’s front matter, and its layout was specified with a `layout:`
+key.
+
+Front matter can also control page order (a feature of _Middleman_’s
+`middleman-pagegroups` gem), inclusion of pages for targets/features (provided
+by the `middleman-targets` gem), and more.
+
+Here’s this document’s front matter:
+
+~~~ yaml
+---
+title:  Front Matter
+blurb:  <em>Middleman</em> (and hence <em>Middlemac</em>) source files use
+        front matter to control a lot of features of pages.
+layout: template-logo-medium
+---
+~~~
+
+## Declaring Front Matter
+
+Front matter is defined as being delimited at the beginning and end with a line
+consisting of a series of three hyphens (`-`), and this block must appear at the
+top of a document.
+
+Although specific front matter keys are discussed elsewhere in this
+documentation it’s worth pointing out that the `title:` and `:blurb` are used
+extensively in _Middlemac_. For example all of the automatic navigation
+features are built using this data, meaning that this data need only appear
+once, here, in this very document.
+
+## Markdown in Front Matter
+
+You may have noticed that the front matter contains HTML. Because the front
+matter consists of data rather than content specifically targeted for display,
+it is not processed by the Markdown engine. Front matter is one of the very
+few places in a _Middlemac_ project where you have to revert to using HTML.
+

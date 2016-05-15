@@ -1,0 +1,63 @@
+---
+title:  Markdown
+blurb:  Although you can hand-write all of your documents in HTML, why not take
+        advantage of the clarity and ease of use offered by Markdown?
+layout: template-logo-medium
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.title %>
+==============================
+
+<%= current_page.data.blurb %>
+
+_Middlemac_ takes care of a lot of the details for generating Apple Help Books,
+and that may be reason enough to use _Middlemac_. However if you decide _not_ to
+use Markdown, then you’re throwing away the single, largest contributor to your
+help file building productivity that there is.
+
+
+What is Markdown?
+-----------------
+
+In the words of the estimable John Gruber (the author of the original Markdown):
+
+> Markdown is a text-to-HTML conversion tool for web writers. Markdown allows
+> you to write using an easy-to-read, easy-to-write plain text format, then 
+> convert it to structurally valid XHTML (or HTML).
+
+This offers the powerful advantage of having text-based source files that are
+themselves very highly legible. For example, this opening of this section of 
+the page was written so:
+
+~~~ markdown
+What is Markdown?
+-----------------
+
+In the words of the estimable John Gruber (the author of the original Markdown):
+
+> Markdown is a text-to-HTML conversion tool for web writers. Markdown allows
+> you to write using an easy-to-read, easy-to-write plain text format, then 
+> convert it to structurally valid XHTML (or HTML).
+
+This offers the powerful advantage of having text-based source files that are
+themselves very highly legible. For example, this opening of this section of 
+the page was written so:
+~~~
+
+As you can see, it’s highly legible and uses a lot of the same text formatting
+idioms with which you are doubtlessly already aware.
+
+
+Markdown Syntax and Engine
+--------------------------
+
+There are several “flavors” of Markdown, but they all adhere to John Gruber’s
+original as a base line and extend it in various ways. For the most part, they
+are all fairly well compatible.
+
+_Middlemac_ uses [_Kramdown_](http://kramdown.gettalong.org/) as its Markdown
+engine because that’s what _Middleman_ uses by default. You can read about all
+its features an syntax on its 
+[documentation page](http://kramdown.gettalong.org/documentation.html).

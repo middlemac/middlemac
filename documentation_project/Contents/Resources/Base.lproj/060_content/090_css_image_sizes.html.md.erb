@@ -1,0 +1,90 @@
+---
+title:  Automatic CSS Image Maximum Sizes
+blurb:  Ensure that your image sizes aren’t unexpectedly distorted by using this
+        special helper.
+layout: template-logo-medium
+---
+<%= md_links %>
+<%= md_images %>
+
+
+<%= current_page.data.title %>
+==============================
+
+<%= current_page.data.blurb %>
+
+This helper provides CSS code for each of your images, specifying a `max-width`
+and `max-height` for each image used in your Middleman project (except for SVG
+files, which don’t have dimensions).
+
+## Example
+
+When called like this:
+
+~~~ erb
+<%%= css_image_sizes %>
+~~~
+
+…the result is this:
+
+~~~ scss
+<%= css_image_sizes %>
+~~~
+
+## Use
+
+You could use this in an HTML `<style>` element on each of your pages, or better
+yet in your layouts. This has the unfortunate effect of including it in every
+one of your pages, however, and so this sample project uses it like this:
+
+Contents of `stylesheets/css_image_sizes.css.erb`:
+
+~~~ erb
+<%%= css_image_sizes %>
+~~~
+
+This will create `stylesheets/css_image_sizes.css` in your build output, and
+this file is included in the project layout file:
+
+~~~ haml
+= stylesheet_link_tag 'css_image_sizes'
+~~~
+
+You will be tempted to add this helper to your `style.css.scss` file, maybe
+even renaming it to `style.css.scss.erb`, but this will not work due to the
+order that Middleman and SASS build output.
+{:.note}
+
+
+## Technical details
+
+This CSS will control your image sizes by specifying a maximum width and height
+for each image in the project using the `src` attribute selector and matching
+against the end of that value. For example:
+
+~~~ scss
+img[src$='icon.png'] { max-width: 256px; max-height: 256px; }
+~~~
+
+CSS matches using literal text, and so will not respect relative paths. The
+simple rule above has a high possibility of naming collisions with other files
+named `icon.png`.
+
+If you follow Middleman’s best practices and keep most or all of your images in
+the defined `:images_dir` then the possibility of naming collisions will go
+away, as this helper will deliver the `src` attribute selectors starting with
+the final component of your `:images_dir`, for example:
+
+~~~ scss
+img[src$='images/logo-small.png'] { max-width: 128px; max-height: 128px; }
+img[src$='images/blog/logo-small.png'] { max-width: 160px; max-height: 160px; }
+img[src$='icon_32x32.png'] { max-width: 32px; max-height: 32px; }
+~~~
+
+In this example, the last image – `icon_32x32.png` – is not within `:images_dir`
+and so has no directory and is subject to naming collisions.
+
+The scheme above will work whether or not Middleman is configured with
+`relative_assets` because both relative and absolute links will always contain
+that last part of the path component. The only way this might break is by
+serving HTML pages from within your `:images_dir`.

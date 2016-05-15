@@ -1,0 +1,26 @@
+---
+title:  Navigator
+blurb:  Learn how the page navigator can make navigation easy for your users, as
+        well as how to turn it on or off for groups and individual pages.
+layout: template-logo-medium
+---
+<%= md_links %>
+<%= md_images %>
+
+
+<%= current_page.data.title %>
+==============================
+
+<%= current_page.data.blurb %>
+
+Near the bottom of this page you can see the navigator. It’s visible because
+this page’s parent `index.html` file includes `navigate: true` in its
+frontmatter.
+
+Setting `:navigate` in the frontmatter will cause all pages with an
+[order][groups] to display the navigator. This can be overridden on a
+page-per-page basis by using the `:navigator` frontmatter key, e.g., `navigator:
+false`.
+
+The helper `nav_prev_next` provides the navigator structure, and the appearance
+is set in CSS.

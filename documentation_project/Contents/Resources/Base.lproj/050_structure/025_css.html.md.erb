@@ -1,0 +1,71 @@
+---
+title:  CSS and Fonts
+blurb:  Have a brief look at the included CSS so that you can decide how to best
+        use it or easily change it to suit your own needs.
+layout: template-logo-medium
+---
+<%= md_links %>
+<%= md_images %>
+
+
+<%= current_page.data.title %>
+==============================
+
+<%= current_page.data.blurb %>
+
+
+The included CSS and fonts are critical for ensuring that the templates work,
+but they also serve to provide a recent Apple-like look and feel to your help
+books.
+
+## The `assets/fonts/` directory
+
+`font-awesome/*` (directory)
+ : The files here provide you the ability to use the icons in the font provided
+   by the [font-awesome](http://fortawesome.github.io/Font-Awesome/) project.
+   You can review their documentation if you’d like to include these easy to
+   use images in your project. This documentation uses icons in the navigator
+   buttons.
+   
+## The `assets/stylesheets/` directory
+
+`_apple_helpbook.scss`
+ : This file contains all of the real styling for _Middlemac_ help books. This
+   should be the first place you check for making desired changes.
+   
+   Note that this `.scss` file will be processed but not output to the build
+   directory because it starts with an underscore.
+ 
+`_github.scss`
+ : This file contains the styling used for Markdown `<code>` blocks for syntax
+   highlighting, and provides highlighting similar to Github’s style.
+ 
+   Note that this `.scss` file will not output to the build directory because it
+   starts with an underscore.
+
+`_normalize.scss`
+ : Although _Middlemac_ is intended to build Apple Help Books, its content can
+   be viewed in web browsers, too. Therefore for convenience, this standard
+   normalize file will help ensure that your content looks nearly the same in
+   any modern, popular browser.
+ 
+   Note that this `.scss` file will be processed but not output to the build
+   directory because it starts with an underscore.
+
+`breadcrumb-separator-light.png`
+ : This image is used by CSS to provide a separator between breadcrumb items.
+   It’s not out of place being in a stylesheets directory.
+
+`images_sizes.css.erb`
+ : This `.erb` file is processed into a stylesheet (via the `css_image_sizes`
+   helper) containing the maximum width and height of every image asset in your
+   project. This will ensure that strange scaling doesn’t occur, and can save
+   time by not having to specify fixed image widths and heights for images you
+   may want to use.
+   
+   This file will be copied to the build project and must be included in your
+   layouts if you wish to use it.
+
+`style.css.scss`
+ : _This_ file, when compiled to CSS, `@include`’s the pertinent files above 
+   and bundles them into a single file that is included in the default layouts.

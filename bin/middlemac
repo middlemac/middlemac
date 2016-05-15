@@ -1,0 +1,103 @@
+#!/usr/bin/env ruby
+
+################################################################################
+# middlemac
+#  This file constitutes the command line interface for middlemac
+################################################################################
+
+require 'thor'
+require 'fileutils'
+require_relative '../lib/middlemac/version'
+
+
+module MiddlemacCli
+
+  class Cli < Thor
+
+    map %w[--version -v] => :__print_version
+
+    ############################################################
+    # help
+    #  Override to add additional description.
+    ############################################################
+    def help(*args)
+      if args.count == 0
+        puts <<-HEREDOC
+
+middlemac version #{Middleman::Middlemac::VERSION}
+
+This gem adds functionality to Middleman and is not executable on its own,
+other than for generating the documentation sample project and/or a blank
+starter project. Instead, you must add this gem to your Middleman project's
+`Gemfile` and then activate it in your `config.rb` file. 
+
+HEREDOC
+      end
+      super
+    end
+
+
+    ############################################################
+    # documentation
+    ############################################################
+    desc 'documentation', 'Install the sample project into your current working directory.'
+    long_desc <<-HEREDOC
+`documentation` will produce a sample project named `middlemac-docs/`
+in your current working directory. This sample uses the features of this gem.
+You can then serve this new project to read the documentation by:
+
+cd middlemac-docs
+bundle install
+bundle exec middleman server
+    
+    HEREDOC
+    def documentation
+      source = File.join('..', '..', 'documentation_project', '.')
+      source = File.expand_path(source, __FILE__)
+      dest = File.expand_path(File.join('.', 'middlemac-docs', '.'))
+      FileUtils.cp_r(source, dest)
+      puts "middlemac installed the project in\n#{dest}" 
+    end
+
+
+    ############################################################
+    # init
+    ############################################################
+    desc 'init', 'Install a (mostly) blank project into your current working directory.'
+    long_desc <<-HEREDOC
+`init` will produce a nearly blank project named `middlemac-init/` in you
+current working directory. It is a minimal, buildable project that you can
+serve and test by:
+
+cd middlemac-init
+bundle install
+bundle exec middleman server
+    
+    HEREDOC
+    def init
+      source = File.join('..', '..', 'fixtures', 'middlemac_app', '.')
+      source = File.expand_path(source, __FILE__)
+      dest = File.expand_path(File.join('.', 'middlemac-init', '.'))
+      FileUtils.cp_r(source, dest)
+      puts "middlemac installed the project in\n#{dest}" 
+    end
+
+
+    ############################################################
+    # __print_version
+    ############################################################
+    desc '--version, -v', 'print the version'
+    def __print_version
+      puts "middlemac-extras version #{Middleman::Middlemac::VERSION}"
+    end
+
+  end # class Cli
+
+end # module MiddlemacCli
+
+
+###########################################################
+# Main
+###########################################################
+
+MiddlemacCli::Cli.start(ARGV)

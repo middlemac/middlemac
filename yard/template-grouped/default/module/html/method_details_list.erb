@@ -1,0 +1,11 @@
+<% scopes(method_listing(false)) do |list, scope| %>
+  <div id="<%= scope %>_method_details" class="method_details_list">
+    <% groups = list.group_by { |g| g.group.nil? ? 'ZZZ' : g.group }.sort.to_h %>
+    <% groups.each_value do |group| %>
+      <h2><%= group[0].group || "#{scope.to_s.capitalize} Method Details" %></h2>
+      <% group.each_with_index do |meth, i| %>
+        <%= yieldall :object => meth, :owner => object, :index => i %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,710 @@
+
+
+
+
+
+  <div class="method_details_list">
+    
+    
+      
+        <div class="method_details first">
+  <h3 class="signature first" id="nav_breadcrumbs-instance_method">
+  
+    - (<tt>String</tt>) <strong>nav_breadcrumbs</strong>(locals = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Generates a breadcrumbs structure as an <code>&lt;ul&gt;</code>. The
+trailing element is the current page.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>locals</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A hash of key-value pairs that
+are passed to the structure as local variables.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>locals</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:klass</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The <code>class</code> attribute
+value that should be assigned to the containing
+element.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An <code>&lt;ul&gt;</code> containing the breadcrumbs.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="nav_breadcrumbs_alt-instance_method">
+  
+    - (<tt>String</tt>) <strong>nav_breadcrumbs_alt</strong>(locals = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Generates the breadcrumbs structure, alternate form,
+wherein the trailing element consists of a label
+indicating “current page,” as an <code>&lt;ul&gt;</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>locals</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A hash of key-value pairs that
+are passed to the structure as local variables.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>locals</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:klass</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The <code>class</code> attribute
+value that should be assigned to the containing
+element.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:label</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The text for the label
+that means “Current page.”</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An <code>&lt;ul&gt;</code> containing the breadcrumbs.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="nav_brethren-instance_method">
+  
+    - (<tt>String</tt>) <strong>nav_brethren</strong>(locals = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Generates a fuller list of related topics as a <code>&lt;dl&gt;</code>,
+with a link to the page as the definition term and the
+page’s front matter <code>:blurb</code> as the definition
+definition.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>locals</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A hash of key-value pairs that
+are passed to the structure as local variables.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>locals</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:klass</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The <code>class</code> attribute
+value that should be assigned to the containing
+element.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:start</span>
+          <span class="type">(<tt>Sitemap::Resource</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The resource
+from which to start the list. If not specified,
+then this resource’s brethren will be listed.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A <code>&lt;dl&gt;</code> containing the list.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="nav_brethren_index-instance_method">
+  
+    - (<tt>String</tt>) <strong>nav_brethren_index</strong>(locals = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Generates a condensed list of related topics as an
+<code>&lt;ul&gt;</code>, omitting the <code>:blurb</code> front matter data.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>locals</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A hash of key-value pairs that
+are passed to the structure as local variables.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>locals</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:klass</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The <code>class</code> attribute
+value that should be assigned to the containing
+element.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:start</span>
+          <span class="type">(<tt>Sitemap::Resource</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The resource
+from which to start the list. If not specified,
+then this resource’s brethren will be listed.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An <code>&lt;ul&gt;</code> containing the list.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="nav_legitimate_children-instance_method">
+  
+    - (<tt>String</tt>) <strong>nav_legitimate_children</strong>(locals = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Generates a fuller list of child topics as a <code>&lt;dl&gt;</code>,
+with a link to the page as the definition term and the
+page’s front matter <code>:blurb</code> as the definition
+definition.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>locals</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A hash of key-value pairs that
+are passed to the structure as local variables.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>locals</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:klass</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The <code>class</code> attribute
+value that should be assigned to the containing
+element.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:start</span>
+          <span class="type">(<tt>Sitemap::Resource</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The resource
+from which to start the list. If not specified,
+then this resource’s children will be listed.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A <code>&lt;dl&gt;</code> containing the list.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="nav_prev_next-instance_method">
+  
+    - (<tt>String</tt>) <strong>nav_prev_next</strong>(locals = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Generates a previous and next item as two anchors
+nested within a <code>&lt;div&gt;</code>. With appropriate CSS this
+can be rendered as a set of navigation buttons.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>locals</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A hash of key-value pairs that
+are passed to the structure as local variables.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>locals</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:klass</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The <code>class</code> attribute
+value that should be assigned to the containing
+element.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:label_previous</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The text for
+the label that means “Previous page.”</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:label_next</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The text for the
+label that means “Next page.”</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A <code>&lt;div&gt;</code> containing the links.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="nav_toc_index-instance_method">
+  
+    - (<tt>String</tt>) <strong>nav_toc_index</strong>(locals = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Generate a nested <code>&lt;ul&gt;</code> structure representing the
+complete table of contents from any particular
+starting point.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>locals</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>A hash of key-value pairs that
+are passed to the structure as local variables.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>locals</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:klass</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The <code>class</code> attribute
+value that should be assigned to the containing
+element.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:start</span>
+          <span class="type">(<tt>Sitemap::Resource</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>The resource
+from which to start the list. If not specified,
+then this resource will be used as the root.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An <code>&lt;ul&gt;</code> containing the list.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+    
+  </div>
+
+

@@ -1,0 +1,138 @@
+
+
+
+
+
+  <div class="method_details_list">
+    
+    
+      
+        <div class="method_details first">
+  <h3 class="signature first" id="image_tag-instance_method">
+  
+    - (<tt>Void</tt>) <strong>image_tag</strong>(path, params = {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Override the built-in <code>image-tag</code> helper in order to
+support additional features.</p>
+
+<ul>
+  <li>Automatic target-specific images. Note that this
+only works on local files, and only if enabled
+with the option <code>:target_magic_images</code>.</li>
+  <li>Target and feature dependent images using the
+<code>params</code> hash.</li>
+  <li>Absolute paths, which Middleman sometimes bungles.</li>
+</ul>
+
+<p>Note that in addition to the options described below,
+<code>middleman-targets</code> inherits all of the built-in
+option parameters as well.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>path</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The path to the image file.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>params</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Optional parameters to pass to
+the helper.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>params</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:target</span>
+          <span class="type">(<tt>String</tt>, <tt>Symbol</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>This image
+tag will only be applied if the current target is
+<code>target</code>.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:feature</span>
+          <span class="type">(<tt>String</tt>, <tt>Symbol</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>This image
+tag will only be applied if the current target
+enables the feature <code>feature</code>.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Void</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+    
+  </div>
+
+

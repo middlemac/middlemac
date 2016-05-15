@@ -1,20 +1,84 @@
-Middlemac, the Middleman Build System for Mac OS X Help Projects (README)
-=========================================================================
+Middlemac, the Middleman Build System for Mac OS X Help Projects
+================================================================
+[![Gem Version](https://badge.fury.io/rb/middlemac.svg)](https://badge.fury.io/rb/middlemac)
 
-version 1.0RC1, 2014-October-23
--------------------------------
 
-_Middlemac_ is the specialized Apple HelpBook building system that uses the
-tools of _Middleman_ to make building Apple HelpBooks for your Mac OS X
-applications a snap. Whether you are targeting multiple versions of your
-application or a single version, once properly (simply!) configured, _Middlemac_
-will take all of the pain out of building Help files.
+_Middlemac_
+
+This gem provides a complete solution to generating help documentation for
+Mac OS X applications in the form of Help Books, using Middleman and a
+selection of custom extensions to provide everything a developer needs.
+
+Using this Apple Help Book building system leverages the tools of _Middleman_ to
+make building end-user documentation for your Mac OS X applications a snap.
+Whether you are targeting multiple versions of your application or a single
+version, once properly configured, _Middlemac_ will take all of the pain out of
+building help files.
+
+
+Simple README
+-------------
+Jump to the [verbose README](#verbose-readme) and instructions below, otherwise…
+
+
+Install the Gem
+---------------
+
+Install the gem in your preferred way, typically:
+
+~~~ bash
+gem install middlemac
+~~~
+
+From git source:
+
+~~~ bash
+rake install
+~~~
+
+
+Documentation
+-------------
+
+The complete documentation leverages the features of this gem in order to better
+document them. Having installed the gem, read the full documentation in your
+web browser:
+
+~~~ bash
+middlemac documentation
+cd middlemac-docs/
+bundle install
+bundle exec middleman server
+~~~
+   
+And then open your web browser to the address specified (typically
+`localhost:4567`).
+
+
+License
+-------
+
+MIT. See `LICENSE.md`.
+
+
+Changelog
+---------
+
+See `CHANGELOG.md` for point changes, or simply have a look at the commit
+history for non-version changes (such as readme updates).
+
+
+Verbose README
+==============
+
+About
+-----
 
 _Middlemac_ makes it simple to do this in Terminal…
 
-`./middlemac target1 target2 target3`
+`bundle exec middleman build_all`
 
-…and end up with versions of your HelpBooks with all of the Apple-required files
+…and end up with versions of your helpbooks with all of the Apple-required files
 in the Apple-required formats in the correct locations of your XCode build
 directory. Simply build your help target, run your application, and find that
 it just works!
@@ -35,12 +99,12 @@ At its simplest _Middlemac_ offers:
   or easily tweaked to suit your needs.
 
 
-**Please note that _Middlemac_ is not associated in any way with the the team at
+**Please note that _Middlemac_ is not associated in any way with the team at
 _Middleman_.**  
 
 
-Getting Started
----------------
+Documentation
+-------------
 
 _Middlemac_’s documentation is included in the starter project (and more than
 likely at [http://www.balthisar.com/manuals](http://www.balthisar.com/manuals)).
@@ -51,41 +115,22 @@ To get started and read the full documentation, make sure that your system has
 [Ruby](https://www.ruby-lang.org/) installed (it comes pre-installed on Mac OS X
 and some Linuxes), and follow these steps below. 
 
-Note that this is untested on Windows.
-{:.note}
+We now recommend the use of the Ruby Version Manager [(RVM)](https://rvm.io/).
+While installation and setup of RVM is entirely outside the scope of this
+tutorial, it avoids the use of `sudo` and the occasional hassles involved with
+using the built in version of Ruby.
 
 Note that depending on your system’s setup you might have to prefix some of the
 commands below with `sudo`. For example if the instruction is given as
 `gem install bundler` and a permissions error is reported, you may probably
 have to use `sudo gem install bundler` instead.
-{:.note}
 
 If you’re behind a proxy and haven’t already setup an `http-proxy` environment
 variable, then that previous clause is a good hint and Google is your friend.
-{:.note}
 
 
-Quick version, if you don’t want to read details
-------------------------------------------------
-
-In your Terminal, do each of the following:
-
-~~~ bash
-xcode-select --install
-gem install bundler
-git clone http://github.com/balthisar/middlemac.git middlemac_demo
-bundle install
-./middlemac.rb --server free
-open middlemac.webloc
-~~~
-
-If you’re on Linux and `open middlemac.webloc` command doesn’t work for you,
-then use your preferred web browser and go to
-[http://localhost:4567/Resources/Base.lproj/](http://localhost:4567/Resources/Base.lproj/).
-
-
-Similar to above, with a bit of handholding
-----------------------------------------
+Installation
+------------
 
 ### Install XCode
 
@@ -99,8 +144,7 @@ xcode-select --install
 If that fails or the rest of the installation fails, then install all of XCode.
 It’s available in the App Store. It’s free of charge. And you’re using this
 project to develop help for Mac OS X applications that you’re developing using
-XCode anyway. Install it, already. Then you’ll have no dependency issues for the
-rest of this procedure.
+XCode anyway. Install it, already!
 
 Dependencies on Linux are left up to you. Most modern Linuxes will prompt you to
 install packages that are missing.
@@ -109,52 +153,49 @@ _Middlemac_ works quite well on Linux, but keep in mind that Linux doesn’t hav
 the help indexing tool that’s required in order to build a proper helpbook.
 Other than for generating your final helpbook, Linux makes a fine development
 environment.
-{:.note} 
 
 
-### Install bundler
+### Install _Middlemac_
 
-[Bundler](http://bundler.io/) is the ubiquitous Ruby
-[gem](http://guides.rubygems.org/what-is-a-gem/) management tool. You can
-install if from your terminal easily:
+~~~ bash
+gem install middlemac
+~~~
 
-`gem install bundler`
+### Install the documentation project
 
-Ruby will download and install Bundler.
+~~~ bash
+middleman documentation
+~~~
 
-
-### Install the _middlemac_ project template
-
-Although _Middlemac_ is a [_Middleman_](http://middlemanapp.com) extension, it’s
-mostly a project template and distributed as such. Installation is as easy as:
-
-`git clone http://github.com/balthisar/middlemac.git middlemac_demo`
-
-Then `cd` into the `middlemac_demo` folder, and…
+This will install _Middlemac_’s documentation project into a new directory
+`middlemac-docs`.
 
 
-### Update gems (including _Middleman_ if needed)
+### Go into the documentation directory
 
-Gems are Ruby programs and extensions. From within your project directory,
-simply:
-
-`bundle install`
-
-This will cause several Ruby gems to begin downloading and install. Bundler
-knows which gems to install (including _Middleman_ itself) because the file
-`Gemfile` in this package contains the correct manifest.
+~~~ bash
+cd middlemac-docs
+~~~
 
 
-### If you get “ERROR: failed to build gem native extension” (Mac OS X)
+### Install bundler (if not already installed)
 
-Try repeating the above using this command, instead:
+~~~ bash
+gem install bundler
+~~~
 
-`ARCHFLAGS=-Wno-error=unused-command-line-argument-hard-error-in-future bundle install`
+Bundler is the most common Ruby package management system, and it will be used
+to ensure that all of _Middlemac_’s dependencies are present.
 
-The reasons are complex but if you really want to know, remember: Google is your
-friend.
 
-It appears that this issue is no longer present on Yosemite.
+### Make sure all of the project dependencies are met
+
+~~~ bash
+bundle install
+~~~
+
+This tells bundler to install the remaining gems that _Middlemac_ requires to
+function.
 
 
 ### Start the _Middleman_ server
@@ -162,10 +203,11 @@ It appears that this issue is no longer present on Yosemite.
 _Middleman_ comes with its own HTTP server and requires no configuration. It
 simply works, serving your helpbook as a website.
 
-From the terminal, use _Middlemac_ to start the _Middleman_ server using our
-`free` target:
+~~~ bash
+bundle exec middleman --target free
+~~~
 
-`./middlemac.rb --server free`
+This will start the server using our `:free` target.
 
 
 ### Open the site in your browser
@@ -176,6 +218,8 @@ in your default browser.
 Or can open the bookmark file from Terminal with `open middleman.webloc`.
 
 Or you prefer to open the help site manually, or if the .webloc file doesn’t
-work on your Linux distro, you can go to
+work on your Linux distro, you can usually go to
 [http://localhost:4567/Resources/Base.lproj/](http://localhost:4567/Resources/Base.lproj/).
+If you have setup a custom hostname, then `localhost` may not work for you.
 
+See also the [change log](CHANGELOG.md) and the [license](LICENSE.md).

@@ -1,0 +1,93 @@
+---
+title:  <code>md_links</code> and <code>md_images</code> helpers
+blurb:  Learn to take advantage of helpers that give you a hand using reference
+        style links to content and images.
+layout: template-logo-medium
+---
+<%= md_links %>
+<%= md_images %>
+
+
+<%= current_page.data.title %>
+==============================
+
+<%= current_page.data.blurb %>
+
+You’ll notice (as you look at the source files for this help content) that the
+first ERB instructions immediately after the frontmatter are:
+
+~~~ erb
+<%%= md_links %>
+<%%= md_images %>
+~~~
+
+These convenience helpers make it relatively simple to include Markdown links
+and images using the reference format.
+ 
+Links
+-----
+
+~~~ markdown
+[all help content][all_help_content-index]
+~~~
+
+…will generate the following link:
+
+[all help content][all_help_content-index]
+
+This is especially useful if your page source filenames stay constant.
+
+The reference name will always be the base output name of the file. For index
+files, the format will be `groupname-index`, where the groupname is the name of
+the containing directory, as you should already know. The top-level index file
+will conveniently, simply be `index`.
+
+You should strive to use unique filenames if you use this feature, as this will
+ensure that your references remain unique. In the event of reference name
+collisions, the reference name will be prepended with its nesting groups as many
+levels as necessary to become unique. For convenience items that are higher in
+your directory hierarchy are prioritized against prepending.
+
+Here’s the complete result of this helper for this help book:
+
+~~~ markdown
+<%= md_links %>
+~~~
+
+Pretty neat how it includes the titles, right? Try hovering your mouse over the
+example [all help content][all_help_content-incex] link. Including titles isn’t
+possible in Markdown without using reference links.
+{:.note}
+
+
+Images
+------
+
+Markdown also supports a reference format for images. It looks like this:
+
+~~~ markdown
+![this is alt tag content][middlemac-logo-small]
+~~~
+
+And will generate this:
+
+![this is alt tag content][middlemac-logo-small]
+
+
+Here’s the complete result of this helper for this help book:
+
+~~~ markdown
+<%= md_images %>
+~~~
+
+Note that using reference style Markdown images is performed by the Markdown
+processor directly. Using magic prefixes for automatic target-based images
+won’t work. However they will work with standard Markdown, non-reference
+images. Note how this next example includes the target-specific logo:
+{:.note}
+
+~~~ markdown
+![target specific logo](all-middlemac-logo-small)
+~~~
+
+![target specific logo](all-middlemac-logo-small)

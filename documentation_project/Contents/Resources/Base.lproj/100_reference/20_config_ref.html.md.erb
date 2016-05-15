@@ -1,0 +1,56 @@
+---
+title:  <code>config.rb</code> Settings
+blurb:  Learn about all of the possible configuration settings for your
+        projects.
+layout: template-logo-medium
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.title %>
+==============================
+
+<%= current_page.data.blurb %>
+
+## Targets Configuration
+
+The targets configuration appears immediately after the
+`activate :MiddlemanTargets` line.
+
+Note that `:build_dir` is included for the sake of completeness in the list
+below, but it’s not currently used in a _Middleman_ project’s `config.rb` file.
+
+<%= partial 'yard_targets_config' %>
+
+Additional information about the contents of the `targets` hash is available 
+in the [Set up your Help Project][setup-index] article.
+
+
+* * *
+
+## Page Groups Configuration
+
+The items in the block `activate :MiddlemanPageGroups do |config|` pertain to
+the automatic navigation features.
+
+<%= partial 'yard_pagegroups_config' %>
+
+
+* * *
+
+## Extras Configuration
+
+Items in the `activate :MiddlemacExtras do |config|` block control some of
+_Middlemac_’s behavior and abilities:
+
+<%= partial 'yard_extras_config' %>
+
+
+* * *
+
+## Middlemac Configuration
+
+Finally, the `activate :Middlemac do |options|` block adds some finishing
+touches.
+
+<%= partial 'yard_middlemac_config' %>

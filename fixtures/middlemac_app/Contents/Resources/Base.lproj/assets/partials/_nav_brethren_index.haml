@@ -1,0 +1,14 @@
+- commence = (defined?(start) && start) || current_page
+- pages = commence.brethren
+- unless pages.to_a.empty?
+  %div{:class => (defined?(klass) && klass) || nav_brethren_index_class}
+    %ul
+      - pages.each do |p|
+        %li= link_to p.data.title, p
+
+-#
+  This partial renders brethren into an <ul> to serve as a related-pages type
+  of table of contents.
+  - You probably need a class in order to render this properly.
+  - :klass - pass in this local to specify a class for the containing div.
+  - :start - pass in this local to specify a different starting point.

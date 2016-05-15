@@ -1,0 +1,9 @@
+<% scopes(attr_listing) do |list, scope| %>
+  <div id="<%= scope %>_attr_details" class="attr_details">
+    <% list.each_with_index do |meth, i| %>
+      <% rw = meth.attr_info %>
+      <span id="<%= anchor_for(rw[meth.reader? ? :write : :read]) %>"></span>
+      <%= yieldall :object => meth, :owner => object, :index => i %>
+    <% end %>
+  </div>
+<% end %>

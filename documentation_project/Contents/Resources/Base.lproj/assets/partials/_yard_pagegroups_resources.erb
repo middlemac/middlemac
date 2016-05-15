@@ -1,0 +1,540 @@
+
+
+
+
+
+  <div class="method_details_list">
+    
+    
+      
+        <div class="method_details first">
+  <h3 class="signature first" id="resource.breadcrumbs-instance_method">
+  
+    - (<tt>Array&lt;Sitemap::Resource&gt;</tt>) <strong>resource.breadcrumbs</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns an array of resources leading to this resource.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Sitemap::Resource&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An array of
+resources.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.brethren-instance_method">
+  
+    - (<tt>Array&lt;Sitemap::Resource&gt;</tt>) <strong>resource.brethren</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns an array of all of the siblings of this page,
+taking into account their eligibility for display.</p>
+
+<ul>
+  <li>is not already the current page.</li>
+  <li>has a <code>sort_order</code>.</li>
+  <li>is not ignored.</li>
+</ul>
+
+<p>The returned array will be sorted by each item’s
+<code>sort_order</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Sitemap::Resource&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An array of
+resources.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.brethren_next-instance_method">
+  
+    - (<tt>Sitemap::Resource</tt>) <strong>resource.brethren_next</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the next sibling based on order, or <code>nil</code> if
+there is no next sibling.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Sitemap::Resource</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The resource instance of
+the next sibling.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.brethren_previous-instance_method">
+  
+    - (<tt>Sitemap::Resource</tt>) <strong>resource.brethren_previous</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the previous sibling based on order, or <code>nil</code>
+if there is no previous sibling.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Sitemap::Resource</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The resource instance of
+the previous sibling.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.group_count-instance_method">
+  
+    - (<tt>Integer</tt>) <strong>resource.group_count</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the quantity of pages in the current page’s
+group, including this current page, i.e., the number
+of <code>brethren + 1</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The total number of pages in the
+this page’s current group.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.legitimate_children-instance_method">
+  
+    - (<tt>Array&lt;Sitemap::Resource&gt;</tt>) <strong>resource.legitimate_children</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns an array of all of the children of this
+resource, taking into account their eligibility for
+display. Each child is legitimate if it:</p>
+
+<ul>
+  <li>has a sort_order.</li>
+  <li>is not ignored.</li>
+</ul>
+
+<p>The returned array will be sorted by each item’s
+<code>sort_order</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Sitemap::Resource&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An array of
+resources.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.navigator_eligible?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>resource.navigator_eligible?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Determines whether a page is eligible to include a
+previous/next page control. This is based on:</p>
+
+<ul>
+  <li>The group is set to allow navigation via the
+<code>:navigate</code> front matter key.</li>
+  <li>This page is not excluded from navigation via the
+use of <code>:navigator =&gt; false</code> in its front matter.</li>
+  <li>This page has a <code>sort_order</code>.</li>
+</ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns <code>true</code> if this pages is
+eligible for a previous/next page control.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.page_group-instance_method">
+  
+    - (<tt>String</tt>) <strong>resource.page_group</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Make <code>page_group</code> available for each resource.
+Useful for for assigning classes, and/or group
+conditionals.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The <code>page_group</code> of the current page.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.page_name-instance_method">
+  
+    - (<tt>String</tt>) <strong>resource.page_name</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Make <code>page_name</code> available for each resource. This is
+the file’s base name after any renaming has occurred.
+Useful for assigning classes, etc.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The <code>page_name</code> of the current page.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.page_sequence-instance_method">
+  
+    - (<tt>Integer</tt>, <tt>Nil</tt>) <strong>resource.page_sequence</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the page sequence amongst all of the brethren,
+and can be used as a page number surrogate. The first
+page is 1. Pages without a sort order will have a <code>nil</code>
+<code>page_sequence</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>, <tt>Nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The current page sequence of
+this resource among its brethren.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.parent-instance_method">
+  
+    - (<tt>Sitemap::Resource</tt>) <strong>resource.parent</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Return the parent of the resource. This implementation
+corrects a bug in <strong>Middleman</strong> as of 4.1.7 wherein
+<strong>Middleman</strong> doesn’t return the parent if the the
+directory has been renamed for output.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Sitemap::Resource</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The resource instance of
+the resource’s parent.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.sort_order-instance_method">
+  
+    - (<tt>Integer</tt>) <strong>resource.sort_order</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the page sort order or 0 if no page sort order
+was applied.</p>
+
+<p>Pages without a sort order can still be linked to;
+they simply aren’t brethren or legitimate children,
+and so don’t participate in any of the automatic
+navigation features.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The current resource’s sort order
+within its group, or 0 if no sort order was applied.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+    
+  </div>
+
+

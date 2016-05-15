@@ -1,0 +1,15 @@
+---
+title:  All Help Content Sample
+blurb:  An example showing how to show all help content.
+layout: template-logo-medium
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.title %>
+==============================
+
+The directory below indicates all of the help content that is available in this
+help book.
+
+<%= nav_toc_index(:locals => { :start => current_page.breadcrumbs.first }) %>

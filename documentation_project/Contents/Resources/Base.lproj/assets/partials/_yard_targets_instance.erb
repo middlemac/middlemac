@@ -1,0 +1,81 @@
+
+
+
+
+
+  <div class="method_details_list">
+    
+    
+      
+        <div class="method_details first">
+  <h3 class="signature first" id="target_specific_proposal-instance_method">
+  
+    - (<tt>String</tt>) <strong>target_specific_proposal</strong>(path) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns a target-specific proposed file when given
+  a user-specified file, and will return the same file
+  if not enabled or doesn’t begin with the magic word.</p>
+
+<p>This method allow other implementations of <code>image-tag</code>
+  to honor this implementation’s use of automatic
+  image substitutions.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>path</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Specify the path to the image
+for which you want to provide a substitution. This
+image doesn’t have to exist in fact if suitable
+images exist for the current target.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns the substitute image if one
+was found, otherwise it returns the original path.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+    
+  </div>
+
+

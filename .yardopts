@@ -1,0 +1,7 @@
+--no-private
+--markup=markdown
+--load yard/yard_extensions.rb
+--exclude middlemac/version.rb
+--one-file
+--readme yard/readme.md
+--title middlemac

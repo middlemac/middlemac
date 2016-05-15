@@ -1,0 +1,136 @@
+---
+title:  Ruby’s Ecosystem
+blurb:  Ruby has a huge ecosystem the can be confusing to new users. This
+        article makes a very brief introduction that should shorten the learning
+        curve.
+layout: template-logo-medium
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.title %>
+==============================
+
+<%= current_page.data.blurb %>
+
+Gems
+----
+
+“Gems” are packages of Ruby or compiled code in a standard format that serve as
+extensions or library additions to Ruby. _Middlemac_ is a system consisting of
+the `middlemac` gem, among others.
+
+By default Ruby is configured to fetch gems from
+[rubygems.org](https://rubygems.org/), which is convenient as long as you are
+connected to the internet.
+
+Gems, as software, have versions and can have dependencies on other gems. This
+can lead to dependency hell when multiple versions of multiple gems are
+installed having a clash due to mixed dependencies. Luckily this has been mostly
+solved via the use of Bundler.
+
+Bundler
+-------
+
+Bundler is a gem version management system that ensures that the correct gem
+version is used on a per-project basis, as specified in the `Gemfile` and locked
+in `Gemfile.lock` (more on these below).
+
+Using bundler will ensure that gem versions of known compatibility will be used.
+For example, _Middlemac_ requires _Middleman_ version 4.1.7 or higher, which
+itself requires other gems of specific versions. Bundler will ensure that when
+building a _Middlemac_ project, _only_ the correct gems are used.
+
+When you see a command such as:
+
+~~~ bash
+bundle exec middleman build
+~~~
+
+…it means that Bundler will execute the `middleman` gem, and will take
+responsibility for ensuring the correct gem versions are used. If we want to
+leave it up to chance, we might try this:
+
+~~~ bash
+middleman build
+~~~
+
+…and this might work, or it might not. Without using Bundler, the default
+versions of gems installed on your system will be used, and they might not be
+compatible the default version of `middleman`.
+
+Ruby projects, including _Middlemac_ help book projects, specify gem versions
+using a file in the project directory called `Gemfile`.
+
+
+`Gemfile` and `Gemfile.lock`
+----------------------------
+
+Your _Middlemac_ project contains this file to specify to Bundler which versions
+of Ruby gems should be used. In general you don't have to bother with this file
+at all. However if you become more advanced and want to use other gems, you’ll
+have to dive into this file eventually.
+
+This file contains gems and the versions that are allowed. For example,
+this documentation project’s `Gemfile` contains something similar to this:
+
+~~~ ruby
+gem 'middleman-pagegroups', '~> 1.0.3'
+~~~
+
+This declaration tells Bundler that `middleman-pagegroups` is a gem that is
+required for this project, and that any version greater than 1.0.3 is allowed,
+but only in the `1.0.x` series. The `~>` is called a “pessimistic operator” and
+is used if we don’t trust the `1.1.x` will break nothing.
+
+Other operators are available, too, of course, and are a simple web search away.
+
+The file `Gemfile.lock` is generated automatically by Bundler, and you should
+never, ever modify this file yourself (you should also exclude it from version
+control). This file is the file that indicates to Bundler the _exact_ versions
+of Gems that will be used. It ensures that the set of gems always stays
+consistent (even if you update gems) unless you deliberately want it to do
+otherwise.
+
+### `bundle install`
+
+When you `cd` into a project directory, you can:
+
+~~~ bash
+bundle install
+~~~
+
+This tells Bundler to check the `Gemfile` and install any gems that are required
+but are missing, typically from [rubygems.org](https://rubygems.org/). After
+installing the gems Bundler will also update the `Gemfile.lock`, thereby
+freezing the versions to be used in your project.
+
+What happens if I install a newer version of a Ruby gem? For example, if the
+`Gemfile` is configured to use `middleman-pagegroups` 1.0.3 or above, and I’ve
+been building with it for weeks, and then update my gem to 1.0.4? In this case,
+as long as 1.0.3 is still installed on your system, Bundler will still use this
+version.
+
+You’ll either have to update the `Gemfile` with 1.0.4 and then `bundle install`
+again, or…
+
+### `bundle update`
+
+This tells Bundler to install newer versions of all of your Gems, if available,
+and within the pessimistic version checks in the `Gemfile`, and also updates
+`Gemfile.lock` so that newer versions of the gems will be used.
+
+~~~ bash
+bundle update
+~~~
+
+
+`config.rb`
+-----------
+
+Nearly every Ruby project, including your _Middlemac_ help book project, follows
+the convention of configuration via a `config.rb` file in the root level of your
+project directory. 
+
+Information specific to _Middlemac_’s `config.rb` is available in the
+[appropriate section][setup-index] of this documentation.

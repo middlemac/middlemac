@@ -1,0 +1,21 @@
+- p_prev = current_page.brethren_previous
+- p_next = current_page.brethren_next
+- b_prev = (defined?(label_previous) && label_previous) || nav_prev_next_label_prev
+- b_next = (defined?(label_next) && label_next) || nav_prev_next_label_next
+%div{:class => (defined?(klass) && klass) || nav_prev_next_class}
+  - if p_prev.nil?
+    %span= b_prev
+  - else
+    = link_to b_prev, p_prev
+  - if p_next.nil?
+    %span= b_next
+  - else
+    = link_to b_next, p_next
+
+-#
+  This partial renders a div with two spans that are suitable for use as
+  previous and next buttons when properly styled.
+  - You probably need a class in order to render this properly.
+  - :klass          - pass in this local to specify a class for the containing div.
+  - :label_previous - the label for the Previous button. Default is "Previous".
+  - :label_next     - the label for the Next button. Default is "Next".

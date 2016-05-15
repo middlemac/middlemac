@@ -1,0 +1,21 @@
+- commence = (defined?(start) && start) || current_page
+- pages = commence.legitimate_children
+- if defined?(recurse) && recurse
+  - unless pages.to_a.empty?
+    %ul
+      - pages.each do |p|
+        %li<
+          = link_to p.data.title, p
+          = partial 'partials/toc_index', :locals => { :start => p, :recurse => true }
+- else
+  %ul{:class => (defined?(klass) && klass) || nav_toc_index_class}
+    %li<
+      = link_to commence.data.title, commence
+      = partial 'partials/toc_index', :locals => { :start => commence, :recurse => true }
+
+-#
+  - This partial renders nested links into an <ul>. The top level item is the
+    start page followed by the entire directory structure below it.
+  - You probably need a class in order to render this properly.
+  - :start - pass in this local to specify the starting page.
+  - :klass - pass in this local to specify a class for the containing div.

@@ -14,11 +14,12 @@ Gemfile.lock
 /pkg
 
 # Ignore build folders
-build/*
-
-# Yard cruft
-/doc/
-/.yardoc
-
-# Aruba
-/tmp/
+.rbenv-*
+.ruby-gemset
+.ruby-version
+.sass-cache
+.sassc
+.tmp
+build*
+Makefile
+tmp

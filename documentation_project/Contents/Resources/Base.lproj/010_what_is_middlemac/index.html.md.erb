@@ -1,0 +1,126 @@
+---
+title:  What is <em>Middlemac</em>?
+blurb:  Discover what <em>Middlemac</em> can do for you, why it exists, and 
+        what it’s made out of.
+layout: template-logo-medium
+---
+<%= md_links %>
+<%= md_images %>
+
+
+<%= current_page.data.title %>
+==============================
+
+<%= current_page.data.blurb %>
+
+## What does _Middlemac_ do?
+
+_Middlemac_ makes it simple to do this in Terminal…
+
+`bundle exec middleman build_all`
+
+…and end up with versions of your help books specific to each version of your
+Mac OS X application, with all of the Apple-required files in the Apple-required
+formats in the correct locations of your Xcode source directory. Simply build
+your help target, run your application, and find that it just works.
+
+## Yeah, but what does it _do_?
+
+_Middlemac_, using _Middleman_, takes a directory of source files, processes all
+of the contents, and produces a finished Apple Help Book. The source files can
+be standard HTML or Markdown, and _Middlemac_ takes care of nearly all of the
+nitty gritty details for you.
+
+- Write your help files with plain text using the
+  [Markdown](http://kramdown.gettalong.org/) format.
+  
+~~~ markdown
+# Read this headline!
+Markdown makes it easy to write text that’s legible in its text form and that
+renders very easily to HTML.
+~~~
+
+- It decouples your content from your visual design and from HTML document
+  formats via the use of [templates][templates]. The templates can be used
+  as-is or easily tweaked to suit your needs, and they include a basic,
+  Apple-like CSS stylesheet offering a reasonably attractive out-of-the-box
+  appearance.
+
+- Single or multiple build [targets][targets], e.g., your `pro` target can
+  include content specific to the professional version of your application.
+  **For example, the current target of this documentation is `<%= target_name
+  %>`**.
+  
+- [Features][features] support for each build target. For example each of your
+  build targets can specify whether or not they support specific features, and
+  this content will be included or excluded as your needs require. This offers
+  highly granular control versus trying to manage complex targets on their own.
+  
+- A low [learning curve][skills_refresher-index], especially if you’re already a
+  developer.
+
+- A set of conventions and tools that make automatic tables of contents,
+  automatic sections, breadcrumbs, and other automatic navigation behavior 
+  simple to implement.
+  
+- [Partials][partials], [helpers][helpers], and [resource methods][resources]
+  that make your static help documents appear more dynamic while
+  [keeping yourself DRY](http://en.wikipedia.org/wiki/Don't_repeat_yourself).
+    
+- Automatic management of `Info.plist` and `InfoPlist.strings` files make it
+  simple to work with Xcode.
+
+- Automatic use of Apple’s help indexer tool ensures that the Help Viewer
+  is always aware of your content.
+
+
+## Why _Middlemac_ exists
+
+_Middlemac_ exists to solve these two problems:
+
+- **How do I build help files for my Mac OS X applications?** Although 
+  ostensibly a simple set of HTML files, a Mac OS X help book requires careful
+  application of data in order for the help book to interface properly with
+  your application. And for historical reasons, some of the pages have to use
+  different HTML versions.
+
+- **How do I manage help files for multiple versions of my Mac OS X
+  applications, each of which has a different feature set?** Although
+  _Middlemac_ is great for applications that have a single version, it really
+  excels when managing applications that have multiple versions (such as Free
+  or Pro). _Middlemac_ makes it simple to produce help documents specific to
+  these versions, all using the same source.
+
+
+## What is _Middlemac_ made of?
+
+_Middlemac_ is a system of Gems that act as an extension to _Middleman_, a
+static site building tool that offers a lot of dynamism to static web sites.
+Without _Middleman_, nothing else in _Middlemac_ would work.
+
+_Middlemac_ consists of the gems:
+
+`middlemac`
+
+  : This gem requires all of the other gems in the system and adds several
+    helpers to make working with target and feature much more convenient. It’s
+    also responsible for providing the basic help book template and managing the
+    Apple help indexer.
+
+`middlemac-extras`
+
+  : This gem adds features to _Middleman_ to make working with images and
+    Markdown reference style links easier. It’s released as a separate gem
+    because it can still be useful for standard _Middleman_ projects.
+
+`middleman-pagegroups`
+
+  : This gem offers all of the automatic navigation features used by
+    _Middlemac_. It’s released as a separate gem because it can still be useful
+    for standard _Middleman_ projects.
+
+`middleman-targets`
+
+  : This gem gives _Middleman_ the ability to build and serve multiple targets.
+    It’s released as a separate gem because it can still be useful for
+    standard _Middleman_ projects.

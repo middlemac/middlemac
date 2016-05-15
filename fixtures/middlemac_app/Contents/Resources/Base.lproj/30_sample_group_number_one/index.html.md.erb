@@ -1,0 +1,24 @@
+---
+title:  First Sample Group
+blurb:  A collection of pages in the first sample group.
+layout: template-logo-large
+navigate: true
+---
+<%= md_links %>
+<%= md_images %>
+
+<% content_for :seeAlso do %>
+Sidebar stuff can go here.
+<% end %>
+
+
+<%= current_page.data.title %>
+==============================
+
+<%= current_page.data.blurb %>
+
+* * *
+
+<%= nav_legitimate_children %>
+
+* * *

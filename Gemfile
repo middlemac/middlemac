@@ -1,16 +1,18 @@
-# `(sudo) bundle install` will ensure these are present.
+# If you do not have OpenSSL installed, update
+# the following line to use "http://" instead
+source 'https://rubygems.org'
 
-# If you have OpenSSL installed, we recommend updating
-# the following line to use "https"
-source 'http://rubygems.org'
+# Specify your gem's dependencies in middleman-pagegroups.gemspec
+gemspec
 
-gem 'middleman', '~>3.4.0'
+group :development do
+  gem 'rake'
+  gem 'rdoc'
+  gem 'yard'
+end
 
-gem 'middleman-livereload'      # Live-reloading plugin
-gem 'middleman-syntax'          # Syntax Highlighting
-gem 'font-awesome-sass'         # Font Awesome
-gem 'fastimage'                 # Image dimensions
-gem 'nokogiri'                  # Modify XML
-
-gem 'wdm', '~> 0.1.0', :platforms => [:mswin, :mingw]  # Windows faster file watching
-gem 'tzinfo-data', platforms: [:mswin, :mingw]         # Time zone data for Windows
+group :test do
+  gem 'cucumber'
+  gem 'aruba'
+  gem 'rspec'
+end

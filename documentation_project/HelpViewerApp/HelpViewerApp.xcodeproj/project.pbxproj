@@ -1,0 +1,529 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D03D5BCB1CE5AF3200C3EF1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D03D5BCA1CE5AF3200C3EF1D /* AppDelegate.m */; };
+		D03D5BCE1CE5AF3200C3EF1D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D03D5BCD1CE5AF3200C3EF1D /* main.m */; };
+		D03D5BD01CE5AF3200C3EF1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D03D5BCF1CE5AF3200C3EF1D /* Assets.xcassets */; };
+		D03D5BD31CE5AF3200C3EF1D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03D5BD11CE5AF3200C3EF1D /* MainMenu.xib */; };
+		D03D5F861CE5C6BA00C3EF1D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D03D5BCD1CE5AF3200C3EF1D /* main.m */; };
+		D03D5F871CE5C6BA00C3EF1D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D03D5BCA1CE5AF3200C3EF1D /* AppDelegate.m */; };
+		D03D5F8A1CE5C6BA00C3EF1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D03D5BCF1CE5AF3200C3EF1D /* Assets.xcassets */; };
+		D03D5F8B1CE5C6BA00C3EF1D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D03D5BD11CE5AF3200C3EF1D /* MainMenu.xib */; };
+		D03D5F941CE5D1AC00C3EF1D /* Middlemac (free).help in Resources */ = {isa = PBXBuildFile; fileRef = D03D5F921CE5D1AC00C3EF1D /* Middlemac (free).help */; };
+		D03D5F971CE5D1AC00C3EF1D /* Middlemac (pro).help in Resources */ = {isa = PBXBuildFile; fileRef = D03D5F931CE5D1AC00C3EF1D /* Middlemac (pro).help */; };
+		D0799B271CE6EC9500F41A52 /* build.sh in Resources */ = {isa = PBXBuildFile; fileRef = D0799B261CE6EC9500F41A52 /* build.sh */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D0799B2C1CE6F0E200F41A52 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D03D5BBE1CE5AF3200C3EF1D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D04D5FE51CE6E40600805B1A;
+			remoteInfo = "Help (free)";
+		};
+		D0799B2E1CE6F0E700F41A52 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D03D5BBE1CE5AF3200C3EF1D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D0799B281CE6F07F00F41A52;
+			remoteInfo = "Help (pro)";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D03D5BC61CE5AF3200C3EF1D /* HelpViewerApp (pro).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HelpViewerApp (pro).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D03D5BC91CE5AF3200C3EF1D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D03D5BCA1CE5AF3200C3EF1D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D03D5BCD1CE5AF3200C3EF1D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D03D5BCF1CE5AF3200C3EF1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D03D5BD21CE5AF3200C3EF1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		D03D5BD41CE5AF3200C3EF1D /* Info-free.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-free.plist"; sourceTree = "<group>"; };
+		D03D5F901CE5C6BA00C3EF1D /* HelpViewerApp  (free).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HelpViewerApp  (free).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D03D5F921CE5D1AC00C3EF1D /* Middlemac (free).help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Middlemac (free).help"; path = "../../Middlemac (free).help"; sourceTree = "<group>"; };
+		D03D5F931CE5D1AC00C3EF1D /* Middlemac (pro).help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "Middlemac (pro).help"; path = "../../Middlemac (pro).help"; sourceTree = "<group>"; };
+		D0799B261CE6EC9500F41A52 /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = SOURCE_ROOT; };
+		D0799B301CE7079600F41A52 /* Info-pro.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-pro.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D03D5BC31CE5AF3200C3EF1D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D03D5F881CE5C6BA00C3EF1D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D03D5BBD1CE5AF3200C3EF1D = {
+			isa = PBXGroup;
+			children = (
+				D03D5BC81CE5AF3200C3EF1D /* HelpViewerApp */,
+				D03D5BC71CE5AF3200C3EF1D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D03D5BC71CE5AF3200C3EF1D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D03D5BC61CE5AF3200C3EF1D /* HelpViewerApp (pro).app */,
+				D03D5F901CE5C6BA00C3EF1D /* HelpViewerApp  (free).app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D03D5BC81CE5AF3200C3EF1D /* HelpViewerApp */ = {
+			isa = PBXGroup;
+			children = (
+				D03D5BC91CE5AF3200C3EF1D /* AppDelegate.h */,
+				D03D5BCA1CE5AF3200C3EF1D /* AppDelegate.m */,
+				D03D5BCF1CE5AF3200C3EF1D /* Assets.xcassets */,
+				D03D5BD11CE5AF3200C3EF1D /* MainMenu.xib */,
+				D03D5BD41CE5AF3200C3EF1D /* Info-free.plist */,
+				D0799B301CE7079600F41A52 /* Info-pro.plist */,
+				D03D5F921CE5D1AC00C3EF1D /* Middlemac (free).help */,
+				D03D5F931CE5D1AC00C3EF1D /* Middlemac (pro).help */,
+				D0799B261CE6EC9500F41A52 /* build.sh */,
+				D03D5BCC1CE5AF3200C3EF1D /* Supporting Files */,
+			);
+			path = HelpViewerApp;
+			sourceTree = "<group>";
+		};
+		D03D5BCC1CE5AF3200C3EF1D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D03D5BCD1CE5AF3200C3EF1D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		D04D5FE51CE6E40600805B1A /* Help (free) */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-l HelpViewerApp/build.sh free";
+			buildConfigurationList = D04D5FE61CE6E40600805B1A /* Build configuration list for PBXLegacyTarget "Help (free)" */;
+			buildPhases = (
+			);
+			buildToolPath = bash;
+			buildWorkingDirectory = ../;
+			dependencies = (
+			);
+			name = "Help (free)";
+			passBuildSettingsInEnvironment = 1;
+			productName = "Help (free)";
+		};
+		D0799B281CE6F07F00F41A52 /* Help (pro) */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "-l HelpViewerApp/build.sh pro";
+			buildConfigurationList = D0799B291CE6F07F00F41A52 /* Build configuration list for PBXLegacyTarget "Help (pro)" */;
+			buildPhases = (
+			);
+			buildToolPath = bash;
+			buildWorkingDirectory = ../;
+			dependencies = (
+			);
+			name = "Help (pro)";
+			passBuildSettingsInEnvironment = 1;
+			productName = "Help (free)";
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXNativeTarget section */
+		D03D5BC51CE5AF3200C3EF1D /* HelpViewerApp (pro) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D03D5BD71CE5AF3200C3EF1D /* Build configuration list for PBXNativeTarget "HelpViewerApp (pro)" */;
+			buildPhases = (
+				D03D5BC21CE5AF3200C3EF1D /* Sources */,
+				D03D5BC31CE5AF3200C3EF1D /* Frameworks */,
+				D03D5BC41CE5AF3200C3EF1D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0799B2F1CE6F0E700F41A52 /* PBXTargetDependency */,
+			);
+			name = "HelpViewerApp (pro)";
+			productName = HelpViewerApp;
+			productReference = D03D5BC61CE5AF3200C3EF1D /* HelpViewerApp (pro).app */;
+			productType = "com.apple.product-type.application";
+		};
+		D03D5F841CE5C6BA00C3EF1D /* HelpViewerApp  (free) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D03D5F8D1CE5C6BA00C3EF1D /* Build configuration list for PBXNativeTarget "HelpViewerApp  (free)" */;
+			buildPhases = (
+				D03D5F851CE5C6BA00C3EF1D /* Sources */,
+				D03D5F881CE5C6BA00C3EF1D /* Frameworks */,
+				D03D5F891CE5C6BA00C3EF1D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0799B2D1CE6F0E200F41A52 /* PBXTargetDependency */,
+			);
+			name = "HelpViewerApp  (free)";
+			productName = HelpViewerApp;
+			productReference = D03D5F901CE5C6BA00C3EF1D /* HelpViewerApp  (free).app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D03D5BBE1CE5AF3200C3EF1D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Jim Derry";
+				TargetAttributes = {
+					D03D5BC51CE5AF3200C3EF1D = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					D04D5FE51CE6E40600805B1A = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = D03D5BC11CE5AF3200C3EF1D /* Build configuration list for PBXProject "HelpViewerApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D03D5BBD1CE5AF3200C3EF1D;
+			productRefGroup = D03D5BC71CE5AF3200C3EF1D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D03D5F841CE5C6BA00C3EF1D /* HelpViewerApp  (free) */,
+				D04D5FE51CE6E40600805B1A /* Help (free) */,
+				D03D5BC51CE5AF3200C3EF1D /* HelpViewerApp (pro) */,
+				D0799B281CE6F07F00F41A52 /* Help (pro) */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D03D5BC41CE5AF3200C3EF1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D03D5F971CE5D1AC00C3EF1D /* Middlemac (pro).help in Resources */,
+				D03D5BD01CE5AF3200C3EF1D /* Assets.xcassets in Resources */,
+				D03D5BD31CE5AF3200C3EF1D /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D03D5F891CE5C6BA00C3EF1D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D03D5F941CE5D1AC00C3EF1D /* Middlemac (free).help in Resources */,
+				D0799B271CE6EC9500F41A52 /* build.sh in Resources */,
+				D03D5F8A1CE5C6BA00C3EF1D /* Assets.xcassets in Resources */,
+				D03D5F8B1CE5C6BA00C3EF1D /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D03D5BC21CE5AF3200C3EF1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D03D5BCE1CE5AF3200C3EF1D /* main.m in Sources */,
+				D03D5BCB1CE5AF3200C3EF1D /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D03D5F851CE5C6BA00C3EF1D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D03D5F861CE5C6BA00C3EF1D /* main.m in Sources */,
+				D03D5F871CE5C6BA00C3EF1D /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D0799B2D1CE6F0E200F41A52 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D04D5FE51CE6E40600805B1A /* Help (free) */;
+			targetProxy = D0799B2C1CE6F0E200F41A52 /* PBXContainerItemProxy */;
+		};
+		D0799B2F1CE6F0E700F41A52 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D0799B281CE6F07F00F41A52 /* Help (pro) */;
+			targetProxy = D0799B2E1CE6F0E700F41A52 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D03D5BD11CE5AF3200C3EF1D /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D03D5BD21CE5AF3200C3EF1D /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D03D5BD51CE5AF3200C3EF1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D03D5BD61CE5AF3200C3EF1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D03D5BD81CE5AF3200C3EF1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					TARGET_PRO,
+				);
+				INFOPLIST_FILE = "HelpViewerApp/Info-pro.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.balthisar.HelpViewerApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D03D5BD91CE5AF3200C3EF1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = TARGET_PRO;
+				INFOPLIST_FILE = "HelpViewerApp/Info-pro.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.balthisar.HelpViewerApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D03D5F8E1CE5C6BA00C3EF1D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					TARGET_FREE,
+				);
+				INFOPLIST_FILE = "HelpViewerApp/Info-free.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.balthisar.HelpViewerApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D03D5F8F1CE5C6BA00C3EF1D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = TARGET_FREE;
+				INFOPLIST_FILE = "HelpViewerApp/Info-free.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.balthisar.HelpViewerApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D04D5FE71CE6E40600805B1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D04D5FE81CE6E40600805B1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D0799B2A1CE6F07F00F41A52 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D0799B2B1CE6F07F00F41A52 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D03D5BC11CE5AF3200C3EF1D /* Build configuration list for PBXProject "HelpViewerApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D03D5BD51CE5AF3200C3EF1D /* Debug */,
+				D03D5BD61CE5AF3200C3EF1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D03D5BD71CE5AF3200C3EF1D /* Build configuration list for PBXNativeTarget "HelpViewerApp (pro)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D03D5BD81CE5AF3200C3EF1D /* Debug */,
+				D03D5BD91CE5AF3200C3EF1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D03D5F8D1CE5C6BA00C3EF1D /* Build configuration list for PBXNativeTarget "HelpViewerApp  (free)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D03D5F8E1CE5C6BA00C3EF1D /* Debug */,
+				D03D5F8F1CE5C6BA00C3EF1D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D04D5FE61CE6E40600805B1A /* Build configuration list for PBXLegacyTarget "Help (free)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D04D5FE71CE6E40600805B1A /* Debug */,
+				D04D5FE81CE6E40600805B1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0799B291CE6F07F00F41A52 /* Build configuration list for PBXLegacyTarget "Help (pro)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0799B2A1CE6F07F00F41A52 /* Debug */,
+				D0799B2B1CE6F07F00F41A52 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D03D5BBE1CE5AF3200C3EF1D /* Project object */;
+}

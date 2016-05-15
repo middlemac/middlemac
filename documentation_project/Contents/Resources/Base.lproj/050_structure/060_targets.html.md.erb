@@ -1,0 +1,63 @@
+---
+title:  Targets
+blurb:  Targets let you build help files that are specific to each version or
+        variant of your Mac OS X application.
+layout: template-logo-medium
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.title %>
+==============================
+
+<%= current_page.data.blurb %>
+
+
+Demonstration
+--------------
+<% if target_name?(:pro) %>
+You are reading this help book using the `:pro` target. You can try rebuilding
+the project or starting the server with the `:free` target to get a different
+result.
+<% end %>
+<% if target_name?(:free) %>
+You are reading this help book using the `:free` target. You can try rebuilding
+the project or starting the server with the `:pro` target to get a different
+result.
+<% end %>
+
+
+How did this work?
+------------------
+The source file uses a simple conditional and helper to display content based on
+the target name. Here’s the (nearly) exact code that was used:
+
+~~~ erb
+<%% if target_name?(:pro) %>
+You are reading this help book using the `:pro` target. You can try rebuilding
+the project or starting the server with the `:free` target to get a different
+result.
+<%% end %>
+<%% if target_name?(:free) %>
+You are reading this help book using the `:free` target. You can try rebuilding
+the project or starting the server with the `:pro` target to get a different
+result.
+<%% end %>
+~~~
+
+Why “nearly” exact code? If you examine the `.md.erb` file you will see how to
+escape ERB delimiters so that ERB doesn’t try to process them as Ruby code.
+In order to display `<%% %>` it is necessary to specify `<%%% %>` in code
+blocks. And of course you can read about code blocks and other Markdown
+formatting on
+[kramdown’s documentation site](http://kramdown.gettalong.org/documentation.html).
+
+
+Include or exclude entire pages
+-------------------------------
+
+Whether you’re currently using the `:pro` or `:free` target, try visiting
+each of these pages:
+
+- [sample page excludes target `:free`](not_free.html)
+- [sample page excludes target `:pro`](not_pro.html)
