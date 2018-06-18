@@ -1,0 +1,36 @@
+---
+title:   Invisible On Pro
+blurb:   This page is not available for target `:pro`, as a demonstration of
+         the use of targets.
+exclude:
+ - :pro
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+
+How is this accomplished?
+-------------------------
+
+This is the frontmatter for this page. Note the key `exclude`, which indicates
+that this is page should be hidden from _Middleman_’s navigation system and
+build output.
+
+~~~ yaml
+---
+title:     Invisible On Pro
+blurb:     This page is not available for target `:pro`, as a demonstration of
+           the use of targets.
+exclude:
+ - :pro
+---
+~~~
+
+The opposite of `exclude` is `target`. If you use `target`, only those targets
+included in the target list will be included in _Middlemac_ navigation.
+Using `exclude` overrides `target`.
+
+Note that `target` and `exclude` are lists; you can specify multiple targets and
+features (which also can be used).

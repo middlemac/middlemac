@@ -1,0 +1,97 @@
+---
+title:  Serve Your Help Book
+blurb:  Learn how to interact with your Help Book in a live environment using
+        <em>Middleman</em>’s development server.
+---
+<%= md_links %>
+<%= md_images %>
+
+When developing the majority of your Help Book content, it’s likely that you
+will want to view the results in a web browser from time to time, which is
+much faster than building the Help Book, clearing Apple Help Builder’s cache,
+building your application, then running it.
+
+While it’s possible to build your Help Book, and open the individual pages in
+your browser, this isn’t practical for a modern Help Book, which depends on
+AJAX and rewriting paths and other things that a file system doesn’t support,
+despite being static pages.
+
+Instead, you can use _Middleman_’s built-in preview server to host your Help
+Books. It’s a zero-configuration that, quite simply, just works.
+
+Let’s have a look at **Your First Help Book** that you worked on in the
+previous topic. From within that project directory in **Terminal**, simply:
+
+~~~ bash
+bundle exec middleman serve --target pro
+~~~
+
+In just a few seconds, you will see a message indicating that the server is
+running, as well as the address for your site, which is generally something
+like:
+
+~~~ bash
+== View your site at "http://localhost:4567", "http://127.0.0.1:4567"
+== Inspect your site configuration at "http://localhost:4567/__middleman", "http://127.0.0.1:4567/__middleman"
+~~~
+
+If you follow this advice, though, you’re like to see this message in your
+browser:
+
+> ###File Not Found
+
+Remember, this is a macOS bundle, so the content we want is really located at
+`http://localhost:4567/Resources/`. Go ahead and type that into your browser,
+and browse the working Help Book, paying particular attention to whatever
+changes you made in the previous lesson.
+
+When ready, try navigating to this file by copying and inserting into the
+browser address bar.
+
+`/Resources/en.lproj/hello_world_file.html`
+
+You should notice the the browser automatically redirected you to:
+
+`http://localhost:4567/Resources/index.html?localePath=en.lproj#/topic-en.lproj-hello_world_file`
+
+
+## What’s going on here?
+
+Modern Apple Help Books function completely from the `/Resources/index.html`
+file. Every other page in the Help Book is loaded via AJAX by this file, and
+then applied to the current browser window after rewriting paths so that they
+are relative to this `index.html`. Apple’s JavaScript and styles are then
+applied, and then you have a modern Apple Help Book.
+
+Because the help indexer tool, `hiutil`, indexes individual pages, a
+search result would lead to that indexed page, and that indexed page has none
+of Apple’s JavaScripts or styling. So, each page of your Help Book, when
+built, also includes a redirect to the main `index.html`, ensuring that search
+works flawlessly.
+
+During development, troubleshooting sometimes indicates the necessity
+of viewing the HTML file in the browser without this redirect. If you’d like
+to prevent this redirect from happening so quickly during development, have a
+look at the `options.show_debug` option in your `config.rb`.
+
+
+## Specifying Targets
+
+As you may have guessed from earlier, by starting the server with:
+
+~~~ bash
+bundle exec middleman serve --target pro
+~~~
+
+…you’ve started the `pro` target. Because **Your First Help Book** was also 
+configured with a `free` target, you can start it, instead, with:
+
+~~~ bash
+bundle exec middleman serve --target pro
+~~~
+
+You can also start the server with a simple `bundle exec middleman`. The
+action `serve` is _Middleman_’s default, and omitting the `--target` option
+will have _Middlemac_ use the `config[:target]` setting (the default target)
+from your `config.rb`.
+{: .tip .callout}

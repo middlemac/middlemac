@@ -1,0 +1,82 @@
+---
+title:  Backwards Compatibility
+blurb:  Notes about Backwards Compatibility with earlier versions of Middlemac.
+---
+<%= md_links %>
+<%= md_images %>
+
+_Middlemac_ version 3.0.0 is a **major** update. It’s an API-breaking update
+and projects using _Middlemac_ version 1._x_ or version 2._x_ will _not_ build
+without some changes to your project.
+
+This version of _Middlemac_ is a complete rewrite, and this was done in an
+effort to let Apple’s Help Book tools do their job and make modern Apple Help
+books. If you prefer full, manual control and custom styles that deviate from
+Apple’s look and feel, it’s suggested that you stick with _Middlemac_ version
+2.0.
+
+Middlemac 3.0 compared to older versions
+----------------------------------------
+
+_Middlemac_ versions prior to 3.0 were intended to provided tools giving you
+maximum control over page appearance while providing tools to allow automatic
+navigation within groups/sections. Although it shipped with layout templates
+and CSS to emulate the look of Apple’s Help Books for versions prior to
+macOS 10.10 (i.e., “Mavericks” and earlier), you were always encouraged to
+customize.
+
+_Middlemac_ 3.0, however, does away with _all of that_ in favor of building
+Apple Help Books that follow Apple’s own examples, standards, and practices.
+_Middlemac_ no longer builds Help Books that emulate a style, rather, Apple’s
+own tools provide the style and functionality. This necessarily represents a
+departure from the previous model of doing things.
+
+
+Project Upgrade Tips
+--------------------
+
+No automated method of upgrading a project is provided, but the steps for
+achieving an upgrade are fairly simple.
+
+The _vast_ majority of your source files will continue to work as they did in
+the past, although you may wish to reorganize them to align nicely with the way
+that modern Apple Help Books work. Here are some tips to help you migrate
+faster:
+
+- Begin by _reading_ this documentation and having a close look at the sample
+  project.
+
+- Take a look at the [Directory and File Reference][directory_reference],
+  to have a good understanding of what all of the new files do, and what their
+  functions are.
+
+- **It’s probably easiest to move your old source HTML files into the new sample
+  project.**
+
+- Some Markdown reference style links may have their references changed. Keep a
+  lookout for this.
+
+- There’s a new option called `show_debug` in the new `config.rb` file. Set this
+  to `true` to see all of the `md_links` and `md_images` values at the bottom
+  of each Help Book page. This setting will also highlight non-working Markdown
+  reference style links.
+
+- `Base.lproj` is not supported by modern Apple Help Books. Ensure that this
+  directory is named `en.lproj`, or some other locale name supported by Apple’s
+  Help Book system.
+  
+- Group landing pages are no longer supported, because modern Apple Help Books
+  do no use them. Instead, group landing pages are now used solely as metadata
+  containers to provide the name of the group. If you absolutely require a
+  landing page, you can create a topic page in the group.
+  
+- In Apple parlance, “groups” are now called “sections,” although in order to
+  preserve as much backwards compatibility as possible, functions relating to
+  groups, if you use them, refer to groups.
+
+- Most of the group navigation features and all of the helpers are no longer
+  included, nor are breadcrumbs. Modern Apple Help Books do not use them, and
+  handle all navigation via their JavaScript, so this support was dropped. If
+  you wish to go against Apple’s style, you can re-introduce these partials from
+  an older version of _Middleman_ yourself, as all of the internal logic is
+  still present.

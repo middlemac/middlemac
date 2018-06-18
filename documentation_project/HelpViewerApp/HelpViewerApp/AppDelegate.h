@@ -12,5 +12,6 @@
 
 @property (nonatomic, assign) NSString* labelTitle;
 
+- (IBAction) getContextHelp:(id) sender;
 @end
 

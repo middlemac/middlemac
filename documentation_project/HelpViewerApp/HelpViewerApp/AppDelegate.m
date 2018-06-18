@@ -42,4 +42,10 @@
     return result;
 }
 
+/* Show context-sensitive help */
+- (IBAction) getContextHelp:(id) sender
+{
+    NSString *locBookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
+    [[NSHelpManager sharedHelpManager] openHelpAnchor:@"apple_help_setup"  inBook:locBookName];}
+
 @end

@@ -1,0 +1,165 @@
+---
+title:  Xcode Integration
+blurb:  Integration with Xcode makes it simple to include the building of 
+        Help Books as part of your native Xcode workflow.
+---
+<%= md_links %>
+<%= md_images %>
+
+
+<%= current_page.data.blurb %>
+
+If you choose to use optional integration, Xcode will build your Help Books
+for you, as needed, whenever you build your application. And if your Help Book
+has no updates, Xcode will be smart enough not to invoke _Middlemac_. You can
+reference the **HelpViewerApp** Xcode project that’s included in this
+documentation’s source distribution, and follow along below.
+
+GNU’s `make` is not happy with spaces in file paths. This is a shortcoming of
+`make`, and it will fail if there are any spaces in your Help Book source
+project directory or file names.
+{: .warning .callout}
+
+
+<% helpbook_task "xcode_integration_1", "Add the Help Book to your Project" do %>
+
+
+Built Help Books are just like any other asset in Xcode: as long as they are
+properly included in your project and part of a “Copy Resources” build phase,
+they will end up in the proper location in your application’s bundle when it
+is built.
+
+To make sure this happens, import your Help Book to your project as a
+_folder reference_; if it’s shown in the organizer with a disclosure triangle
+that lets you browse the contents, then you’ve done it wrong, and it will not
+copy properly during your “Copy Resources” build phase.
+
+![Import as folder reference][apple_help_books_folder_reference]
+
+
+<% end %>
+<% helpbook_task "xcode_integration_2", "Set up Target Membership" do %>
+
+
+Additionally, make sure that the Help Book has the correct target membership,
+in order to ensure that it will be copied during the “Copy Resources” build
+phase, _and_ do _not_ localize this file. It’s already localized internally
+by virtue of being a localized bundle.
+
+![Correct project membership][apple_help_books_project_membership]
+
+
+<% end %>
+<% helpbook_task "xcode_integration_3", "Create and Configure a Build Target" do %>
+
+
+Although Xcode provides its own build system, it also supports external build
+systems, including `make`, which is ubiquitous in the world. Even other build
+systems typically include `make` as a possible target.
+
+`make`, when executed, looks for a configuration file named `makefile` that
+contains all of the building instructions; _Middlemac_ provides this make file
+in new projects any time you `middlemac init` in terminal. The source for this
+documentation also includes _Middlemac_’s `makefile`.
+
+`make` has a superior advantage over shell scripts when it comes to automating
+builds: `make` will only perform the build if its necessary. Changes to your
+Help Book source project are detected, and if no files have changed, then
+`make` will simply report success instead of rebuilding your Help Book.
+{: .tip .callout}
+
+To instruct Xcode to use `make`, add a new target in Xcode, and choose the
+“External Build System” template for the target:
+
+![Xcode's target template chooser][xcode_integration_target_template]
+
+Give it a name appropriate to your Help Book.
+
+Next, set up the **External Build Tool Configuration**:
+
+- The **Build Tool** should be set to `/usr/bin/make`
+- Set **Arguments** to `$(ACTION) TARGET=pro`, where `pro` will be one of
+  your targets.
+- Set **Directory** to the location of the `makefile` in your project.
+
+![Configuring the external build target][xcode_integration_tool_configuration]
+
+Xcode will populate `$(ACTION)` with `clean` when you clean your project;
+otherwise it’s set to a null string. The `TARGET=` macro assignment
+is required.
+{: .note .callout}
+
+At this point, Xcode should have already created and selected a scheme for
+building this target, and so you should be able to conduct a build from within
+Xcode immediately.
+
+<% end %>
+<% helpbook_task "xcode_integration_4", "Set up Target Dependencies" do %>
+
+
+Because this integration uses `make`, your Help Books will only be built as
+needed. You can take advantage of this property to ensure that your macOS
+application never builds with an out-of-date Help Book that you forgot to
+rebuild, while allowing you to avoid the slow, Help Book building process
+every time you rebuild your application.
+
+To accomplish this, simply add the Help Book target as a dependency of your
+application.
+
+![Xcode target dependency][xcode_integration_target_dependencies]
+
+Now, like magic – or like any build system _should_ word – your Help Book will
+be created/updated when needed, and the latest version will always be included
+in your application builds.
+
+
+<% end %>
+<% helpbook_task "xcode_integration_5", "Passing Variables to Middlemac during Build" do %>
+
+
+Nothing is as disappointing as forgetting to update the version number in your
+Help Book when releasing a new version of your application. It looks sloppy
+and unprofessional. This can be avoided by using Xcode’s preprocessor
+definitions, which are exposed as environment variables during build operations.
+The included **HelpViewerApp** project is set up to get version and copyright
+information from its `versions.xcconfig` file:
+
+~~~ xcconfig
+MIDDLEMAC_CFBundleShortVersionString = 3.0.0
+MIDDLEMAC_CFBundleVersion = 3.0.0
+MIDDLEMAC_NSHumanReadableCopyright = Copyright ©2018 Jim Derry. All Rights Reserved.
+~~~
+
+In order to expose these to the environment during builds, though, Xcode must 
+know that this file is part of the configuration. In the **HelpViewerApp** this
+is simple:
+
+![Using configuration sets][xcode_integration_config_sets]
+
+
+The two target applications’ `.plist` files, of course, can use these
+definitions just as easily as the built-in definitions:
+
+![Using preprocessor definitions in plists][xcode_integration_plist_definitions]
+
+Because these variables are also passed to the environment during builds, you
+will notice that this documentation’s source code `config.rb` file contains
+this line near the top:
+
+~~~ ruby
+version_app = ENV.has_key?('MIDDLEMAC_CFBundleShortVersionString') ? ENV['MIDDLEMAC_CFBundleShortVersionString'] : nil
+~~~
+
+and 
+
+~~~ ruby
+:ProductVersion   => version_app || '3.0.0'
+~~~
+
+…in the the `:targets` configuration. This ensures that when Xcode builds your
+Help Book using `make`, the correct version information will be used. A fallback
+value ('3.0.0') is provided in the event that you build from the shell directly.
+
+<% end %>
+
+

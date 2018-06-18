@@ -1,0 +1,246 @@
+---
+title:  Modern Apple Help Books
+blurb:  Apple doesn’t showcase it, but it provides the tools to build their
+        Help Books with every shipping version of macOS.
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+Since macOS 10.10 (“Yosemite”), Apple has been using a JavaScript-based
+Help Book engine named “Eagle,” and has been gradually updating most of their
+application and macOS documentation to take advantage of it. You can find
+all of this engine located in `/Library/Documentation/Resources/Eagle/` on
+macOS 10.10 through macOS 10.13 (macOS 10.14 doesn’t seem to include it).
+
+This engine provides a common look, feel, and experience across all of Apple’s
+Help Books, and by taking advantage of Eagle, _Middlemac_ ensures that your
+own Help Books enjoy this same consistency.
+
+
+“Modern” Help
+-----------
+
+Modern Help Books are the Help Books you’ve seen on macOS Help, built-in
+application Help, and Apple software Help since macOS 10.10 was released. The
+term “modern” is only as valid as the term “next gen,” in that something newer
+always comes along.
+
+So it is with Apple, in that starting with macOS 10.13, some of the built in
+applications have been shipping with Help Books using their new “Harrier”
+Help Book development system. It’s likely that over time, shipping applications
+will be migrated toward this new look, too.
+
+_Middlemac_ will try to keep up with Apple Help technologies, and in the 
+meantime, version 3.0 produces Help Books meeting the same standards as current,
+shipping Apple Products.
+
+
+Modern Help Universal Deployment
+--------------------------------
+
+With Eagle, Apple has strived towards universal deployment of its Help Books,
+meaning that they are just as functional when served to a browser as they are
+when used in Apple Help Viewer. This also means that Apple strives to provide
+visual and functional consistency from Help Book to Help Book. This means that
+when served to a browser:
+
+- You have the same navigation menu that you would have in Apple Help Viewer.
+- You have the ability to search your Help Book within the browser environment,
+  just as you do within Apple Help Viewer.
+- The pages have the same appearance and behavior in the browser as they do in
+  Apple Help Viewer.
+- Certain features are automatic if the right conditions exist for them to
+  exist, such as Copyright Pages, navigation, Copyright Notices, and so on.
+- A single Help Book can provide its content in multiple languages, just as it
+  would in the browser.
+
+In short, an Eagle Help Book (or a Help Book produced by _Middlemac_) will work
+equally well when used in Apple Help Viewer as it does in a browser. And I mean
+the same Help Book; there’s no need to generate separate “Help Viewer” and
+“browser” versions.
+
+
+Eagle’s Heart
+-------------
+
+A modern Help Book is operated completely from a single HTML file within the
+Help Book. The `Resources/index.html` file uses JavaScript to load the content
+from your HTML files (in any localized directory) and presents them to the
+viewer. It also handles loading of all styles, operates special features such
+as tasks, performs searching, generates the navigation sidebar, and enables
+Copyright Pages, loads asides, and so on. 
+
+All of these functions fall into three broad categories:
+
+<% helpbook_task "help_modern_1", "Navigation" do %>
+
+“Navigation” encompasses things such a providing a nested menu structure for the
+Table of Contents, and enabling links to Copyright pages, if provided. The
+structure, depth, and relationships between Help Book pages which is required to
+provide this functionality is defined in the `navigation.json` file, which
+_Middlemac_ builds for you automatically based on your sitemap and the data that
+you provide in frontmatter.
+
+Using this Help Book’s `free` target `navigation.json` as an example (with much
+of the content stripped away for brevity), we can examine how Eagle constructs
+its navigation.
+
+| Key                                                | Sample Value (bold values static)   | Comments
+|----------------------------------------------------|-------------------------------------|----------
+| birdseed_version                                   | **5**                               | Probably an internal Apple framework version.
+| build_id                                           | "3.0.0"                             | Doesn’t affect Help Book.
+| build_date                                         | "2018.06.09-16:00:31"               | Doesn’t affect Help Book.
+| collect_feedback                                   | **false**                           | Probably refers to Apple’s "Was this page helpful?" feature. Unused by _Middlemac_.
+| copyright                                          | "topic-en.lproj/-acknowledgements"   | This is the `$topic_id` of the page to be used as the Copyright Page.
+| copyright_text                                     | "© 2018 Jim Derry."                 | Displayed on every page when viewed in browser, or when Help Viewer prints output.
+| css                                                | **""**                              | Unknown. Seems to have no effect on Help Book.
+| enable_tracking                                    | **false**                           | Probably an Apple tracking system. Unused by _Middlemac_.
+| framework                                          | "middlemac-3.0.0"                   | Probably an internal Apple framework reference.
+| icon                                               | "SharedGlobalArt/icon_32x32@2x.png" | Icon for the book. Unsure why this is different than the .plist’s HPDBookIconPath.
+| landing                                            | "topic-Resources-en.lproj/"          | This is the `$topic_id` of the page to be used as the Landing Page.
+| locale                                             | "en"                                | The locale of the JSON file.
+| platform                                           | **"mac"**                           | Probably because iTunes also supports Windows.
+| printable_page                                     | **""**                              | Unknown.
+| product                                            | "Middlemac"                         | Seems to be inactive.
+| quick_links                                        | **[]**                              | Unknown.
+| sections                                           | [Array]                             | Sections appear in the TOC with their given childen. Child order is important, but order of the sections in this array is not.
+| &nbsp;&nbsp;$section_id                            | "section-compose_project-helpers"   | Specify a $section_id for this section. Used to build the TOC.
+| &nbsp;&nbsp;&nbsp;&nbsp;name                       | "Helpers"                           | The name of the section as it will appear in the TOC.
+| &nbsp;&nbsp;&nbsp;&nbsp;children                   | [Array]                             | An array of `$topic_id` indicating the pages that constitute this section.
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$topic_id      | "topic-helpers-helpers"             | An element of the `$topic_id` list.
+| show_previous_next                                 | false                               | When set to true, enables previous and next page navigators.
+| source_schema                                      | **"apd-schema"**                    | Unknown.
+| title                                              | "Middlemac Help"                    | This will be used as the `<title>` of your landing page, reguardless of the `<title>` you set in the HTML document. Of course, it’s also used in the Help Viewer title bar and browser title banner.
+| toc                                                | [Array]                             | This array of `$topic_id` or `$section_id` defines the table of contents used in the sidebar.
+| &nbsp;&nbsp;$topic_id -or- $section_id             | "section-en.lproj/-reference"        | An element of the list.
+| topics                                             | [Array]                             | An array of `$topic_id`, as defined below.
+| &nbsp;&nbsp;$topic_id                              | "topic-asides-aside_description"    | Specify a `$topic_id` to represent a particular page.
+| &nbsp;&nbsp;&nbsp;&nbsp;name                       | "What is an aside?"                 | The name of the topic. Will be used in the TOC.
+| &nbsp;&nbsp;&nbsp;&nbsp;summary                    | "A short article describing…"       | The summary is shown in search results.
+| &nbsp;&nbsp;&nbsp;&nbsp;href                       | "asides/aside_description.html"     | The lproj-relative path of the file.
+| &nbsp;&nbsp;&nbsp;&nbsp;categories                 | [Array]                             | An array of `$category_name`; these will be applied as body classes when the document it loaded. Some categories have special purposes in Eagle, such a `aside` and `copyright`.
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$category_name | "aside"                             | An element of the list.
+| urls                                               | **{}**                              | Unknown.
+| version                                            | "3.0.0"                             | Probably the application version, but it’s not known where this is used in the Help Book.
+
+
+_Middlemac_ build this file for you automatically based on the `.lproj/` language,
+settings from your `config.rb` file, and page data including the overall site
+map as well as data from the pages’ frontmatter. If you feel like
+reverse-engineering Apple’s feedback and tracking mechanisms, then feel free
+to modify this file to your liking.
+
+
+<% end %>
+<% helpbook_task "help_modern_2", "Search" do %>
+
+When viewing a Help Book in Apple Help Viewer, the `.helpindex` file generated
+by `hiutil` is used. However this is a file produced by the old, deprecated
+`NSArchiver`, and is a binary format that JavaScript cannot parse or
+understand. Thus Eagle Help Books when viewed in the web browser refer to a
+different file in order to provide search results: `searchTree.json`.
+
+This file is a trie in JSON format, which is a very efficient structure for
+searching words.
+
+Apple _probably_ builds this file from the word frequency information gathered
+by `hiutil`, but because unarchiving the `.helpindex` requires the use of
+private Apple API’s, _Middlemac_ will generate this file from the contents of
+your pages itself. Thus there's the possibility that if Apple were to generate
+this file for you, there might be differences; however Apple is unlikely to
+perform this service for you.
+
+Words encountered as frontmatter `keywords` are given extra weight, and words
+encountered as frontmatter `exactmatch` are given a _lot_ of extra weight. The
+same list of stopwords (words ignored for searches) is used to build this file
+as to build the `.helpindex`.
+
+##### Search Redirects
+
+Both Apple’s `hiutil` and _Middlemac_’s `searchTree.json` indexer index
+individual pages. Search results link to those individual pages. However, recall
+that an Eagle Help Book never displays those pages directly; every page is
+loaded via JSON by the main `index.html` file, which is the only real “page”
+ever displayed.
+
+This means that when a page is listed as a search result, the link will
+attempt to deliver that specific page to you. That specific page is not
+`index.html`, and so there’s no loaded JavaScript or CSS. That’s not a good
+experience for users, and so _Middlemac_ addresses this issue by adding
+JavaScript to each of these individual pages which directs to the main
+`index.html`, including the correct URL query to load the desired page. By
+placing this redirect in the `<head>`, it’s usually fast enough to prevent
+loading the entire page into Apple Help Viewer, thus avoiding temporarily
+displaying unstyled pages.
+
+Apple’s JavaScript, of course, strips everything from the `<head>`, so when
+the file is ultimately AJAX-loaded into `index.html`, no circular refresh
+loops occur.
+
+
+<% end %>
+<% helpbook_task "help_modern_3", "Localization" do %>
+
+Eagle also provides localization features for browser-served pages that are
+handled automatically by Apple Help Viewer. For example, Apple Help Viewer
+knows that the OS is configured for Spanish, and will use the `Spanish.lproj/`
+or `es.lproj/` directory contents automatically. Apple Help Viewer will also
+fall back to `Base.lproj/` or `en.lproj/` if the localized directories are not
+part of the Help Book.
+
+Browsers, while they can provide the locale, aren’t nearly so smart about
+selecting paths properly, so Apple’s JavaScripts assume this role. The only
+caveat is that these JavaScripts don’t honor any type of `Base.lproj/`
+directory and `CFBundleDevelopmentRegion`. And because the browser is unable
+to select a proper `.lproj/` on its own, we have to provide some data that
+allows the JavaScript to select the proper folder.
+
+Additionally, because the locale determined by the browser is potentially not
+accurate for a variety of reasons, Apple’s JavaScripts present a language
+switcher on your Help Book’s landing page, if your project is multilingual.
+
+Thus, to make multilingual Help Books work in Apple Help Viewer, simply place a
+localized `.lproj/` for each language you support into the Help Book. To make
+multilingual Help Books work in the browser, though, we need to specify some
+additional metadata files: `Resources/locale-info.json` and
+`*.lproj/locale-list.json`.
+
+Of course, _Middlemac_ handles these two files for you, as long as you use the
+correct `.lproj/` directory name per
+`SharedGlobalAssets/_data/locale-list.json`, which is Apple’s standard locale
+list file. The [Directory Conventions][directory_conventions] topic shows which
+locales are supported out of the box.
+{: .tip .callout}
+
+Each `.lproj/` directory must contain a `locale-info.json`, which simply
+indicates some basic data about the locale present in that particular directory.
+
+More importantly, the site root must contain a `locale-list.json` which 
+indicates all of the locales in the present Help Book, and, importantly, which
+`.lproj/` directory the contents can be found.
+
+The `_data/locale-list.json` serves as a master list of all of the possible
+localizations. It may not be all inclusive, so feel free to add additional
+localizations if not already covered by this file. The 
+`Resources/locale-list.json`, generated by _Middlemac_, contains _only_ the
+locales used in the current project.
+{: .tip .callout}
+
+
+<% end %>
+
+
+## Middlemac and Eagle
+
+_Middlemac_ builds Eagle Help Books. Apple’s JavaScript has been modified
+slightly to provide support for non-flat file structures, and support for
+`<image>` tag `srcset` attributes.
+
+Some of Apple’s CSS has been overridden with more specificity to provide
+improvements to things such as `<dl>` that Apple doesn’t use often, but are
+critical for certain workflows.
+
+When you use _Middlemac_, you are building a real, true, Eagle Help Book, and
+not a copy, clone, or simulation.

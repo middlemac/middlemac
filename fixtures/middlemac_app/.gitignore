@@ -21,5 +21,4 @@ Gemfile.lock
 .sassc
 .tmp
 build*
-Makefile
 tmp

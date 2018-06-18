@@ -1,0 +1,51 @@
+---
+title:  ‹md_links› Helper
+blurb:  Learn to take advantage of helpers that give you a hand using 
+        reference style links to content and images.
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+You’ll notice (as you look at the source files for this help content) that the
+first ERB instructions immediately after the frontmatter are:
+
+~~~ erb
+<%%= md_links %>
+<%%= md_images %>
+~~~
+
+These convenience helpers make it relatively simple to include Markdown links
+and images using the reference format.
+ 
+Links
+-----
+
+~~~ markdown
+[What is Middlemac?][what_is_middlemac]
+~~~
+
+…will generate the following link:
+
+[What is Middlemac?][what_is_middlemac]
+
+This is especially useful if your page source filenames stay constant.
+
+The reference name will always be the base output name of the file. For index
+files, the format will be `groupname`, where the groupname is the name of the
+containing directory, as you should already know. The top-level index file
+will conveniently, simply be `en.lproj` (or as appropriate for your
+development locale).
+
+You should strive to use unique filenames if you use this feature, as this
+will ensure that your references remain unique. In the event of reference name
+collisions, the reference name will be prepended with its nesting groups as
+many levels as necessary to become unique. For convenience items that are
+higher in your directory hierarchy are prioritized against prepending.
+
+Here’s the complete result of this helper for this Help Book:
+
+<% code('markdown', :css_class => 'shrink_code') do %>
+<%= md_links %>
+<% end %>

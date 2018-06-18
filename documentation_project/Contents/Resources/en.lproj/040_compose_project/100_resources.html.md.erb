@@ -1,0 +1,36 @@
+---
+title:  ‹resource› Methods
+blurb:  <em>Middlemac</em> extends <em>Middleman</em>’s built in resource
+        (page) methods by adding several methods that make developing Help
+        Books even easier.
+---
+<%= md_links %>
+<%= md_images %>
+
+<% content_for :seeAlso do %>
+<%= link_to 'Resource API Documentation', '../reference/api_reference/resource_ext_ref.html' %>
+<% end %>
+
+<%= current_page.data.blurb %>
+
+_Resources_ in _Middleman_-speak generally refers to pages in _Middleman_’s
+internal site-map. As Ruby objects, resources have a lot of useful information
+about them.
+
+There’s a lot you can do with _Middlemac_ without manipulating or using
+resources directly. The _Middlemac_ framework does a lot of this manipulation
+for you. There’s nothing in this documentation Help Book, for example, that
+uses features not provided by the conventions.
+{: .note .callout}
+
+
+Common _Middleman_ Resources
+----------------------------
+
+Because _Middlemac_’s resources depend so heavily on the built-in resources, a
+quick review and examples are in order.
+
+| `current_page` or `current_resource` | The `current_page` resource is available in all of your help pages, as well as the partials that your help pages include.
+| `current_page.breadcrumbs.first`     | This refers to the top level landing page of your help file.
+| _`resource`_`.parent`                | This references the parent resource. For example `current_page.parent` would refer to the parent container of this one: **<%= current_page.parent.data.title %>**.
+| _`resource`_`.brethren_next` and _`resource`_`.brethren_previous` | These _Middlemac_ supplied references refer to the next and previous pages, respectively, in the current group, and they are resources, too.

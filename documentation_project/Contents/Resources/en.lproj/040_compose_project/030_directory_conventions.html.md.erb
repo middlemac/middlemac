@@ -1,0 +1,206 @@
+---
+title:  Directory Conventions
+blurb:  Learn about proper structure for your directory hierarchy, filenames,
+        and image locations, and discover some best practices related to 
+        paths.
+---
+<%= md_links %>
+<%= md_images %>
+
+You will have noticed by now that your content root appears to be two levels
+below the actual project root. This is a result of the Apple Help directory
+structure. Remember, _Middleman_ depends on building an output project that
+mirrors the input project. In order for links, images, and other content to
+be accessed properly, _Middlemac_ uses Apple’s convention.
+
+Fortunately once inside the `en.lproj` directory (or the directory of the
+locale for which you’re developing), we -- as Help Book developers -- are free
+to organize files as we see fit, despite the examples you may have seen in
+Apple’s documentation. _Middlemac_, though, has setup a hierarchy that “just
+works,” and the explanation follows. Starting at the top, let’s look at a
+_Middleman_ project layout so that you can determine where to put your files.
+Also don’t forget to have a look later at the 
+[Directory and File Reference][directory_reference] topic for additional
+information about these directories and the specific files within them.
+
+`Contents/`
+
+  : Contains everything in your help project that will be compiled into or
+    contribute to the final `.help` project.
+   
+`Contents/Resources/SharedGlobalAssets/`
+
+  : This directory contains assets that are common between all of your 
+    different help language projects, as well as assets that _Middlemac_
+    requires by convention, such as Apple’s CSS and JavaScripts, certain image
+    files, data files, layouts, and so on. Full reference documentation is
+    available in the [Directory Layout][directory_reference] topic.
+   
+   
+`Contents/Resources/SharedGlobalAssets/_data/`
+
+  : This directory contains data files that you can use to supply data for
+    [using local data][local_data]. This directory will not be output in the
+    final build.
+
+`Contents/Resources/SharedGlobalAssets/_layouts/`
+
+  : All layouts exist here. This directory will not be output in the final
+    build. In general, you should have no reason to add additional layouts
+    when building current Apple Help Books.
+
+`Contents/Resources/SharedGlobalAssets/_partials/`
+
+  : Partials can go here, and should be prefaced with an underscore so that
+    they will not generate build output. Partial files can also be included
+    in any other directory, too. This is for organizational convenience of
+    common partials that may be used anywhere.
+
+`Contents/Resources/SharedGlobalAssets/convention/`
+
+  : Images that the Apple Help Book and _Middlemac_ require by convention go
+    here. This is separate from the `images/` directory simply to make
+    directory management simpler by avoiding the mixing of required and
+    non-required files. _Middleman_ helpers will find images that are in
+    this location automatically, if needed.
+  
+  
+`Contents/Resources/SharedGlobalAssets/css/`
+
+  : Your `.css` and `.scss` files, if any, should go here. They will not be
+    included automatically in your project unless you modify the main 
+    `index.html` file to include them.
+  
+
+`Contents/Resources/SharedGlobalAssets/fonts/`
+
+  : Any fonts that you wish to include should go here. In general if you are
+    building an Apple Help Book, additional fonts should not be needed.
+  
+
+`Contents/Resources/SharedGlobalAssets/images/`
+
+  : All images should go here. _Middleman_ will find them automatically if
+    you use the helpers.
+
+
+`Contents/Resources/SharedGlobalAssets/js/`
+
+  : Javascripts, if any, should go here. They will not be included
+    automatically in your project unless you modify the main `index.html`
+    file to include them.
+
+   
+`Contents/Resources/en.lproj`
+
+  : This directory serves as your base [group][groups] for the English version
+    of your Help Book, and it contains all of your Help Book’s content,
+    including locale-specific versions of your resources.
+   
+    Any other files that result in `.html` in this directory level, except for
+    `index.html` constitute part of the `en.lproj` group. At this level you
+    should start adding directories to contain your other groups.
+   
+    Certainly, you’re not required to develop in English, and _Middlemac_
+    supports multiple languages simultaneously. See **Locale Directories**,
+    below.
+   
+   
+`Contents/Resources/en.lproj/assets/`
+
+ : This directory contains all of the localized assets used in your Help Book.
+   In order for _Middlemac_’s asset helpers such as `image_tag` and `partial`
+   to find localized resources, and subdirectories of `assets/` must mirror
+   the subdirectories of `SharedGlobalAssets/`, e.g., `assets/images/`.  
+
+
+`Contents/Resources/en.lproj/asides/`
+
+ : This optional directory can be used to house your `.html.md.erb` files that
+   you use for the Help Book _asides_ feature. Any asides in this directory
+   will have the correct layout applied to them automatically, meaning that
+   it won’t be necessary to specify `layout: layout-apple-modern-aside` in
+   these files’ frontmatter.
+{: .nontabular}
+
+
+Locale Directories
+------------------
+
+Throughout this documentation we assume the use of the English locale, with
+your localized files placed into `en.lproj`. Apple’s JavaScripts do not
+support the use of `Base.lproj` or development regions, and so development in
+other languages must take place in language specific directories, as defined
+in `SharedGlobalAssets/_data/locale-list.json`:
+
+| Name                  | ISO Name                | Directory
+|-----------------------|-------------------------|-----------------------
+<% data[:'locale-list'].each do |locale| %>
+| <%= locale[:name] %>  | <%= locale[:isoName] %> | <%= locale[:folder] %>
+<% end %>
+
+The file `SharedGlobalAssets/_data/locale-list.json` is as it was provided by
+Apple; you are free to modify this file if you wish to add a localization that
+is not already present.
+{: .tip .callout}
+
+To rename an existing locale in your project, simply rename the `.lproj` folder
+to one of the supported folder names above. Everything else will be taken care
+of automatically when you build your project.
+
+To create an additional locale, create a new folder in `Resources/` with one of
+the supported names from the table above, and then copy into this new folder
+the following files from the `en.lproj` folder:
+
+- `ExactMatch.plist.erb`
+- `InfoPlist.strings.erb`
+- `locale-info.json.erb`
+- `navigation.json.erb`
+- `searchTree.json.erb`
+
+
+Images
+------
+
+Most images, of course, should go into the `images` directory of your locale’s
+`assets` folder or `SharedGlobalAssets/images`.
+
+However _Middlemac_ also depends on some magic images being placed in
+`SharedGlobalAssets/convention/`:
+
+`icon_32x32.png`
+`icon_32x32@2x.png`
+
+ : These files are your help file icon at 32 × 32 pixels and @2x, and will be
+   used by the included layouts automatically. More importantly, however, your
+   main landing page is linked to this icon so that Apple Help Viewer knows what
+   the help icon is.
+
+`icon_256x256.png`
+`icon_256x256@2x.png`
+
+ : The same as above, but at 256 × 256 pixels and @2x.
+ 
+`icon-webclip-*.png`
+
+ : These assets are used automatically by Apple Help when serving help content
+   to a browser, typically on a mobile device.
+ 
+
+### Images Organization
+
+When your content images are located in the `SharedGlobalAssets/images/`
+directory or your `en.lproj/assets/images/` directory (or directory as
+appropriate to your locale), then _Middleman_’s [helpers][helpers] can find
+them automatically without any worry about relative or absolute file paths.
+
+Images specified without paths are sought first in your `language.lproj/`
+directory, then `SharedGlobalAssets/images/`, and then finally in
+`SharedGlobalAssets/convention`.
+
+### Image Paths
+
+Apple’s JavaScript rewrites image paths to make them load properly from
+the main `index.html` file. Thus, when _Middlemac_ builds your pages, images
+will be root-relative when you examine the source, but relative to the main
+`index.html` when examined in your browser’s debugging tools.

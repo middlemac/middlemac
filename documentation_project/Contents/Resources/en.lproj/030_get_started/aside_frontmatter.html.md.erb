@@ -1,0 +1,64 @@
+---
+title:  Front Matter
+blurb:  <em>Middleman</em> (and hence <em>Middlemac</em>) source files use
+        front matter to control many features of pages.
+layout: layout-apple-modern-aside
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+Front matter is a document header section in format called YAML that contains
+key-value data that applies to a page. This data can be referred to later for
+output or control. For example, the title of this page was specified with a
+`title:` key in the source document’s front matter, and it was given a blurb
+(used as the opening paragraph and also the `meta description` `content` value
+for the page) via the `blurb:` key.
+
+If you examine the source for this page, you might notice that there is no
+`meta description` tag in the `head`; rest assured, it _is_ present in the
+HTML file, and used by the Apple Help Indexer.
+{: .note}
+
+Front matter can also control page order within a section, inclusion of pages
+for targets/features (provided by the `middleman-targets` gem), and more.
+
+Here’s this document’s front matter:
+
+~~~ yaml
+---
+title:  Front Matter
+blurb:  _Middleman_ (and hence _Middlemac_) source files use front matter to
+        control many features of pages.
+---
+~~~
+
+## Declaring Front Matter
+
+Front matter is defined as being delimited at the beginning and end with a line
+consisting of a series of three hyphens (`-`), and this block must appear at the
+top of a document.
+
+Although specific front matter keys are discussed elsewhere in this
+documentation it’s worth pointing out that the `title:` and `:blurb` are used
+extensively in _Middlemac_. For example all of the automatic navigation
+features are built using this data, meaning that this data need only appear
+once, here, in this very document.
+
+
+## JSON Frontmatter
+
+Recent versions of _Middleman_ support the use of JSON instead of YAML for
+frontmatter. The following example show how this page’s frontmatter may have
+been written instead:
+
+~~~ json
+;;;
+"title":  "Front Matter",
+"blurb":  "_Middleman_ (and hence _Middlemac_) source files use front matter to control many features of pages."
+;;;
+~~~
+
+JSON is indicated with delimiting `;;;` instead of hyphens.
+{: .note}

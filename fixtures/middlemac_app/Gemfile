@@ -17,35 +17,22 @@ source 'https://rubygems.org'
 #######################################
 # Middlemac, natch.
 #######################################
-gem 'middlemac', '~> 2.0.0'
-gem 'middlemac-extras', '~> 1.0.8'
-gem 'middleman-targets', '~> 1.0.7'
-gem 'middleman-pagegroups', '~> 1.0.4'
+gem 'middlemac', '~> 3.0.0'
+gem 'middleman-targets', '~> 1.0.12'
 
 
 #######################################
 # Core gems
 #######################################
-gem 'middleman', '~> 4.1.7'
+gem 'middleman', '~> 4.2.0'
 gem 'middleman-core'
 gem 'middleman-cli'
 gem 'middleman-livereload' # Live-reloading plugin
 gem 'middleman-syntax'     # Syntax Highlighting
-
-
-#######################################
-# Style and fonts
-#######################################
 gem 'middleman-compass'
-gem 'font-awesome-sass'
 
 
 #######################################
-# Utilities and tools
-#######################################
-
-
-#######################################
-# Core gems
+# Other gems
 #######################################
 gem 'tzinfo-data', platforms: [:mswin, :mingw] # Time zone data for Windows

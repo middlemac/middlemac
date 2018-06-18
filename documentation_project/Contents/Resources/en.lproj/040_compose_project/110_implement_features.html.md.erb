@@ -1,0 +1,197 @@
+---
+title:  Implement Apple’s Help Features
+blurb:  <em>Middlemac</em> makes it pretty easy to implement modern Apple 
+        Help Book features in your own Help Books. This page walks you
+        through them.
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+
+Asides
+------
+
+“Asides” are loaded via AJAX from another file into a popup element on the
+current page. To create an aside, simply:
+
+- Create a file that will result in an html file, such as
+  `aside_description.html.md.erb`, as is used in this documentation.
+- Do not specify a page order for this file, as we do not want it included as
+  a standard page. 
+- Ensure that its `categories` [frontmatter][frontmatter] includes `aside`.
+- Ensure that its `layout` [frontmatter][frontmatter] is set to
+  `layout-apple-modern-aside`, or that the file is present in the magical
+  `asides/` directory.
+
+To implement the “aside” in your project, simply use the `link_to` helper,
+specifying the `:aside` option, like so:
+
+~~~ erb
+What is <%%= link_to "an aside", "aside_description.html", :aside => true %>?
+~~~
+
+Results in:
+
+What is <%= link_to "an aside", "aside_description.html", :aside => true %>?
+
+Because the `link_to` helper will search your sitemap for the specified file,
+it’s not usually necessary to specify a path, and as such, you can organize
+the aside files in any manner that you wish.
+{: .tip .callout}
+
+
+Copyright Information
+---------------------
+
+The `:ProductCopyright` value from `config.rb` will be displayed by Apple’s
+help system at the bottom of every help page, as well as on your project’s
+landing page, when served to a browser. Additionally, the message on the
+landing page will automatically become a link to any page that has `copyright`
+assigned as one of its `categories` in the [frontmatter][frontmatter].
+
+If you have multiple pages with `copyright` assigned to the `categories`
+frontmatter key, then the first one found in the sitemap will be the target
+of the link.
+
+
+Tasks
+-----
+
+To create “tasks” as demonstrated in [Apple Help Book Features][apple_help_features],
+use the `helpbook_task` helper provided by _Middlemac_. For example:
+
+~~~ erb
+<%% helpbook_task "task_id_1", "This is the title of the first task" do %>
+<%%= lorem.paragraphs 2 %>
+<%% end %>
+
+<%% helpbook_task "task_id_2", "I also have a title" do %>
+<%%= lorem.paragraphs 2 %>
+<%% end %>
+~~~
+
+
+Will result in:
+
+<% helpbook_task "task_id_1", "This is the title of the first task" do %>
+<%= lorem.paragraphs 2 %>
+<% end %>
+
+<% helpbook_task "task_id_2", "I also have a title" do %>
+<%= lorem.paragraphs 2 %>
+<% end %>
+
+Remember, single tasks are always displayed in the expanded state, but when multiple tasks
+are on the same page, like here, they have working disclosure triangles to 
+reveal them.
+{: .tip .callout}
+
+Make sure you provide unique id’s to the tasks, because Apple’s help system
+keeps track of which one are revealed or hidden in between page visits.
+{: .tip .callout}
+
+
+
+Tips
+----
+
+If you would like to implement tips in the way that Apple does it exactly,
+then use a structure like this:
+
+~~~ html
+<div class="Alert">
+<p class="Tip">
+    <strong class="tip">Tip</strong> You can do lots of neat things like use 
+    Apple’s tip style, and it’s easy with the plethora of helpers. This tip
+    uses the official Apple way to make a tip, but you have to use HTML to
+    conform to Apple’s `&lt;div>` and `&lt;p>` structure.
+</p>
+</div>
+~~~
+
+Which yields:
+
+<div class="Alert">
+<p class="Tip">
+    <strong class="tip">Tip</strong> You can do lots of neat things like use 
+    Apple’s tip style, and it’s easy with the plethora of helpers. This tip
+    uses the official Apple way to make a tip, but you have to use HTML to
+    conform to Apple’s `&lt;div>` and `&lt;p>` structure.
+</p>
+</div>
+
+However, that’s cumbersome to use and remember, so _Middlemac_ has defined
+a style that approximates Apple’s, that’s really simply to use via native
+Markdown style tags. In Markdown you can simply do this:
+
+~~~ markdown
+However that’s kind of pain to remember, so _Middlemac_ makes it really
+easy to add single-paragraph tips right in Markdown, by assigning a style.
+The appearance is a _little_ bit different than Apple’s way, but honors the
+look and feel.
+{: .tip}
+~~~
+
+Which delivers this:
+
+However that’s kind of pain to remember, so _Middlemac_ makes it really
+easy to add single-paragraph tips right in Markdown, by assigning a style.
+The appearance is a _little_ bit different than Apple’s way, but honors the
+look and feel.
+{: .tip}
+
+Similarly, assigning the CSS classes `warning` or `note` with `{: .warning}`
+or `{: .note}` give you these next two callout styles:
+
+Although I couldn’t find any **warning** examples in Apple’s help, it’s
+something that’s sure to be needed by other developers, and so imitating
+Apple’s **Tip** style gives _Middlemac_ access to simple warnings, too.
+{: .warning}
+
+Can you guess that this is a note?
+{: .note}
+
+Finally, you can combine the `{: .tip}`, `{: .warning}`, and `{: .note}` with
+the class `callout` like, e.g., `{: .note .callout}` to inset the left and
+right margins by a couple of em. This isn’t Apple’s style, but it tends to
+introduce some much-needed whitespace that serves to highlight these types of
+paragraphs.
+{: .note .callout}
+
+
+Standard See Also
+-----------------
+
+Apple’s Help Books have a standard format for **See Also** sections of its
+content pages. _Middlemac_’s templates will automatically provide the proper
+HTML structure when you provide a `:seeAlso` block in any of your help pages.
+
+Apple’s JavaScript even recognizes when links are internal or external, and
+opens new tabs or windows as appropriate.
+
+This page’s **See Also** block is defined as so:
+
+~~~ erb
+<%% content_for :seeAlso do %>
+<%%= link_to 'Apple Help Book Features', 'apple_help_features/index.html' %>
+<%%= link_to 'Help Book Landing Page', 'index.html' %>
+<%% end %>
+~~~
+
+<% content_for :seeAlso do %>
+<%= link_to 'Apple Help Book Features', 'apple_help_features/index.html' %>
+<%= link_to 'Help Book Landing Page', 'index.html' %>
+<% end %>
+
+Although the **See Also** content is defined right here in the source file,
+it will appear (properly) at the bottom of this page.
+
+The use of the `md_links` helper to provide Markdown reference-style links is
+not supported in the `:seeAlso` block. This is a limitation of the way that
+_Middleman_ builds files. However, the `link_to` helper works just fine in
+this case.
+{: .note .callout}
+
+

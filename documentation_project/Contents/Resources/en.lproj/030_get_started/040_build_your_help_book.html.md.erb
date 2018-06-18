@@ -1,0 +1,56 @@
+---
+title:  Build Your Help Book
+blurb:  This article shows you how simple it is to build your Help Book, so
+        that it may be included with your Xcode project.
+---
+<%= md_links %>
+<%= md_images %>
+
+When you’re finally ready to build your Help Book, either for including in 
+your application or for hosting on a website, you can do so easily with
+_Middleman_. Let’s build **Your First Help Book** now. In **Terminal** from
+within the project directory:
+
+~~~ bash
+bundle exec middleman build_all
+~~~
+
+Within just a few seconds (depending on the speed of your computer), you
+should find that _Middleman_/_Middlemac_ will have built two, new help 
+bundles: `New_Project_(free).help` and `New_Project_(pro).help`.
+
+_Middlemac_ ensures that no spaces are in help bundle filenames, just in case
+you want to use `make` to build them. The default macOS `make` is
+**GNU Make**, and it simply doesn’t work with paths containing spaces.
+{: .note .callout}
+
+You can `cd` into these bundles in **Terminal**, or use **Show Package 
+Contents** in **Finder** to browse the folders and contents there.
+
+What you should find is a complete, modern Apple Help Book consisting of
+HTML files that you built, as well as all of the supporting `.plist`, `.json`,
+and other files needed to operate the Help Book.
+
+
+## Targets
+
+As with the server, you can specify that _Middlemac_ build a single target,
+rather than all of them. This is accomplished by using the `build` action
+and specifying the `--target` option when invoking _Middleman_:
+
+~~~ bash
+bundle exec middleman build --target pro
+bundle exec middleman build --target free
+bundle exec middleman build
+~~~
+
+That last example builds the default target as defined in your `config.rb`
+file.
+{: .tip .callout}
+
+
+## Add Your First Help Book to your application
+
+If you’re ready to add **Your First Help Book** to your application, then
+skip ahead to [Set Up your Help Project][setup] for information on getting
+your application to recognize your Help Book.

@@ -1,0 +1,213 @@
+---
+title:  Basic Helpers
+blurb:  A brief look at how <em>Middlemac</em>’s Helpers can help you out.
+---
+<%= md_links %>
+<%= md_images %>
+
+Helpers are methods that return a string, typically a snippet of HTML code, or
+sometimes a value that can be used with ERB. This page highlights some of the
+helpers available in _Middleman_ and added via _Middlemac_.
+
+
+_Middleman_ helpers
+-------------------
+
+_Middleman_ has several useful, built-in helpers documented on its 
+[web site](http://middlemanapp.com/basics/helper_methods/). These are some of
+the most common ones you will use.
+
+`link_to`
+
+ : This helper greatly simplifies links when you’re not able or willing to use
+   Markdown links.
+   
+   ~~~ erb
+   <%%= link_to 'Content text', 'http://example.com' %>
+   ~~~
+   
+   ~~~ erb
+   <%= link_to 'Content text', 'http://example.com' %>
+   ~~~
+   
+   You can even use a _Middleman_ resource for the second parameter:
+   
+   ~~~ erb
+   <%%= link_to 'Main Page', current_page.breadcrumbs.first %>
+   ~~~
+
+   ~~~ erb
+   <%= link_to 'Main Page', current_page.breadcrumbs.first %>
+   ~~~
+   
+   And you can specify one or more attributes like so:
+   
+   ~~~ erb
+   <%%= link_to 'test', '#', :title => 'test' , :'data-test' => 'data attribute test' %>
+   ~~~
+
+   ~~~ erb
+   <%= link_to 'test', '#', :title => 'test' , :'data-test' => 'data attribute test' %>
+   ~~~
+   
+
+`image_tag`
+
+ : This helper simplifies adding images to your documents. It knows the location
+   of your images if you’ve followed the conventions.
+   
+   ~~~ erb
+   <%%= image_tag 'all-sample' %>
+   ~~~
+
+   <%= image_tag 'all-sample', :figure => false %>
+      
+   You can also specify attributes:
+   
+   ~~~ erb
+   <%%= image_tag 'all-sample', :alt => 'A murder of crows', :title => 'Birds' %>
+   ~~~
+   
+   <%= image_tag 'all-sample', :alt => 'A murder of crows', :title => 'Birds', :figure => false %>
+   
+   Although these two examples describe _Middleman_’s built-in `image_tag`
+   helper, _Middlemac_ can extend this functionality even more. 
+
+
+`content_for`
+
+ : The built-in templates include an area for “See Also” where you might want to
+   include links in addition to the automatically generated links. You can do
+   this with the `contentfor` helper.
+   
+   ~~~ erb
+   <%% content_for :seeAlso do %>
+   <%%= link_to 'Some interesting site', 'http://example.com' %>
+   <%% end %>
+   ~~~
+
+   As you get more advanced with your use of _Middleman_, you will certainly
+   think of more uses for this.
+{: .nontabular}
+
+Helpers that Middlemac Overrides
+--------------------------------
+
+_Middlemac_ overrides the behavior to some _Middleman_ partials in order to
+provide extra functionality and/or to provide backward compatibility. They are
+fully documented in [their reference section][helpers_ext_ref].
+
+`partial`
+
+  : Starting with _Middleman_ version 4, the use of `partials_dir` was removed,
+    and now _Middleman_ expects a full path to partials. _Middlemac_, though
+    provides this helper with backwards compatibility. If you set `partials_dir`
+    in your `config.rb`, then _Middlemac_ will first check this directory for
+    your partial before using _Middleman_’s default behavior.
+
+`image_tag`
+
+  : _Middlemac_ adds considerable functionality to the base `image_tag` helper.
+  
+      - If your image name begins with the magic prefix `all-`, then
+        _Middlemac_ will substitute an image prefixed with the name of the
+        current target, if it exists (otherwise the `all-` image will be used).
+        This magic prefix is configurable in your `config.rb` file.
+        
+      - If the image that you specify has an `@2x`, `@3x`, and/or `@4x` version,
+        then a `srcset` attribute specifying this Retina image will 
+        automatically be added for you (unless you’ve added a `srcset` attribute
+        yourself. This even works with magic prefixes.
+        
+        For example if you specify image `all-example.png` and your target is
+        "pro", _and_ if the images exist, then _Middlemac_ will generate an
+        image tag specifying "pro-example.png" and "pro-example@2x.png" for
+        you.
+        
+      - You can specify `:target` and/or `:feature` in the `image_tag` options
+        to ensure that a tag is only generated if you are building the correct
+        target, or if the target includes the specified feature. This provides
+        a handy alternative to **if target_name?** and **if target_feature?**
+        blocks in your code.
+      
+      - The help automatically embeds images in a `<figure>` element, as this is
+        what Apple’s own style is. You can specify `:figure => false` in the
+        options to prevent this.
+        
+      - Finally, you can specify `:figure_class => "someclass"` to provide a 
+        class to this framing `<figure>`, if desired.
+{: .nontabular}
+
+
+### `image_tag` Target/Feature example
+
+This example is a standard use of the `image_tag` helper with an ordinary file
+wherein the `@2x` resource is included as a `srcset` automatically.
+
+~~~ erb
+<%%= image_tag 'middlemac-logo-small.png' %>
+~~~
+
+<%= image_tag 'middlemac-logo-small.png' %>
+
+* * *
+
+This example shows an icon with an image prefixed `all-`, however no target
+specific images are in the image directory. There is an `@2x` version available,
+though, so will be automatically used as the `srcset`.
+
+~~~ erb
+<%%= image_tag 'all-sample.png' %>
+~~~
+
+<%= image_tag 'all-sample.png' %>
+
+
+* * *
+
+The next example selects the image based on the target automatically.
+
+~~~ erb
+<%%= image_tag 'all-middlemac-logo-small.png' %>
+~~~
+
+<%= image_tag 'all-middlemac-logo-small.png' %>
+
+
+* * *
+
+Finally, let’s add a `:target` option to the `image_tag` helper. If you’re
+using the Pro version of this documentation, you will see the logo, otherwise
+there will be no image.
+
+~~~ erb
+<%%= image_tag 'all-sample.png', :target=>:pro %>
+~~~
+
+<%= image_tag 'all-sample.png', :target=>:pro %>
+
+
+
+* * *
+
+_Middlemac_ helpers
+-------------------
+
+_Middlemac_ introduces several other helpers that are available in your files.
+A comprehensive list is available in the **Reference**, but these highlight
+some of the helpers that you’ll use quite often.
+
+| `cfBundleIdentifier`        | Returns the product `CFBundleIdentifier` for the current target.
+| `cfBundleName`              | Returns the product `CFBundleName` for the current target.
+| `product_name`              | Returns the `ProductName` for the current target.
+| `product_uri`               | Returns the `ProductURI` for the current target.
+| `target_name`               | Returns the current build target.
+| `target_name?(proposal)`    | Is the current target `proposal`?
+| `target_feature?(proposal)` | Does the target have the feature `feature`?
+
+Other Helpers
+-------------
+
+_Middlemac_ is a system consisting of several gems, all of which contribute
+helpers of their own. These are completely documented in the
+**API Reference** section.

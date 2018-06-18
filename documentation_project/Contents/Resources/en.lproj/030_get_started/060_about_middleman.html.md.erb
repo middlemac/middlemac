@@ -1,0 +1,89 @@
+---
+title:  About Middleman
+blurb:  <em>Middleman</em> is the engine that makes <em>Middlemac</em>
+        possible. It’s critical to know a little bit about this tool.
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+_Middleman_ is a [static site generator using all the shortcuts and tools in
+modern web development](http://middlemanapp.com). It was intended to have been
+a tool to create static websites with most of the dynamism of websites running
+on technologies such as PHP and Ruby on Rails. Static websites are fast and
+secure.
+
+Apple Help Books, in their essence, are static websites. 
+
+_Middleman_ with the help of _Middlemac_ is the perfect tool in your help file
+development toolchain.
+
+Builder _and_ server
+--------------------
+_Middleman_ doesn’t merely build final output; it includes a non-configuration
+server that makes it much easier to develop your website or Help Book. Features
+such as live reload mean that when you change your source file, the site in
+your web browser will update automatically.
+
+The server captures changes to most of your source files. However in certain
+circumstances you may have to restart the server to recognize certain changes,
+such as new directories in your source code.
+
+
+Basic concepts
+--------------
+_Middleman_’s basic concepts are these:
+
+- Organize your site in a source directory that mirrors the desired structure
+  on the server (or in our case, in our Help Book).
+- Add file extensions to the source files to indicate the type of pre-processing
+  that you want to perform on each of them.
+- Provide the ability to include partials and use helpers to improve your
+  content development productivity, while keeping yourself DRY.
+- Provide the ability to use templates and layouts to bring uniformity to your
+  website (in our case, to your Help Book).
+- Act as a server in developer mode, building content dynamically as you develop
+  it.
+- Build final output, ready to use wherever you need it.
+
+
+Using _Middleman_
+-----------------
+
+Because _Middlemac_ is an extension to _Middleman_, it’s worth noting that you
+will actually execute `middleman` to serve or to build your projects. 
+
+To start the built-in server in order to preview your work, simply do:
+
+~~~
+bundle exec middleman serve --target free
+~~~
+
+Instructions for accessing the server (the address and port) will be reported to
+you.
+
+Note, too, that `--target` specifies an option; the example above would serve
+the `free` target.
+
+To build the `pro` target, you would do this:
+
+~~~
+bundle exec middleman build --target pro
+~~~
+
+And if you wanted to build every target at once, simply this:
+
+~~~
+bundle exec middleman build_all
+~~~
+
+
+More about _Middleman_
+----------------------
+
+If you stick to the conventions it’s not necessary to become an expert in
+_Middleman_. However as you grow your skills you may want to consider using
+some of its more advanced features or even add your own extensions. You can
+access _Middleman_’s full documentation on its
+[documentation website](https://middlemanapp.com/basics/install/).

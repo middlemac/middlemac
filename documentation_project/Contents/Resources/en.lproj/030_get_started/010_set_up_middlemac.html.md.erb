@@ -1,0 +1,164 @@
+---
+title:  Set Up Middlemac
+blurb:  Read this article to learn how install <em>Middlemac</em> and see
+        that it’s running on your system.
+---
+<%= md_links %>
+<%= md_images %>
+
+Getting Started
+---------------
+
+_Middlemac_’s documentation is included in the starter project (and more than
+likely at [http://www.balthisar.com/manuals](http://www.balthisar.com/manuals)).
+There are multiple ways you could be reading this content now, but for now we
+will assume that you have not yet installed _Middlemac_ and its dependencies.
+
+To get started and read the full documentation, make sure that your system has
+[Ruby](https://www.ruby-lang.org/) installed (it comes pre-installed on macOS
+and some Linuxes), and follow these steps below. 
+
+We recommend the use of the Ruby Version Manager ([RVM](https://rvm.io/)).
+While installation and setup of RVM is entirely outside the scope of this
+tutorial, it avoids the use of `sudo` and the hassles involved with using the
+built in version of Ruby. This tutorial assumes the use of RVM.
+{: .note .callout}
+
+If you’re behind a proxy and haven’t already setup an `http-proxy` environment
+variable, then that previous clause is a good hint and Google is your friend.
+{: .tip .callout}
+
+
+Quick version, if you don’t want to read details
+------------------------------------------------
+
+In your Terminal, do each of the following:
+
+~~~
+xcode-select --install
+gem install middlemac
+middlemac documentation
+cd middlemac-docs
+gem install bundler
+bundle install
+bundle exec middleman --target free
+open middlemac.webloc
+~~~
+
+Because the penultimate command started the server (which keeps control of the
+terminal), you’ll have to open the `.webloc` file in another terminal session,
+or simply double-click it.
+
+If you’re on Linux and `open middlemac.webloc` command doesn’t work for you,
+then use your preferred web browser and go to
+[http://localhost:4567/Resources/index.html](http://localhost:4567/Resources/index.html).
+
+If you’ve setup your own custom domain, you’ll have to specify that instead of
+`localhost`.
+
+
+Same as above, with explanations
+--------------------------------
+
+### Install Xcode
+
+If you’re on a Mac you’ll have to install Xcode first, or at least the Xcode
+command line tools. You can _try_ just installing the tools first:
+
+~~~
+xcode-select --install
+~~~
+
+If that fails or the rest of the installation fails, then install all of Xcode.
+It’s available in the App Store. It’s free of charge. And you’re using this
+project to develop help for macOS applications that you’re developing using
+Xcode anyway. Install it, already!
+
+Dependencies on Linux are left up to you. Most modern Linuxes will prompt you to
+install packages that are missing.
+ 
+_Middlemac_ works quite well on Linux, but keep in mind that Linux doesn’t have
+the help indexing tool that’s required in order to build a proper Help Book.
+Other than for generating your final Help Book, Linux makes a fine development
+environment.
+{: .note .callout} 
+
+
+### Install the `middlemac` gem
+
+~~~
+gem install middlemac
+~~~
+
+This will fetch the gem from `rubygems.org` and install it for you.
+
+
+### Install the documentation
+
+~~~
+middlemac documentation
+~~~
+
+This will install Middlemac’s documentation project into a new directory
+`middlemac-docs`.
+
+
+### Go into the documentation directory
+
+~~~
+cd middlemac-docs
+~~~
+
+
+### Install bundler (if not already installed)
+
+~~~
+gem install bundler
+~~~
+
+Bundler is the most common Ruby package management system, and it will be used
+to ensure that all of Middlemac’s dependencies are present.
+
+
+### Make sure all of the project dependencies are met
+
+~~~
+bundle install
+~~~
+
+This tells bundler to install the remaining gems that _Middlemac_ requires to
+function.
+
+If you see error messages reported, they will often be accompanied by advice
+for resolving the error. If this doesn’t work and `bundle install` doesn’t
+exit cleanly, you’ll have to Google for a solution. Sadly, sometimes Gems
+just don’t build right on certain systems, but luckily someone else will have
+already experienced and then solved the issue.
+{: .tip .callout}
+
+
+### Start the _Middleman_ server
+
+_Middleman_ comes with its own HTTP server and requires no configuration. It
+simply works, serving your Help Book as a website.
+
+~~~
+bundle exec middleman --target free
+~~~
+
+This will start the server using our `:free` target.
+
+
+### Open the site in your browser
+
+Simply open the `middlemac.webloc` file from Finder to view the project results
+in your default browser.
+
+Or can open the bookmark file from Terminal with `open middleman.webloc`.
+
+Or you prefer to open the help site manually, or if the .webloc file doesn’t
+work on your Linux distro, you can go to
+[http://localhost:4567/Resources/index.html](http://localhost:4567/Resources/index.html).
+
+If you’ve setup your own custom domain, you’ll have to specify that instead of
+`localhost`.

@@ -22,7 +22,6 @@ Gemfile.lock
 .tmp
 build*
 !build.sh
-Makefile
 tmp
 
 # XCode user-specific files

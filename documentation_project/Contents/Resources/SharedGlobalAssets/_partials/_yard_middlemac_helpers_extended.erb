@@ -1,0 +1,369 @@
+
+
+
+
+
+  <div class="method_details_list">
+    
+    
+      
+        <div class="method_details first">
+  <h3 class="signature first" id="image_tag-instance_method">
+  
+    #<strong>image_tag</strong>(path, params = {})  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>With the proper options enabled this helper extends
+the built-in functionality of <strong>Middleman</strong>’s helper
+in a couple of ways, as documented in the params
+hash.</p>
+
+<p>Note that Apple helpbooks embed nearly all <code>&lt;img&gt;</code>
+tags in a <code>&lt;figure&gt;</code>, so this is the default without
+the appropriate params, below.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>path</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Specify path to the image file.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>params</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Optional parameters to pass to
+the helper. <strong>Middleman</strong> (and other extensions)
+provide other parameters in addition to these.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>params</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:img_auto_extensions</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Allows
+control of the automatic image extensions option
+on a per-use basis.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:retina_srcset</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Allows control
+of the automatic @2x images feature on a per-use
+basis.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:figure</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Allows you to avoid
+the automatic framing of the image within a figure
+element, when set to <code>false</code>.</p>
+</div>
+          
+        </li>
+      
+        <li>
+          <span class="name">:figure_class</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Specify the
+class, if any, to apply to the enclosing figure.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns an HTML <code>&lt;img&gt;</code> tag.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="link_to-instance_method">
+  
+    #<strong>link_to</strong>(caption, url, options = {})  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns a link in a form useful to helpbooks, i.e.,
+<code>#/hb_NavId</code>, so that Apple’s Javascript can load the
+correct file. Simply specify the path to the HTML
+file, and the helper will return an acceptable link.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>caption</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The text of the link.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>url</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The path to the html file in the
+output hierarchy.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Optional parameters to pass to
+the helper. Consult Middleman’s documentation for
+most of these.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:aside</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>Returns the link in
+a format suitable for linking to a helpbook “aside”
+rather than the link to another page.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns an HTML <code>&lt;a&gt;</code> tag.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="partial-instance_method">
+  
+    #<strong>partial</strong>(template, opts = {}, &amp;block)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Extends the built-in <code>partials</code> helper to allow the
+use of a default partials directory as configured with
+<code>options[:partials_dir]</code>. Middleman 4.0 removed the
+option <code>partials_dir</code> which increased flexibility a
+lot, but hurt backwards compatibility. When used the
+default location will be searched first for the
+specified partial; if not found then the built-in
+behavior will be used.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>template</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The partial file to use.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>opts</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>{}</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Options to use for the partial.
+Consult <strong>Middleman</strong>’s documentation for possible
+options.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>block</span>
+      
+      
+        <span class='type'>(<tt>Block</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An option block as per the
+default implementation by <strong>Middleman</strong>.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div>
+</div>
+      
+    
+  </div>
+
+

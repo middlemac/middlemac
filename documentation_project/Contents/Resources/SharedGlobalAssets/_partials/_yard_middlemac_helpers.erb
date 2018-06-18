@@ -1,0 +1,897 @@
+
+
+
+
+
+  <div class="method_details_list">
+    
+    
+      
+        <div class="method_details first">
+  <h3 class="signature first" id="cfBundleIdentifier-instance_method">
+  
+    #<strong>cfBundleIdentifier</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the product <code>CFBundleIdentifier</code> for the
+current target as configured in your <code>config.rb</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The <code>cfBundleIdentifier</code>.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="cfBundleName-instance_method">
+  
+    #<strong>cfBundleName</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the product <code>CFBundleName</code> for the current
+target as configured in your <code>config.rb</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The <code>CFBundleName</code>.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="css_image_sizes-instance_method">
+  
+    #<strong>css_image_sizes</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>This helper provides CSS for every image in your
+project. Each image will have a declaration that sets
+<code>max-width</code> and <code>max-height</code> to the actual size of the
+image. Proper @2x image support is included. It’s most
+useful to use this helper in a <code>some_file.css.erb</code>
+file.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns a string with the CSS markup
+for every image found in your project.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="hb_copyright_page-instance_method">
+  
+    #<strong>hb_copyright_page</strong>  &#x21d2; <tt>Sitemap::Resource</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the copyright page, if one is present. The
+first page in the hb_sitemap which includes “copyright”
+within its categories.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Sitemap::Resource</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The root resource.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="hb_framework-instance_method">
+  
+    #<strong>hb_framework</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the extension name and version; suitable for
+the <code>framework</code> field of modern Apple Help <code>framework</code>
+field.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The extension name and version.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="hb_landing_page-instance_method">
+  
+    #<strong>hb_landing_page</strong>  &#x21d2; <tt>Sitemap::Resource</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the very top of of the current target, i.e.,
+generally your index.html landing page in the lproj
+directory.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Sitemap::Resource</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The root resource.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="hb_locale_list-instance_method">
+  
+    #<strong>hb_locale_list</strong>  &#x21d2; <tt>Array&lt;String&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns a list of the locales detected during config.
+This can be used to build locale-list.json from the
+data object.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The list of locales.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="hb_search_tree-instance_method">
+  
+    #<strong>hb_search_tree</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the search tree for the current locale.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The search tree in JSON format.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="hb_sitemap-instance_method">
+  
+    #<strong>hb_sitemap</strong>  &#x21d2; <tt>Array&lt;Sitemap::Resource&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns a filtered version of the sitemap for the
+current target containing only resources that the
+modern Apple Help can navigate to directly, in the
+current language.
+as configured in your <code>config.rb</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Sitemap::Resource&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The applicable
+sitemap.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="helpbook_task-instance_method">
+  
+    #<strong>helpbook_task</strong>(id, headline, options = nil, &amp;block)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>This helper makes it easy to create a help book task.
+It supports markdown for the body of the task.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>id</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Specify the id attribute for
+the containing <code>&lt;div&gt;</code>. Ensure that these are
+unique throughout your project so that open-closed
+states are preserved.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>headline</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Specify the task’s label.
+Note that markdown and HTML are stripped away by
+Apple’s scripts, and won’t influece the output.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>Optional parameters to pass to
+the helper.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>block</span>
+      
+      
+        <span class='type'>(<tt>&block</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The content of the task.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:markdown</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>By default, the
+helper expects that the &amp;block contains markdown;
+be sure to set the :markdown option to <code>false</code> if
+this is not desired.</p>
+</div>
+          
+        </li>
+      
+    </ul>
+  
+    
+    
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns the complete task.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="link_to_anchor-instance_method">
+  
+    #<strong>link_to_anchor</strong>(caption, anchor)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns a link in the help:anchor:bookID format that
+Apple recommends in their documentation. Although
+they work, they’re not recommended:
+- Apple doesn’t use these in their own Help Books. 
+- When served to a browser, Apple’s JavaScript removes
+  the link (i.e., they don’t work) because it does not
+  access the Help Index where the anchors are recorded.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>caption</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The text of the link.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>anchor</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The anchor to link to.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns an HTML <code>&lt;a&gt;</code> tag.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="md_images-instance_method">
+  
+    #<strong>md_images</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>This helper provides access to an index of images in
+Markdown reference format, enabling you to use
+reference-style images in documents. Because this
+helper includes literal Markdown, it’s only useful
+in Markdown documents.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns a string with the Markdown
+index of every image in your project.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="md_links-instance_method">
+  
+    #<strong>md_links</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>This helper provides access to an index of links in
+Markdown reference format, enabling you to use
+reference-style links in documents. Because this
+helper includes literal Markdown, it’s only useful
+in Markdown documents. These links are ready to use
+in modern Helpbooks.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns a string with the Markdown
+index of every page in your project.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="partials_dir-instance_method">
+  
+    #<strong>partials_dir</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the name of the configured partials directory
+to use by default with the <code>partials</code> helper, i.e., the
+value of <code>options[:partials_dir]</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The path of the configured default
+partials directory.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="product_copyright-instance_method">
+  
+    #<strong>product_copyright</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the <code>ProductCopyright</code> for the current target
+as configured in your <code>config.rb</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The <code>ProductCopyright</code>.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="product_name-instance_method">
+  
+    #<strong>product_name</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the <code>ProductName</code> for the current target
+as configured in your <code>config.rb</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The <code>ProductName</code>.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="product_uri-instance_method">
+  
+    #<strong>product_uri</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the <code>ProductURI</code> for the current target
+as configured in your <code>config.rb</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The <code>ProductURI</code>.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="product_version-instance_method">
+  
+    #<strong>product_version</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the <code>ProductVersion</code> for the current target
+as configured in your <code>config.rb</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The <code>ProductVersion</code>.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+    
+  </div>
+
+

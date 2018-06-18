@@ -1,6 +1,13 @@
 middlemac change log
 ====================
 
+- Version 3.0.0 / 2018-June-18
+
+  - Major update to Middlemac to support modern macOS Help Books. Middlemac
+    now builds Help Books that take advantage of Apple’s “Eagle” framework for
+    providing a consistent look and feel across Help Books, and provides neat
+    browser-based features such as search and language switching.
+
 - Version 2.0.0 / 2016-May-15
 
   - All new Middlemac version 2.0.0!

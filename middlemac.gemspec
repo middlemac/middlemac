@@ -2,7 +2,7 @@
 $:.push File.expand_path('../lib', __FILE__)
 require 'middlemac/version'
 
-mm_needed = ['~> 4.1', '>= 4.1.7']
+mm_needed = ['~> 4.2.0', '>= 4.2.0']
 
 Gem::Specification.new do |s|
   s.name        = 'middlemac'
@@ -11,8 +11,8 @@ Gem::Specification.new do |s|
   s.authors     = ['Jim Derry']
   s.email       = ['balthisar@gmail.com']
   s.homepage    = 'https://github.com/middlemac/middlemac'
-  s.summary     = 'Build complete Mac OS X application help books using Middleman.'
-  s.description = 'Build complete Mac OS X application help books using Middleman.'
+  s.summary     = 'Build complete macOS application help books using Middleman.'
+  s.description = 'Build complete macOS application help books using Middleman.'
   s.license     = 'MIT'
 
   s.files         = `git ls-files`.split("\n")
@@ -25,9 +25,10 @@ Gem::Specification.new do |s|
 
   # Additional dependencies
   s.add_runtime_dependency('middleman-cli', mm_needed)
-  s.add_runtime_dependency('middleman-targets', ['~> 1.0', '>= 1.0.7'])
-  s.add_runtime_dependency('middleman-pagegroups', ['~> 1.0', '>= 1.0.4'])
-  s.add_runtime_dependency('middlemac-extras', ['~> 1.0', '>= 1.0.8'])
+  s.add_runtime_dependency('middleman-targets', ['~> 1.0', '>= 1.0.12'])
+  s.add_runtime_dependency 'nokogiri'
+  s.add_runtime_dependency 'words_counted'
+  s.add_runtime_dependency 'fast_trie'
   
   # Development dependencies
   s.add_development_dependency 'middleman', mm_needed

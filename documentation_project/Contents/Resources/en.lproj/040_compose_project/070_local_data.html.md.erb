@@ -1,0 +1,50 @@
+---
+title:  Local Data
+blurb:  You can use a local file as a datasource to generate data-based pages
+        automatically. Learn how in this section.
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+You can use data from external sources with _Middleman_ and _Middlemac_, too.
+These data files must be in YAML or JSON format, and be present in
+`SharedGlobalAssets/_data/`.
+
+This project contains sample in YAML format called `globals.yml`. Let’s see
+what it contains:
+
+~~~ yaml
+famous_writers:
+  -
+    author: Douglas Adams
+    sample_work: The Restaurant at the End of the Universe
+  -
+    author: Edward Bulwer-Lytton
+    sample_work: Paul Clifford
+  -
+    author: Daniel Defoe
+    sample_work: Robinson Crusoe
+~~~
+
+We can use this data to build something more interesting. Let’s try this:
+
+<% data.globals.famous_writers.each do |writer| %>
+- A sample work of <%= writer.author %> is _<%= writer.sample_work %>_.
+<% end %>
+
+These previous sentences were generated with this ERB code:
+
+~~~ erb
+<%% data.globals.famous_writers.each do |writer| %>
+- A sample work of <%%= writer.author %> is _<%%= writer.sample_work %>_.
+<%% end %>
+~~~
+
+
+Accessing data
+--------------
+
+This data is available to you via `data.file_name.top_level_key`.
+

@@ -1,0 +1,220 @@
+---
+title:  Targets and Features
+blurb:  A lesson on how to use include and exclude targets and features.
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+
+Why include and exclude?
+------------------------
+
+Although _Middlemac_ is an excellent tool for developing single-target Apple
+Help Books, it really shines when you want to develop multiple versions of
+Help Book for multiple versions of your application.
+
+Delivering a help system tailored _specifically_ for the version of the
+application that it belongs to will increase user satisfaction by allowing
+them to focus on the aspects of the help that’s applicable to them. No one
+wants to attempt to solve a problem and then learn, during troubleshooting,
+that some fancy feature is only available in some other version of your
+application.
+
+You want to promote other versions of your application, certainly. Multiple
+targets allows you appropriately place upsell messages without distracting
+your users. It also allows you to avoid upselling the users who are already
+using your premium or top-level version.
+
+Maybe your application is available on your website and also the Mac App
+Store? In this case there are certainly going to be feature differences. You
+web version uses _Sparkle_ for updates, but the MAS version doesn’t. Your MAS
+version requires users to authorize writing to user directories because of
+sandboxing, whereas your web-distributed version does not.
+
+Make your help files as polished as your applications, and users will be happy
+and delighted without even really knowing why!
+
+
+Include and Exclude Parts of Pages
+----------------------------------
+
+In the simplest case you have help page that is present for all versions of
+your Help Book, but some of the content will be different for different
+targets and features. You can review the `target_name?` example and the
+`target_feature?` examples below to review how to show and hide specific
+content on each page.
+
+
+Limit Images to Particular Targets and Features
+-----------------------------------------------
+
+Don't forget that the [`image_tag` helper][helpers_ext_ref] can be used with
+parameters to limit images to certain targets and features, too.
+
+
+Include and Exclude Entire Pages
+--------------------------------
+
+In the case of wanting to hide or show entire pages based on target or
+feature, you’ve also seen the `target` and `exclude`
+[frontmatter][frontmatter] keys. When used, you have excellent control over
+whether entire pages are visible or not.
+
+
+Targets Demonstration
+---------------------
+<% if target_name?(:pro) %>
+You are reading this Help Book using the `:pro` target. You can try rebuilding
+the project or starting the server with the `:free` target to get a different
+result.
+<% end %>
+<% if target_name?(:free) %>
+You are reading this Help Book using the `:free` target. You can try rebuilding
+the project or starting the server with the `:pro` target to get a different
+result.
+<% end %>
+
+
+### How did this work?
+
+The source file uses a simple conditional and helper to display content based on
+the target name. Here’s the (nearly) exact code that was used:
+
+~~~ erb
+<%% if target_name?(:pro) %>
+You are reading this Help Book using the `:pro` target. You can try rebuilding
+the project or starting the server with the `:free` target to get a different
+result.
+<%% end %>
+<%% if target_name?(:free) %>
+You are reading this Help Book using the `:free` target. You can try rebuilding
+the project or starting the server with the `:pro` target to get a different
+result.
+<%% end %>
+~~~
+
+Why “nearly” exact code? If you examine the `.md.erb` file you will see how to
+escape ERB delimiters so that ERB doesn’t try to process them as Ruby code.
+In order to display `<%% %>` it is necessary to specify `<%%% %>` in code
+blocks. And of course you can read about code blocks and other Markdown
+formatting on
+[kramdown’s documentation site](http://kramdown.gettalong.org/documentation.html).
+
+
+### Include or exclude entire pages
+
+Whether you’re currently using the `:pro` or `:free` target, try visiting
+each of these pages:
+
+- [sample page excludes target `:free`](not_free.html)
+- [sample page excludes target `:pro`](not_pro.html)
+
+
+Features Demonstrations
+-----------------------
+
+* * *
+
+<% if target_feature?(:feature_advertise_pro) %>
+**New! Today Only!!! Act before this special offer is gone forever!** Why settle
+for the limitations of _Middlemac Free_ when you can upgrade to _Middlemac Pro_
+for this limited time, special price of only $1299.99?
+
+(Note: there is no _Middlemac Pro_. This is part of the Features demonstration.)
+
+* * *
+<% end %>
+
+
+<% if target_feature?(:feature_performs_miracles) %>
+If you open your water faucet, clean, safe, potable water will flow out of it.
+_Middlemac_ has made this miracle happen for you.
+
+* * *
+<% end %>
+
+
+<% if target_feature?(:feature_insults_user) %>
+If you have made it this far, dear reader, you should know that if brains were
+dynamite, you wouldn’t have enough to blow your nose.
+<% else %>
+If you have made it this far, dear reader, you should know that you are one of
+the best people in the world.
+<% end %>
+
+* * *
+
+<% if target_feature?(:feature_shows_pink_rectangle) %>
+I made a special, pink rectangle just for you!
+<svg style="width:50px; height:35px; display:block; margin:auto;">
+  <rect width="50" height="35" style="fill:pink;stroke-width:0" />
+</svg>
+<% else %>
+Too bad; other people got to see a nice, pink rectangle.
+<% end %>
+
+* * *
+
+
+### Recall our targets’ `feature` settings
+
+Our `:free` target uses these `feature` settings:
+
+~~~ ruby
+:feature_advertise_pro        => true,
+:feature_performs_miracles    => false,
+:feature_insults_user         => true,
+:feature_shows_pink_rectangle => true,
+~~~
+
+And `:pro` was setup with these `feature` settings:
+
+~~~ ruby
+:feature_advertise_pro        => false,
+:feature_performs_miracles    => true,
+:feature_insults_user         => false,
+:feature_shows_pink_rectangle => true,
+~~~
+
+Depending on the target that you are currently viewing, you should very easily
+be able to correlate what appears in the **Demonstrations** section with the
+`feature`s settings above. Try changing some of the values and see what happens
+to this page.
+
+
+### How did this work?
+
+Features work nearly identically to targets. Instead of using the
+`target_name?` helper, use the `target_feature?` helper instead. For example:
+
+~~~ erb
+<%% if target_feature?(:feature_insults_user) %>
+If you have made it this far, dear reader, you should know that if brains were
+dynamite, you wouldn’t have enough to blow your nose.
+<%% else %>
+If you have made it this far, dear reader, you should know that you are one of
+the best people in the world.
+<%% end %>
+~~~
+
+
+### Include or exclude entire pages
+
+Just as with targets, you can use [frontmatter][frontmatter] `target` and `exclude` to include
+or exclude entire pages.
+
+
+Targets vs Features
+-------------------
+
+While you can use targets exclusively, it’s then up to you to decide which
+content you want to include in each of your Help Books when your macOS
+applications have different features. For example, what happens when you decide
+to enable or disable a feature in a future release of your application? If you
+use targets alone, you’ll have to go back and make a lot of changes to your
+help content. If you use **features**, instead, it’s as simple as toggling the
+value of your target’s `:features` sub-key between `true` and `false`.
+
+

@@ -1,29 +1,68 @@
 require 'middleman-core'
-
+require 'fastimage'
+require 'pathname'
+require 'json'
+require 'nokogiri'
+require 'words_counted'
+require 'trie'
 
 ################################################################################
-# **Middlemac** (an extension to **Middleman**) is a tool to build Mac OS X
-# application help book files from simple source documents. It handles all of
-# the esoteric details for you, and provides easy-to-use helpers for working
-# with multiple versions of your application (e.g., pro and free versions)
-# while minimizing source code.
+# **Middlemac** is a tool to build macOS application help book files from 
+# simple source documents. It handles all of the esoteric details for you, 
+# and provides easy-to-use helpers for working with multiple versions of 
+# your application (e.g., pro and free) while minimizing source code.
 # @author Jim Derry <balthisar@gmail.com>
 ################################################################################
+
 class Middlemac < ::Middleman::Extension
+
+
+  ############################################################
+  # Define additional Middleman settings.
+  ############################################################
+  define_setting :assets_dir, 'Resources/SharedGlobalAssets', 'The assets base directory. All other assets are relative to this.'
+  define_setting :convention_dir, 'convention', 'The directory for Middlemac conventions items.'
+  define_setting :partials_dir, '_partials', 'A convenient shortcut to common partials.'
+
+  # @!group Middleman Configuration
+
+  # @!attribute [rw] config[:assets_dir]=
+  # Specifies the high-level, shared assets root directory.
+  # @return [String] The shared assets root directory.
+  # @note This is a Middleman application level config option.
+
+  # @!attribute [rw] config[:convention_dir]=
+  # Specifies the special directory for assets the middlemac
+  # requires by convention. This directory does not have a
+  # localized variant.
+  # @return [String] The special convention directory.
+  # @note This is a Middleman application level config option.
+
+  # @!attribute [rw] options[:partials_dir]=
+  # Specifies the default location for partials. Prior to **Middleman** 4.0,
+  # all partials were kept in a common directory. **Middlemac** restores this
+  # previous behavior by allowing all partials to be grouped in a common
+  # directory. When using the `partial` helper, this directory will be checked
+  # first for the existence of a partial; if not found, then the default,
+  # built-in behavior will take over.
+  # @return [String] The directory to search for partials.
 
 
   ############################################################
   # Define the options that are to be set within `config.rb`
   # as extension options.
   ############################################################
-  option :Help_Output_Location, nil, 'Directory to place the built helpbook.'
-  option :Breadcrumbs, 'breadcrumbs', 'The name of the breadcrumbs helper to use for breadcrumbs.'
-  option :partials_dir, 'Resources/Base.lproj/assets/partials', 'A convenient shortcut to common partials.'
+  option :help_output_location, nil, 'Directory to place the built helpbook.'
+  option :img_auto_extensions, %w(.svg .png .jpg .jpeg .gif .tiff .tif), 'If not empty, then `image_tag` will work without filename extensions.'
+  option :retina_srcset, true, 'If true then the image_tag helper will be extended to include automatic @2x images.'
+  option :show_debug, false, 'If true, the main layout will show some debug information and site contents.'
+  option :show_previous_next, false, 'If true, show navigation controls at the bottom of each content page.'
+  option :strip_file_prefixes, true, 'If true leading numbers used for sorting files will be removed for presentation purposes.'
 
 
   # @!group Extension Configuration
 
-  # @!attribute [rw] options[:Help_Output_Location]=
+  # @!attribute [rw] options[:help_output_location]=
   # Specifies the directory where the finished `.help` bundle should go. It
   # must be relative to your `config.rb` file, or set it to `nil` to leave the
   # output in the default location (in the help project directory). The *actual*
@@ -32,28 +71,40 @@ class Middlemac < ::Middleman::Extension
   # of your XCode project with this option, it’s possible to ensure that an
   # Xcode project is automatically up to date every time a help project is
   # built.
-  # @param [String] value The directory where the final help bundle will be
-  #   built.
-  # @return [String] Returns the current value of this option.
+  # @return [String] The directory where the final help bundle will be built.
 
-  # @!attribute [rw] options[:Breadcrumbs]=
-  # Indicates the name of the breadcrumbs helper to use for breadcrumbs.
-  # Built-in breadcrumbs are "nav_breadcrumbs" and "nav_breadcrumbs_alt".
-  # Change to `nil` to disable breadcrumbs completely. Breadcrumbs helpers are
-  # part of the `middleman-pagegroups` extension (which is a component of this
-  # extension).
-  # @param [String] value The name of the breadcrumbs helper to use.
-  # @return [String] Returns the current value of this option.
+  # @!attribute [rw] options[:img_auto_extensions]=
+  # This option determines whether or not to support specifying images without
+  # using a file name extension, as well as the priority of the possible file
+  # extensions. If not empty or nil, then the `image_tag` helper will work for
+  # images even if you don’t specify an extension, but only if a file exists in
+  # the sitemap that has one of the extensions in the array.
+  # @return [Array<String>] Set to an array of image extensions.
 
-  # @!attribute [rw] options[:partials_dir]=
-  # Specifies the default location for partials. Prior to **Middleman** 4.0,
-  # all partials were kept in a common directory. **Middlemac** restores this
-  # previous behavior by allowing all partials to be grouped in a common
-  # directory. When using the `partial` helper, this directory will be checked
-  # first for the existence of a partial; if not found then the default, built
-  # in behavior will take over.
-  # @param [String] value The directory to search for partials.
-  # @return [String] Returns the current value of this option.
+  # @!attribute [rw] options[:show_debug]=
+  # This option determines whether or not extra debug information is provided
+  # at the bottom of each content page.
+  # @return [Boolean] `true` or `false` to enable or disable this feature.
+
+  # @!attribute [rw] options[:show_previous_next]=
+  # This option determines whether or not the Apple Help System should display
+  # previous and next page navigators at the bottom of each content page. Note
+  # that Apple itself does not use this feature.
+  # @return [Boolean] `true` or `false` to enable or disable this feature.
+
+  # @!attribute [rw] options[:retina_srcset]=
+  # This option determines whether or not the enhanced `image_tag` helper will
+  # be used to include an @2x `srcset` attribute automatically. This automatic
+  # behavior will only be applied if the image asset exists on disk and this
+  # option is set to `true`.
+  # @return [Boolean] `true` or `false` to enable or disable this feature.
+
+  # @!attribute [rw] options[:strip_file_prefixes]=
+  # If `true` leading numbers used for sorting files will be removed for
+  # presentation purposes. This makes it possible to neatly organize your
+  # source files in their presentation order on your filesystem but output
+  # nice filenames without ugly prefix numbers.
+  # @return [Boolean] `true` or `false` to enable or disable this feature.
 
   # @!endgroup
 
@@ -66,6 +117,11 @@ class Middlemac < ::Middleman::Extension
 
     super
 
+    @md_links_b = {}
+    @md_images_b = {}
+    @md_sizes_b = nil
+    @hb_search_tree_b = nil
+
   end # initialize
 
 
@@ -77,12 +133,39 @@ class Middlemac < ::Middleman::Extension
   def after_configuration
 
     # Set the correct :build_dir based on the options.
-
-    dir = options[:Help_Output_Location] || File.expand_path('./')
+    dir = options[:help_output_location] || File.expand_path('./')
     cf_bundle_name = app.config[:targets][app.config[:target]][:CFBundleName]
     target = app.config[:target]
+    output_name = "#{cf_bundle_name} (#{target}).help".gsub(' ', '_')
+    app.config[:build_dir] = File.join(dir, output_name, 'Contents')
 
-    app.config[:build_dir] = File.join(dir, "#{cf_bundle_name} (#{target}).help", 'Contents')
+    return if app.config[:exit_before_ready]
+
+    # Set the other directories accordingly.
+    app.config[:layouts_dir]    = File.join(app.config[:assets_dir], app.config[:layouts_dir])
+    app.config[:partials_dir]  = File.join(app.config[:assets_dir], app.config[:partials_dir])
+    app.config[:convention_dir] = File.join(app.config[:assets_dir], app.config[:convention_dir])
+    app.config[:css_dir]        = File.join(app.config[:assets_dir], app.config[:css_dir])
+    app.config[:fonts_dir]      = File.join(app.config[:assets_dir], app.config[:fonts_dir])
+    app.config[:images_dir]     = File.join(app.config[:assets_dir], app.config[:images_dir])
+    app.config[:js_dir]         = File.join(app.config[:assets_dir], app.config[:js_dir])
+
+    # Reset the helpers' buffers when the configuration
+    # changes. For speed we don't want to recalculate everything
+    # every time a helper is used, but only the first time.
+    @md_links_b = {}
+    @md_images_b = {}
+    @md_sizes_b = nil
+    @hb_search_tree_b = nil
+
+    # Build a list of all of the available localizations, so that
+    #  - We can run the help indexer multiple times, and
+    #  - We can build the data for locale-list.json.
+    project_root = File.join(app.config[:source], 'Resources')
+    @localizations = Pathname.new(project_root).children.select { |c| c.directory? && c.basename.to_s.end_with?('.lproj') }
+                         .map { |p| p.basename.to_s }
+
+    @localizations.each { |k| say "Middlemac will handle localized content for #{k}.", :blue }
 
   end
 
@@ -94,181 +177,10 @@ class Middlemac < ::Middleman::Extension
   ############################################################
   def after_build(builder)
 
-    run_help_indexer
+    @localizations.each do |locale|
+      run_help_indexer(locale)
+    end
 
   end # after_build
 
-
-  ############################################################
-  #  Helpers
-  #    Methods defined in this helpers block are available in
-  #    templates.
-  ############################################################
-
-  helpers do
-
-    #--------------------------------------------------------
-    # This helper returns the name of the breadcrumbs
-    # partial configured to be used in your project, i.e.,
-    # the value of `options[:Breadcrumbs]`.
-    # @return [String] The name of the configured breadcrumbs
-    #   partial.
-    #--------------------------------------------------------
-    def breadcrumbs
-      extensions[:Middlemac].options[:Breadcrumbs]
-    end
-
-
-    #--------------------------------------------------------
-    # Returns the name of the configured partials directory
-    # to use by default with the `partials` helper, i.e., the
-    # value of `options[:partials_dir]`.
-    # @return [String] The path of the configured default
-    #   partials directory.
-    #--------------------------------------------------------
-    def partials_dir
-      extensions[:Middlemac].options[:partials_dir]
-    end
-
-
-    #--------------------------------------------------------
-    # Returns the product `CFBundleIdentifier` for the
-    # current target as configured in your `config.rb`.
-    # @return [String] The `cfBundleIdentifier`.
-    #--------------------------------------------------------
-    def cfBundleIdentifier
-      config[:targets][config[:target]][:CFBundleID]
-    end
-
-
-    #--------------------------------------------------------
-    # Returns the product `CFBundleName` for the current
-    # target as configured in your `config.rb`.
-    # @return [String] The `CFBundleName`.
-    #--------------------------------------------------------
-    def cfBundleName
-      config[:targets][config[:target]][:CFBundleName]
-    end
-
-
-    #--------------------------------------------------------
-    # Returns the `ProductName` for the current target
-    # as configured in your `config.rb`.
-    # @return [String] The `ProductName`.
-    #--------------------------------------------------------
-    def product_name
-      config[:targets][config[:target]][:ProductName]
-    end
-
-
-    #--------------------------------------------------------
-    # Returns the `ProductVersion` for the current target
-    # as configured in your `config.rb`.
-    # @return [String] The `ProductVersion`.
-    #--------------------------------------------------------
-    def product_version
-      config[:targets][config[:target]][:ProductVersion]
-    end
-
-
-    #--------------------------------------------------------
-    # Returns the `ProductURI` for the current target
-    # as configured in your `config.rb`.
-    # @return [String] The `ProductURI`.
-    #--------------------------------------------------------
-    def product_uri
-      config[:targets][config[:target]][:ProductURI]
-    end
-
-
-    #--------------------------------------------------------
-    # Extends the built-in `partials` helper to allow the
-    # use of a default partials directory as configured with
-    # `options[:partials_dir]`. Middleman 4.0 removed the
-    # option `partials_dir` which increased flexibility a 
-    # lot, but hurt backwards compatibility. When used the
-    # default location will be searched first for the
-    # specified partial; if not found then the built-in
-    # behavior will be used.
-    # @param [String] template The partial file to use.
-    # @param [Hash] opts Options to use for the partial.
-    #   Consult **Middleman**’s documentation for possible
-    #   options.
-    # @param [Block] &block An option block as per the
-    #   default implementation by **Middleman**.
-    # @group Extended Helpers
-    #--------------------------------------------------------
-    def partial(template, opts={}, &block)
-      file_check = File.join(extensions[:Middlemac].options[:partials_dir], "_#{template}")
-      if ::Middleman::TemplateRenderer.resolve_template( @app, file_check)
-        super(file_check, opts, &block)
-      else
-        super(template, opts, &block)
-        end
-    end
-
-
-  end #helpers
-
-
-  ############################################################
-  # Instance Methods
-  # @!group Instance Methods
-  ############################################################
-
-
-  #########################################################
-  # Runs Apple’s the help indexer if it is available on
-  # the system.
-  # @return [Void]
-  #########################################################
-  def run_help_indexer
-
-    cf_bundle_name = app.config[:targets][app.config[:target]][:CFBundleName]
-    target = app.config[:target]
-
-    # see whether a help indexer is available.
-    `command -v hiutil > /dev/null`
-    if $?.success?
-
-      index_dir = File.expand_path(File.join(app.config[:build_dir], 'Resources/', 'Base.lproj/'))
-      index_dst = File.expand_path(File.join(index_dir, "#{cf_bundle_name}.helpindex"))
-
-      say "'…#{index_dir.split(//).last(60).join}' (indexing)", :cyan
-      say "'…#{index_dst.split(//).last(60).join}' (final file)", :cyan
-
-      `hiutil -Cf "#{index_dst}" "#{index_dir}"`
-    else
-      say "NOTE: `hiutil` is not found, so no index will exist for target '#{target}'.", :red
-    end
-
-  end #run_help_indexer
-
-
-  #########################################################
-  # Output colored messages using ANSI codes.
-  # @param [String] message The message to output to the
-  #   console.
-  # @param [Symbol] color The color in which to display
-  #   the message.
-  # @returns [Void]
-  # @!visibility private
-  #########################################################
-  def say(message = '', color = :reset)
-    colors = { :blue   => "\033[34m",
-               :cyan   => "\033[36m",
-               :green  => "\033[32m",
-               :red    => "\033[31m",
-               :yellow => "\033[33m",
-               :reset  => "\033[0m",
-    }
-
-    if RbConfig::CONFIG['host_os'] =~ /mswin|mingw|cygwin/
-      puts message
-    else
-      puts colors[color] + message + colors[:reset]
-    end
-  end # say
-
-
-end # class MiddlemacExtras
+end # class Middlemac

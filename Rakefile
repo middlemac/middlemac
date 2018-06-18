@@ -17,7 +17,11 @@ task :default => :test
 #   Perform Cucumber testing.
 ###############################################################################
 Cucumber::Rake::Task.new(:test, 'Features that must pass') do |task|
-  task.cucumber_opts = '--require features --color --tags ~@wip --strict --format QuietFormatter'
+  task.cucumber_opts = '--require features --color --tags "not @wip" --strict --format pretty'
+end
+
+Cucumber::Rake::Task.new(:testq, 'Features that must pass') do |task|
+  task.cucumber_opts = '--require features --color --tags "not @wip" --strict --format pretty 2>/dev/null'
 end
 
 
@@ -46,10 +50,11 @@ task :partials do
       { :file => '_yard_middlemac_helpers.erb',          :group => 'Helpers',  },
       { :file => '_yard_middlemac_helpers_extended.erb', :group => 'Extended Helpers' },
       { :file => '_yard_middlemac_config.erb',           :group => 'Extension Configuration' },
+      { :file => '_yard_middlemac_resources.erb',        :group => 'Resource Extensions',  },
   ]
   
   # Define the output directory.
-  dest = File.join('documentation_project', 'Contents', 'Resources', 'Base.lproj', 'assets', 'partials')
+  dest = File.join('documentation_project', 'Contents', 'Resources', 'SharedGlobalAssets', '_partials')
 
   # Run YARD multiple times, filtering the group that interests us.
   sections.each do |s|

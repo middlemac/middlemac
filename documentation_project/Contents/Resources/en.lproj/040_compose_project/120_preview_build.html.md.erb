@@ -1,0 +1,85 @@
+---
+title:  Preview and Build your Help Books
+blurb:  Your development be quicker by previewing your work with
+        <em>Middleman</em>’s preview server before the next step:
+        building your Help Book.
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+Preview in a Web Browser
+------------------------
+
+_Middleman_ has its own web server so that you can preview your work during
+development. From within your project directory, simply do:
+
+~~~
+bundle exec middleman
+~~~
+
+This will start the server with your default target. To specify a specific
+target to serve, simply use the `--target` command line option:
+
+~~~
+bundle exec middleman --target your_target_here
+~~~
+
+In general the server address to connect to in your browser is
+`localhost:4567`, but your environment could be different. The server will
+always provide one or more addresses to try.
+
+Note also that if you try to connect to your Help Book project at the server
+root, you will receive a file not found error. Do remember that due to macOS
+Help Book requirements, the content actually begins at
+`/Resources/index.html`.
+
+
+Build your Help Book(s)
+-----------------------
+
+Building your projects is similarly easy:
+
+~~~
+bundle exec middleman build
+~~~
+
+…to build the default target.
+
+~~~
+bundle exec middleman build --target your_target_here
+~~~
+
+…to build the target named `your_target_here`.
+
+
+~~~
+bundle exec middleman build_all
+~~~
+
+…to build all of your targets at once.
+
+
+Opening your Help Books
+-----------------------
+
+macOS won't open Help Books that haven’t been indexed by the operating system,
+so you’ll have to preview them in a real application. Because you’re making
+a Help Book, it’s presumed that you have an application that can fill this
+role. If not, you can modify the included **HelpViewerApp** Xcode project
+that’s in this documentation project’s directory.
+
+To view the contents of the `.help` package in **Finder**, simply
+context-click it and choose **Show Package Contents**.
+
+
+Troubleshooting Caches
+----------------------
+
+Sometimes your Help Books will not function properly in Apple Help Viewer.
+This can occur during development particularly, because macOS performs caching
+to improve performance. If you experience difficulties with your Help Book
+in Apple Help Viewer, consider clearing the caches by deleting the directories
+`~/Library/Caches/com.apple.helpd/` and
+`~/Library/Caches/com.apple.helpviewer/`.

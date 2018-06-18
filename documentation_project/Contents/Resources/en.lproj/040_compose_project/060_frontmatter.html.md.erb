@@ -1,0 +1,98 @@
+---
+title:  Frontmatter and Keys
+blurb:  Explore how frontmatter can be used to configure your Help Book pages
+        and the Apple Help System.
+keywords:
+ - pluto
+ - mercury
+ - venus
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+
+Frontmatter
+-----------
+Frontmatter is metadata that is included at the top of every content page but
+will not be present in the output. It is used to provide information to
+_Middleman_ and _Middlemac_ on a page by page and group basis.
+
+Here is the frontmatter from this very page’s source file:
+
+~~~ yaml
+title:  Frontmatter and Keys
+blurb:  Explore how frontmatter can be used to configure your Help Book pages
+        and the Apple Help System.
+keywords:
+ - pluto
+ - mercury
+ - venus
+~~~
+
+You can also specify your own frontmatter keys and values. 
+{: .tip .callout}
+
+Required Frontmatter
+--------------------
+
+Any file processed by _Middlemac_ may contain frontmatter. Files that generate
+HTML _require_ a minimum amount of frontmatter in order for them to work with
+Apple’s help system.
+
+`title`
+
+  : All HTML-producing files require the `title` key. Additionally, the
+    group `index.html` metadata files, although not intended to produce HTML,
+    require this key as well in order to give a title to the group.
+    
+`categories`
+
+  : The `landing` category is required for you main `index.html` landing page,
+    and `copyright` is required if you wish to have a copyright page. In
+    addition, you can add your own categories to this array as well, and they
+    will be available as a class to your document when loaded. Asides require
+    the `aside` category.
+    
+`blurb`
+
+  : HTML-producing pages require a blurb that can be used as a description
+    by the help indexers.
+    
+`order`
+
+  : If you wish the page to appear in the navigation features, and you’ve not
+    specified a page order in the file name, then an `order` key and value
+    must be present.
+{: .width25}
+
+
+Frontmatter Availability
+------------------------
+
+All frontmatter is
+available for use in your pages and templates via `current_page.data`, e.g.,
+`current_page.data.title`. For example, this page has the title 
+"<%= current_page.data.title %>" and the following keywords:
+<ul>
+<% current_page.data.keywords.each do |word| %>
+<%= "<li>#{word}</li>" %>
+<% end %>
+</ul>
+
+
+HTML and Markdown In Frontmatter
+--------------------------------
+Markdown is not always rendered in frontmatter, meaning that any use of
+Markdown is likely to result in \_formatting_ that looks \**wrong** when
+displayed. Additionally, the help indexer does not know how to deal with 
+Markdown.
+
+Thus, it’ best to use pure text for `title`, and use HTML for `blurb`, which
+the help indexer knows how to deal with.
+
+
+<% content_for :seeAlso do %>
+<%= link_to 'Frontmatter and Keys Reference', 'reference/frontmatter_reference.html' %>
+<% end %>

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleHelpBookFolder</key>
-	<string>Middlemac (pro).help</string>
+	<string>Middlemac_(pro).help</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -19,15 +19,15 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MIDDLEMAC_CFBundleShortVersionString)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(MIDDLEMAC_CFBundleVersion)</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2016 Jim Derry. All rights reserved.</string>
+	<string>$(MIDDLEMAC_NSHumanReadableCopyright)</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>CFBundleHelpBookName</key>

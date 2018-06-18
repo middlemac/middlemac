@@ -1,0 +1,46 @@
+---
+title:  Command Line Interfaces
+blurb:  Discover the CLI’s offered by the various Ruby gems that compose
+        <em>Middlemac</em>.
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+`middleman` command signature
+-----------------------------
+
+You will use `middleman` to build `middlemac` projects.
+
+~~~
+bundle exec middleman [[build|server] [--target xxx]] | [build_all|all]
+~~~
+
+You can determine what the valid targets are by simply omitting a target after
+the `--target` option. This will cause an invalid target error and present you
+with a list of targets defined in the project.
+
+
+`middlemac` command signature
+-----------------------------
+
+_Middlemac_ offers its own commands for generating new projects and getting
+help.
+
+~~~
+middlemac [init|documentation|help|--version]
+~~~
+
+Use `init` to generate the structure for a new, empty project, and use
+`documentation` to generate a project that can build this very documentation.
+
+
+`middlemac-targets` command signature
+-------------------------------------
+
+~~~
+middlemac-targets [documentation|help|--version]
+~~~
+
+Use `documentation` to generate a project that can build complete documentation.

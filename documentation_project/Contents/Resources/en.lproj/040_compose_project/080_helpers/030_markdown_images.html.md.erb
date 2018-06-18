@@ -1,0 +1,52 @@
+---
+title:  ‹md_images› Helper
+blurb:  Learn to take advantage of helpers that give you a hand using 
+        reference style links to content and images.
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+You’ll notice (as you look at the source files for this help content) that the
+first ERB instructions immediately after the frontmatter are:
+
+~~~ erb
+<%%= md_links %>
+<%%= md_images %>
+~~~
+
+These convenience helpers make it relatively simple to include Markdown links
+and images using the reference format.
+ 
+ 
+Images
+------
+
+Markdown also supports a reference format for images. It looks like this:
+
+~~~ markdown
+![this is alt tag content][middlemac-logo-small]
+~~~
+
+And will generate this:
+
+![this is alt tag content][middlemac-logo-small]
+
+
+Here’s the complete result of this helper for this Help Book:
+
+<% code('markdown', :css_class => 'shrink_code') do %>
+<%= md_images %>
+<% end %>
+Note that using reference style Markdown images is performed by the Markdown
+processor directly. Using magic prefixes for automatic target-based images
+won’t work. However they will work with standard Markdown, non-reference
+images. Note how this next example includes the target-specific logo:
+{: .note}
+
+~~~ markdown
+![target specific logo](all-middlemac-logo-small)
+~~~
+
+![target specific logo](all-middlemac-logo-small)

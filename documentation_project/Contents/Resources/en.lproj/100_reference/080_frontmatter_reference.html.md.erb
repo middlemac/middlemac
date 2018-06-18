@@ -1,0 +1,111 @@
+---
+title:  Frontmatter and Keys Reference
+blurb:  Examine all of the different frontmatter keys and their use in a single
+        location.
+exactmatch:
+ - frontmatter
+ - frontmatterkeys
+ - exactmatch
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+
+Frontmatter
+-----------
+Frontmatter is metadata that is included at the top of every content page but
+will not be present in the output. It is used to provide information to
+_Middleman_ and _Middlemac_ on a page by page and group basis.
+
+Here is the frontmatter from this very page’s source file:
+
+~~~ yaml
+---
+title:  Frontmatter and keys
+blurb:  Examine all of the different frontmatter keys and their use in a single
+        location.
+exactmatch:
+ - frontmatter
+ - frontmatterkeys
+ - exactmatch
+---
+~~~
+
+You can also specify your own frontmatter keys and values. All frontmatter is
+available for use in your pages and templates via `current_page.data`, e.g.,
+`current_page.data.title`.
+
+
+Middlemac Frontmatter Keys
+--------------------------
+
+`anchor`
+
+ : Every Help Book page that you generate will include an anchor, which is
+   usually the page name determined by _Middlemac_, and can be found using
+   the `current_page.page_name` helper. You can specify your own anchor, if
+   you prefer, using this frontmatter key.
+   
+   Anchors are very useful when using `NSHelpManager` to open a Help Book to a
+   specific page.
+   
+`blurb`
+
+ : The blurb will be used as a `meta description` for each of your pages, where
+   it will be picked up and indexed by the Apple Help Indexer. This Help Book
+   also uses the blurb on most pages as the opening paragraph. Finally, the
+   blurb is used in building the `navigation.json` file.
+
+`categories`
+
+ : Pages can be assigned to one or more categories which _Middlemac_ and
+   Apple’s help system will use to control certain behaviors. Your landing
+   page should be assigned the category `landing`. If you have a copyright
+   page, it should be assigned `copyright`. Any “aside” pages should be
+   assigned `aside` among their categories.
+
+`exactmatch`
+
+ : You can add `ExactMatch.plist` entries, which will be added to the final
+   `ExactMatch.plist` when the Help Book is built.
+ 
+`exclude`
+
+ : Indicates which [targets and features][targets_and_features] this page should
+   be hidden from.
+   
+`keywords`
+
+ : Specify keywords for the `meta keywords` tag for each page of your Help
+   Book. These will be indexed by web crawlers (if your project is online),
+   and importantly, will be indexed by the Apple Help Indexer so that search
+   may work.
+
+`layout`
+
+ : Specify the layout or template to use to render the page. If you don’t
+   specify a layout, then the `layout-apple-modern` layout will be used by
+   default.
+   
+   In general, the default works perfectly fine for building a modern Apple
+   Help Book. However, [group][groups] `index.html` metadata files should be
+   set to `layout-blank`, and “aside” pages should be set to 
+   `layout-apple-modern-aside`.
+
+`order`
+
+ : Set the sorting/display order for a particular file within its group.
+
+`target`
+
+ : Indicates which [targets and features][targets_and_features] this page is
+   applicable for.
+
+`title`
+
+ : The page title will be used in to the HTML `<title>` tag for every page,
+   and more importantly, will be the text displayed for links by all of
+   _Middlemac_’s helpers and Apple’s Help Book navigation.
+

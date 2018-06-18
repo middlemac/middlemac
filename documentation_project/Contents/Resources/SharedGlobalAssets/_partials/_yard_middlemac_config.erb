@@ -1,0 +1,276 @@
+
+
+
+
+  <div id="instance_attr_details" class="attr_details">
+    
+      
+      <span id="options[:help_output_location]=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="options[:help_output_location]=-instance_method">
+  
+    #<strong>options[:help_output_location]=</strong>(value)  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Specifies the directory where the finished <code>.help</code> bundle should go. It
+must be relative to your <code>config.rb</code> file, or set it to <code>nil</code> to leave the
+output in the default location (in the help project directory). The <em>actual</em>
+output directory will be an Apple Help bundle at this location named in the
+form <code>#{CFBundleName} (target).help</code>. By targeting the <code>Resources</code> directory
+of your XCode project with this option, it’s possible to ensure that an
+Xcode project is automatically up to date every time a help project is
+built.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The directory where the final help bundle will be built.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+      
+      <span id="options[:img_auto_extensions]=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="options[:img_auto_extensions]=-instance_method">
+  
+    #<strong>options[:img_auto_extensions]=</strong>(value)  &#x21d2; <tt>Array&lt;String&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>This option determines whether or not to support specifying images without
+using a file name extension, as well as the priority of the possible file
+extensions. If not empty or nil, then the <code>image_tag</code> helper will work for
+images even if you don’t specify an extension, but only if a file exists in
+the sitemap that has one of the extensions in the array.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Set to an array of image extensions.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+      
+      <span id="options[:retina_srcset]=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="options[:retina_srcset]=-instance_method">
+  
+    #<strong>options[:retina_srcset]=</strong>(value)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>This option determines whether or not the enhanced <code>image_tag</code> helper will
+be used to include an @2x <code>srcset</code> attribute automatically. This automatic
+behavior will only be applied if the image asset exists on disk and this
+option is set to <code>true</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p><code>true</code> or <code>false</code> to enable or disable this feature.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+      
+      <span id="options[:show_debug]=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="options[:show_debug]=-instance_method">
+  
+    #<strong>options[:show_debug]=</strong>(value)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>This option determines whether or not extra debug information is provided
+at the bottom of each content page.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p><code>true</code> or <code>false</code> to enable or disable this feature.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+      
+      <span id="options[:show_previous_next]=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="options[:show_previous_next]=-instance_method">
+  
+    #<strong>options[:show_previous_next]=</strong>(value)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>This option determines whether or not the Apple Help System should display
+previous and next page navigators at the bottom of each content page. Note
+that Apple itself does not use this feature.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p><code>true</code> or <code>false</code> to enable or disable this feature.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+      
+      <span id="options[:strip_file_prefixes]=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="options[:strip_file_prefixes]=-instance_method">
+  
+    #<strong>options[:strip_file_prefixes]=</strong>(value)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>If <code>true</code> leading numbers used for sorting files will be removed for
+presentation purposes. This makes it possible to neatly organize your
+source files in their presentation order on your filesystem but output
+nice filenames without ugly prefix numbers.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p><code>true</code> or <code>false</code> to enable or disable this feature.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+  </div>
+
+
+

@@ -1,0 +1,96 @@
+---
+title:  Groups
+blurb:  Groups are the fundamental organizational technique that enable
+        automatic page management, navigation, and tables of contents simple
+        to implement, and they help you stay organized. They define the 
+        sections that will appear in Apple Help Viewer.
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+What are groups?
+----------------
+
+A Group is one of more files in a single level of directory, and also any
+`index.html` file of immediate subdirectories of the group.
+
+Group directories require one file that will compile into `index.html` file in
+that directory, e.g., `index.html.md.erb`. This file _is not part of the
+group_; it serves to _define_ the group, and if you use any helpers, it acts
+as a virtual _parent_ to the group. As such, the files in the group are all
+_children_ of the `index.html` file. Each file in the group is a _sibling_ of
+the other files in the group.
+
+A group’s `index.html` file serves as a metadata container only! Their
+[frontmatter][frontmatter] defines the _title_ of the group. You should assign
+the `layout: layout-blank` frontmatter in these files, as well. The only
+`index.html` file with any content can be your top-level `en.lproj/index.html`
+file, which is defined used as the landing page.
+
+Groups are named (not titled) based on their containing directory. The highest
+level group is `en.lproj` (or respective locale folder) and cannot be changed.
+Group names are generally not user-facing, and the Apple Help system requires
+this directory name, so don’t worry about it.
+
+
+Example:
+
+~~~
+en.lproj/
+  index.html
+  introduction.html
+  basics/
+    index.html
+    counters.html
+~~~
+
+This entire project consists of three pages: the top level `index.html`, and
+`introduction.html`, and `counters.html`. The file `counters.html` is assigned
+the group name “basics”, and the group title is defined in the
+`basics/index.html` file’s frontmatter.
+
+Although groups can be nested to arbitrary levels, Apple’s JavaScripts begins
+to flatten groups at a depth of three levels (plus the root, level 0). Groups
+nested deeper than this will still appear in the Help Book, but they will be
+flattened to the bottom level. 
+{: .tip .callout}
+
+Page order in groups
+--------------------
+
+Apple’s scripts will generate the table of contents according to the pages’
+and groups’ sort order. Additionally, if `show_previous_next` is enabled, the
+scripts will provide navigation links according to the same sort order.
+
+A group member’s sort/navigation order can be determined two ways.
+
+- Files in the group can have an `:order` key in the frontmatter, or
+- File names can be prefixed with an integer sort order followed by an
+  underscore, .e.g, `40_hello.html.md.erb` or `12345_big_numbers.html.md.erb`.
+
+Some important aspects about order numbers in groups are:
+
+- If both a prefix and `:order` key are present, then the `:order` key takes
+  precedence.
+- If any pages in the same group end up with the same sort order, then the
+  actual behavior is undefined.
+- Parent `index.html` files cannot be prefixed, and so must include an `:order`
+  key in their frontmatter, or prefix the containing directory name instead.
+- Pages without a sort order are _not_ present in any of the automatic 
+  navigation features. This is by design. You can still link to them, though.
+- Prefixing file names can be convenient so that source files are sorted in your
+  file system the same way they will be displayed in your help system. Keep in
+  mind, though, that if you’re using the automatic markdown links from the
+  `md_links` helper and name collisions occur, then it’s possible that some of your
+  links will become invalid.
+- Finally, page orders do not have to be sequential. It may be helpful to space
+  them apart so that later insertions can be simplified.
+
+
+File naming
+-----------
+
+Note that section names cannot begin with the letters “help” because doing so
+causes Apple’s JavaScript to break.

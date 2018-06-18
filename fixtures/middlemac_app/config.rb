@@ -1,8 +1,18 @@
 ################################################################################
 #  config.rb
-#    Configure Middleman to generate Apple HelpBook containers for multiple
+#    Configure Middleman to generate Apple Help Book containers for multiple
 #    targets.
 ################################################################################
+
+##########################################################################
+# Build System Integration
+#  If built from Xcode (or another build system you create), then setup
+#  some of our variables automatically from the environment variables
+#  that the build system sets for us. You’ll have to set up Xcode to
+#  set this environment variable, of course.
+##########################################################################
+version_app = ENV.has_key?('MIDDLEMAC_CFBundleShortVersionString') ? ENV['MIDDLEMAC_CFBundleShortVersionString'] : nil
+
 
 ##########################################################################
 # Targets Configuration
@@ -39,13 +49,14 @@ config[:target] = :pro
 # :HPDBookIconPath
 # If specified a target-specific icon will be used as the help book icon by
 # Apple’s help viewer. This path must be relative to the location of the
-# `Resources` directory per Apple’s specification. If `nil` (or not present) 
-# then the default `shared/icon_32x32@2x.png` will be used.
+# `Resources` directory per Apple’s specification. If `nil` (or not present)
+# then the default `SharedGlobalAssets/convention/icon_32x32@2x.png` will be
+# used.
 
 # :CFBundleName
 # This value will be used for correct .plists and .strings setup, and will
 # determine final .help directory name. All targets should use the same
-# :CFBundleName. Built targets will be named `CFBundleName (target).help`.
+# :CFBundleName. Built targets will be named `CFBundleName_(target).help`.
 # This is *not* intended to be a product name, which is defined below.
 
 # :ProductName
@@ -60,6 +71,10 @@ config[:target] = :pro
 # :ProductURI
 # You can specify different product URIs for each build target. The URI
 # for the current target will be available via the `product_uri` helper.
+
+# :ProductCopyright
+# You should specify a copyright string to be included in the Apple Help Book,
+# and is display on the bottom of each help book page.
 
 # (other)
 # You can specify additional .plist and .strings keys here, too. Have a look
@@ -79,8 +94,9 @@ config[:targets] = {
                 :HPDBookIconPath  => nil,
                 :CFBundleName     => 'New Project',
                 :ProductName      => 'New Project',
-                :ProductVersion   => '2.0.0',
+                :ProductVersion   => version_app || '3.0.0',
                 :ProductURI       => 'http://www.sample.com',
+                :ProductCopyright => '© 2018 Jim Derry. All rights reserved.',
                 :features =>
                     {
                         :feature_advertise_pro        => true,
@@ -96,8 +112,9 @@ config[:targets] = {
                 :HPDBookIconPath  => nil,
                 :CFBundleName     => 'New Project',
                 :ProductName      => 'New Project Pro',
-                :ProductVersion   => '2.0.0',
+                :ProductVersion   => version_app || '3.0.0',
                 :ProductURI       => 'http://www.sample.com',
+                :ProductCopyright => '© 2018 Jim Derry. All rights reserved.',
                 :features =>
                     {
                         :feature_advertise_pro        => false,
@@ -110,7 +127,7 @@ config[:targets] = {
     } # targets
 
 # By enabling :target_magic_images, target specific images will be used instead
-# of the image you specify if it'ss prefixed with :target_magic_word. For
+# of the image you specify if it's prefixed with :target_magic_word. For
 # example, you might request "all-my_image.png", and "pro-my_image.png" (if it
 # exists) will be used in your :pro target instead.
 #
@@ -119,64 +136,6 @@ config[:targets] = {
 # would not be included in the output directory.
 config[:target_magic_images] = true
 config[:target_magic_word] = 'all'
-
-
-################################################################
-# Page Groups Configuration
-#  Middlemac uses the `middleman-pagegroups` gem in order to
-#  automate nearly all of the navigation in your help book
-#  project.
-################################################################
-activate :MiddlemanPageGroups do |config|
-
-  # Indicate whether or not numeric file name prefixes used for sorting
-  # pages should be eliminated during output. This results in cleaner
-  # URI's. Helpers such as `page_name` and Middleman helpers such as
-  # `page_class` will reflect the pretty name.
-  config.strip_file_prefixes = true
-
-  # Indicates whether or not Middleman's built-in `page_class` helper is
-  # extended to include the page_group and page_name.
-  config.extend_page_class = true
-
-  # the following options provide defaults for the built-in helpers and
-  # sample partials. They'll also work in your own partials and helpers.
-
-  config.nav_breadcrumbs_class = 'breadcrumbs'
-  config.nav_breadcrumbs_alt_class = 'breadcrumbs'
-  config.nav_breadcrumbs_alt_label = 'Current page'
-  config.nav_brethren_class = 'table_contents'
-  config.nav_brethren_index_class = 'related-topics'
-  config.nav_legitimate_children_class = 'table_contents'
-  config.nav_prev_next_class = 'navigate_prev_next'
-  config.nav_prev_next_label_prev = 'Previous'
-  config.nav_prev_next_label_next = 'Next'
-  config.nav_toc_index_class = 'help_map'
-
-end
-
-
-################################################################
-# Extras Configuration
-#  Middlemac uses the `middlemac-extras` gem in order to
-#  provide other useful tools. They can be configured here.
-################################################################
-activate :MiddlemacExtras do |config|
-
-  # If set to true, then the enhanced image_tag helper will be used
-  # to include @2x srcset automatically, if the image asset exists.
-  config.retina_srcset = true
-
-  # If set to true then the `image_tag` helper will work for images even
-  # if you don't specify an extension, but only if a file exists on disk
-  # that has one of the extensions in :img_auto_extensions_order.
-  config.img_auto_extensions = true
-
-  # Set this to an array of extensions in the order of precedence for
-  # using `image_tag` without file extensions.
-  config.img_auto_extensions_order = %w(.svg .png .jpg .jpeg .gif .tiff .tif)
-
-end
 
 
 ################################################################
@@ -191,16 +150,35 @@ activate :Middlemac do |options|
   # named in the form `#{CFBundleName} (target).help`. You might want to target
   # the `Resources` directory of your XCode project so that your XCode project
   # is always up to date.
-  options.Help_Output_Location = nil
+  options.help_output_location = nil
 
-  # Indicates the name of the breadcrumbs helper to use for breadcrumbs.
-  # Built-in breadcrumbs are "nav_breadcrumbs" and "nav_breadcrumbs_alt".
-  # Change to `nil` to disable breadcrumbs completely.
-  options.Breadcrumbs = 'nav_breadcrumbs'
+  # If set to true, then the enhanced image_tag helper will be used
+  # to include @2x, @3x, and @4x srcset automatically, if the image assets
+  # exist.
+  options.retina_srcset = true
 
-  # This was removed in Middleman version 4.0. We are reintroducing it
-  # as a Middlemac feature.
-  options.partials_dir = 'Resources/Base.lproj/assets/partials'
+  # If set to an array of possible image extension values, then the `image_tag`
+  # helper will work for images even if you don't specify an extension, but only
+  # if a file exists in the sitemap that has one of these extensions. Set this to
+  # an array of extensions in the order of precedence.
+  options.img_auto_extensions = %w(.svg .png .jpg .jpeg .gif .tiff .tif)
+
+  # If set to true, some of the templates will show additional information
+  # when pages are generated, such as contents of md_links and md_images.
+  # Also, JavaScript redirects will be omitted from naked pages, and the
+  # meta refresh will be set to 100 seconds for such pages.
+  options.show_debug = false
+
+  # If set to true, Apple will provide next page and previous page navigation
+  # gadgets automatically at the bottom of each content page. Apple itself
+  # does not use this feature currently.
+  options.show_previous_next = false
+
+  # Indicate whether or not numeric file name prefixes used for sorting
+  # pages should be eliminated during output. This results in cleaner
+  # URI's. Helpers such as `page_name` and Middleman helpers such as
+  # `page_class` will reflect the pretty name.
+  config.strip_file_prefixes = true
 
 end #activate
 
@@ -213,43 +191,36 @@ end #activate
 
 #===============================================================
 # Setup directories to mirror Help Book directory layout.
+# All shared assets are subdirectories of :assets_dir, and
+# localized assets are subdirectories of `lang.lproj/assets/`.
 #===============================================================
-set :source,       'Contents'
-set :build_dir,    'Contents (build)'
-
-set :fonts_dir,    'Resources/Base.lproj/assets/fonts'
-set :images_dir,   'Resources/Base.lproj/assets/images'
-set :js_dir,       'Resources/Base.lproj/assets/javascripts'
-set :css_dir,      'Resources/Base.lproj/assets/stylesheets'
-
-set :layouts_dir,  'Resources/Base.lproj/assets/_layouts'
-set :data_dir,     'Contents/Resources/Base.lproj/assets/_data'
-
-
-#===============================================================
-# Ignore items we don't want copied to the destination
-#===============================================================
-#ignore 'data/*'
+set :source,         'Contents'
+set :data_dir,       'Contents/Resources/SharedGlobalAssets/_data'
+set :assets_dir,     'Resources/SharedGlobalAssets'
+set :partials_dir,   '_partials'
+set :layouts_dir,    '_layouts'
+set :convention_dir, 'convention'
+set :css_dir,        'css'
+set :fonts_dir,      'fonts'
+set :images_dir,     'images'
+set :js_dir,         'js'
 
 
 #===============================================================
-# All of our links and assets must be relative to the file
-# location, and never absolute. However we will *use* absolute
-# paths with root being the source directory; they will be
-# converted to relative paths at build.
+# Other required setup. Note: don't use relative assets or
+# links here, as Apple require very specific hrefs.
 #===============================================================
 set :strip_index_file, false
-set :relative_links, true
-activate :relative_assets do |options|
-  options.rewrite_ignore = [/image_sizes\.css/]
-end
 
 
 #===============================================================
-# Default to Apple-recommended HTML 4.01 layout.
+# Default to HTML5 Layout.
+# Specify layouts from most specific to least specific.
 #===============================================================
-set :haml, :format => :html4
-page 'Resources/Base.lproj/*.html', :layout => :'layout-html4'
+Haml::TempleEngine.disable_option_validator!
+set :haml, :format => :html5
+page 'Resources/*.lproj/asides/*.html', :layout => :'layout-apple-modern-aside'
+page 'Resources/*.lproj/*.html', :layout => :'layout-apple-modern'
 
 
 #===============================================================

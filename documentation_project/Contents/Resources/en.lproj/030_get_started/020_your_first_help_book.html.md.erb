@@ -1,0 +1,374 @@
+---
+title:  Your First Help Book
+blurb:  This walkthrough takes you through the quick process of creating
+        and composing your very first Help Book. Along the way you’ll touch
+        upon most of the skills that you need to be successful on larger
+        projects.
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+
+<% helpbook_task "first_project_01", "Install a (nearly) empty project template" do %>
+
+After [setting up _Middlemac_][set_up_middlemac], you’re ready to to start
+**Your First Help Book** project. From within your **Terminal** application,
+make sure you’re in the directory of your choice. You will instruct
+_Middlemac_ to create a starter project in this location. Then:
+
+~~~ bash
+bundle exec middlemac init
+~~~
+
+In theory, `middlemac init` should be enough, but prefixing Ruby binaries with
+`bundle exec` ensures that the environment is correctly set up to handle any
+dependencies.
+{: .note .callout}
+
+Feel free to `cd` into the newly created `middlemac-init/` directory, and have
+a look around. Or browse its contents in **Finder**. You’re free to rename
+this directory to something meaningful, but we’ll refer to it by its current
+name throughout this tutorial.
+![Contents of middlemac-init folder][get_started_init_contents]
+
+You should notice fairly quickly that the directory contents resemble that of
+a typical Apple bundle format. The paths `Contents/Resources/en.lproj/` and
+`Contents/Resources/Info.plist.erb` are standard bundle contents, after all,
+other than that strange `.erb` file type added to `Info.plist`.
+
+In this exercise, we’ll be using the `en.lproj/` for our work. The `es.lproj/`
+directory is simply installed as a “quick start” for writing multilingual
+Help Books. If you choose to develop a Help Book for a language other than
+English, then it’s probably safe to change the name of the `en.lproj`, but
+skip ahead to [Localization][localization] to ensure that you name the folder
+properly.
+
+
+<% end %>
+<% helpbook_task "first_project_02", "Examine the Key Project Files" do %>
+
+![Contents of middlemac-init folder][get_started_init_contents]
+
+Have a look at the files above the `en.lproj` level, and the file contents.
+In most cases, you won’t have to make modifications to any of these, other
+than providing your own assets in `SharedGlobalAssets/`, and managing the
+configuration in `config.rb`. This documentation’s **Reference** section
+contains a [full description][directory_reference] of each of these files.
+
+A couple of key points:
+
+- Files with the `.erb` extension are “embedded Ruby”, i.e., they are are
+  Markdown and/or HTML files that have Ruby code which will be executing
+  when serving or building your Help Books. Other than for HTML files that
+  you create, these `.erb` files are used by _Middlemac_ to build you help
+  project. The only thing you have to do with them is not delete them.
+- The `config.rb` file is where you will configure some of the build options,
+  metadata, and target/feature information for your project. For now, simply
+  have a look to become acquainted with it. It’s very well documented.
+- The `makefile` might be used if you care to use **Xcode** for building your
+  Help Books. Feel free to ignore it for now.
+- `SharedGlobalAssets/` includes both assets required by _Middlemac_ to
+  function, as well as a place to put your global, non-localized assets. A
+  more complete description of its contents is elsewhere in this
+  documentation.
+- `Resources/index.html.erb` is the file that runs your entire Help Book.
+  There is little need to modify this file. Your own index file – used as a
+  landing page – exists in the `en.lproj/` directory.
+
+
+<% end %>
+<% helpbook_task "first_project_03", "Examine the Current Help Book Contents" do %>
+  
+This “nearly empty” project does ship with some simple pages used to
+demonstrate how to create sections, nested sections, pages, partials, specify
+page numbers, and other basics. Let’s have a look at these now.
+
+<div style="display: flex; justify-content: space-around;">
+<div style="flex: 0 0 auto;" markdown="1">
+![Contents of en.lproj directory][get_started_init_english]
+</div>
+<div style="padding: 1.5em;" markdown="1">
+Without worrying too much about the other files in the root level of this
+directory, you will notice the `index.html` file. This serves as the root of
+your Help Book, and is often referred to as your “landing page.” Multi-topic
+Help Books usually only have minimal information, such as the application name
+and its logo, on the landing page. Single-topic Help Books, of course, contain
+the entirety of their help content.
+
+You should also notice some other `.html.md.erb` files, prefixed with numbers
+and an underscore. This is one of the two ways that _Middlemac_ lets you choose
+page display order in the navigation system. Similarly, you see at least two
+directories prefixed in the same manner. These directories function as groups
+or sections, and contain files and/or additional group directories for nested
+sections.
+
+These page order prefixes are normally removed when your project is built,
+although you can control this behavior in your `config.rb` file.
+{: .tip .callout}
+
+In the `30_sample_group_number_one/` directory, the `index.html.md.erb` file
+serves as a metadata container _only_; it has `title` [frontmatter][frontmatter]
+that gives a title to the group. The other `.html.md.erb` files, as you can see,
+do not have page order prefixes; instead, they receive their page order via
+their `order` setting in their [frontmatter][frontmatter].
+</div>
+</div>
+
+The `40_sample_group_number_two/` folder contains a nested group, in the
+`01_nested_group_example/` directory.
+
+The folder `asides/` is simply a convenient location to store all of your aside
+files. While it’s not _necessary_ to store them here, doing so has the advantage
+that your aside files do not require the `layout` key in their
+[frontmatter][frontmatter].
+
+Finally, the `assets/` directory contains localized versions of various assets,
+such as [partials][partials], images, etc.
+
+<% end %>
+<% helpbook_task "first_project_04", "Personalize the Project in config.rb" do %>
+
+Let’s personalize the project for your application. If you don’t have a specific
+one in mind now, just invent one. Open the `config.rb` file, and look for the
+line beginning `config[:targets] =`. This is the beginning of your targets’
+configuration.
+
+~~~ ruby
+config[:targets] = {
+        :free =>
+            {
+                :CFBundleID       => 'com.balthisar.middlemac.free.help',
+                :HPDBookIconPath  => 'SharedGlobalArt/free-icon_32x32@2x.png',
+                :CFBundleName     => 'Middlemac',
+                :ProductName      => 'Middlemac',
+                :ProductVersion   => '3.0.0.wip',
+                :ProductURI       => 'http://www.balthisar.com/developer',
+                :ProductCopyright => '© 2018 Jim Derry. All rights reserved.',
+                :features =>
+                    {
+                        :feature_advertise_pro        => true,
+                        :feature_performs_miracles    => false,
+                        :feature_insults_user         => true,
+                        :feature_shows_pink_rectangle => true,
+                    }
+            },
+
+        :pro =>
+            {
+                :CFBundleID       => 'com.balthisar.middlemac.pro.help',
+                :HPDBookIconPath  => 'SharedGlobalArt/pro-icon_32x32@2x.png',
+                :CFBundleName     => 'Middlemac',
+                :ProductName      => 'Middlemac Pro',
+                :ProductVersion   => '3.0.0.wip',
+                :ProductURI       => 'http://www.balthisar.com/developer',
+                :ProductCopyright => '© 2018 Jim Derry. All rights reserved.',
+                :features =>
+                    {
+                        :feature_advertise_pro        => false,
+                        :feature_performs_miracles    => true,
+                        :feature_insults_user         => false,
+                        :feature_shows_pink_rectangle => true,
+                    }
+            },
+
+    } # targets
+~~~
+
+Looking at this data structure, it should be evident that the project is set up
+for two targets: `:free` and `:pro`. This would be appropriate for an
+application that has two versions, such as a “free” version and a “professional”
+version.
+
+The use of multiple targets is optional; you may specify as few as one, or as
+many as you like.
+{: .tip .callout}
+
+Each of these targets is configured with some target-specific data, including
+feature configuration. For example, the product name of the `:pro` target is
+“New Project Pro”, whereas it’s “New Project” for the `:free` target. Similarly,
+when it comes to features, it looks like the `:pro` version supports the
+`feature_performs_miracles` feature, whereas you don’t get that in the `:free`
+version.
+
+Leaving the other fields alone for now, go ahead and personalize **Your First
+Help Book** by changing the `:ProductName`, `:ProductVersion`, `:ProductURI`,
+and `:ProductCopyright` for each of the targets.
+
+This `:targets` structure in Ruby is called a “hash”, which is similar to an
+`NSDictionary` in that it stores key-value pairs. This hash has values for the
+Ruby symbols `:free` and `:pro`. The value of each of these keys is another
+hash, the keys of which define things such as the `:ProductCopyright`. The
+`:features` key of each of these hashes has yet another has as its value.
+{: .note .callout}
+
+
+<% end %>
+<% helpbook_task "first_project_05", "Make changes to the Landing Page" do %>
+
+The landing page is the usually the page that your Help Book first opens to,
+unless your application is providing context-sensitive help, or you arrive
+via a search. By convention, the landing page is the `index.html` file at the
+root of your `.lproj` directory.
+
+In the project, `index.html` is represented by the file `index.html.md.erb`,
+which will become `index.html` when the project is built or served. You should
+already have read that `.erb` signifies an “embedded Ruby” file, but what
+about `.md`?
+
+In _Middlemac_, files are built with various processors according to their
+extensions. In the case of `index.html.md.erb`, the file will be processed as
+embedded Ruby. Next, the `.md` indicates it will be processed as Markdown.
+When there's only a single file extension left – in this case HTML –
+_Middlemac_ knows that it’s done processing, and will output a file of the
+remaining extension type. Similarly, the file `searchTree.json.erb` will
+result in a file `searchTree.json` when your project is built.
+
+Now that you understand why the landing page is named such, go ahead and open
+it for editing.
+
+~~~ erb
+---
+title: Middlemac Project
+categories:
+  - landing
+---
+<%%= md_links %>
+<%%= md_images %>
+This is a (mostly) blank project, and this is its landing page.
+
+There are a few sample groups already set up, and some of the sample pages
+demonstrate the basic features of Apple’s help system and Middlemac’s helpers.
+
+* * *
+
+This project includes a few sample pages in another locale, and as such a
+language selector should be available below, _if_ this page is viewed in a
+browser.
+
+* * *
+~~~
+
+Superficially, it looks pretty spartan; it’s essentially a text file with no
+hints of HTML and something that looks like it _might_ be embedded Ruby. How
+does the minimalistic text become a full featured landing page?
+
+Let’s start with an examination of the top of the file, which is called the
+“frontmatter,” delimited by the `---` at the start and end. The data it
+contains is in YAML format, which is similar to JSON and very legible for
+humans to read. In this case, it should evident that we are providing a
+string for `title` and a single element array for `categories`. These data
+will be used by _Middlemac_ for the construction of your Help Book.
+
+The next two lines, `<%%= md_links %>` and `<%%= md_images %>`, are examples
+of embedded Ruby, in this case, they are used to call “helpers” named
+[`md_links`][markdown_links] and [`md_images`][markdown_images], respectively.
+On this particular page, they’re not being used for anything, but it’s nice to
+know that the features they provide are available should you want them. We can
+ignore these for the time being.
+
+Finally, we arrive at the meat of your page: two paragraphs followed by a
+horizontal rule, followed by another paragraph followed by another horizontal
+rule. This is all determined by the rules for [Markdown][about_markdown],
+which is an easy to read, easy to write, system for converting plain text into
+HTML (in the case of Apple Help Books and _Middlemac_) or any other markup
+language.
+
+If you’re not yet familiar with Markdown, give the 
+[About Markdown][about_markdown] topic a quick review, and then feel free to
+edit the `index.html.md.erb` file with some new Markdown content of your
+choice.
+
+
+<% end %>
+<% helpbook_task "first_project_06", "Make changes to the Copyright Page" do %>
+
+Next, open the `copyright.html.md.erb` file for editing. As before, this file
+contains some frontmatter:
+
+~~~ yaml
+---
+title:  License
+blurb:  License Page
+categories:
+  - copyright
+---
+~~~
+
+This page has a `blurb` key in its frontmatter. You can use this data on your
+own page, if you like, but _Middlemac_ uses this blurb to populate a lot of
+fields that Apple’s help system expects, such as the `navigation.json` file,
+the help indexes, and the `description` meta tag for each page.
+
+Additionally, its `categories` array contains the `copyright` value. This is
+a flag to _Middlemac_ that this page should be treated as the copyright page
+when your Help Book is served to a browser, i.e., this is the page that should
+be linked to from your landing page’s copyright notice.
+
+_Middlemac_ searches for the first page in its sitemap that contains this
+value in its `categories`; if you assign `copyright` to multiple pages, then
+the choice of which page will be used is undefined.
+{: .tip}
+
+Because this page has no page order assigned, neither via a page order as part
+of the filename, nor via an `order` key, it will not be included in the
+navigation menu, and will be excluded from any next/previous page features,
+although you can still link to it manually.
+
+Feel free to practice your elite Markdown skills on this file before
+continuing to the next step.
+
+
+<% end %>
+<% helpbook_task "first_project_07", "A Look at ‹30_sample_group_number_one›" do %>
+
+Open the file `30_sample_group_number_one/index.html.md.erb` As indicated in
+a task above, this file serves only as a metadata container for the group
+within this folder. Looking at its frontmatter, we see:
+
+~~~ yaml
+---
+title:  First Sample Group
+layout: layout-blank
+---
+~~~
+
+When the Help Book builds its navigation structure the title from the group
+is taken from this file’s `title`. But what about the `layout`, and why are
+we specifying what looks like a blank layout with `layout-blank`?
+
+_Middlemac_ uses _layouts_ to describe how `.html.md.erb` files are
+transformed into HTML files. Because these unused `index.html` files _will_
+be included in the final help project, there's the possibility that they
+might be indexed by `hiutil`. The `layout-blank` layout ensures that a 
+meta `robots` tag for these files prohibits indexing, and suppresses any HTML
+body content that might inadvertently be included in the file, such as the
+example that you opened.
+
+Layouts are located in `SharedGlobalAssets/_layouts/`, and you generally don’t
+have to make changes to them if you want to build an Apple Help Book, unless
+you’re looking to automate advanced features not provided by _Middlemac_.
+{: .tip .callout}
+
+Although the sort order of this group is defined by the order prefix on the
+group folder (i.e., `30_`), it could have just as easily been specified using
+an `order` key in this metadata file. In fact, have a look at the
+`page_two.html.md.erb` file: it has no page order prefix, and so its
+frontmatter `order` key specifies its page order within its group.
+
+<% end %>
+<% helpbook_task "first_project_08", "Next Steps" do %>
+
+As you browse the files in this nearly blank project, you should gain an
+understanding of how some of the features of _Middlemac_ are implemented, and
+if not, then don’t worry; that's why this documentation exists.
+
+Feel free to make changes to the existing project to suit your needs and
+taste, and when you’re ready to see the results, move on to the
+[Serve Your Help Book][serve_your_help_book] and 
+[Build Your Help Book][build_your_help_book] topics.
+
+<% end %>
+
+

@@ -1,0 +1,31 @@
+---
+title:  ‹config.rb› Settings
+blurb:  Learn about all of the possible configuration settings for your
+        projects.
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+## Targets Configuration
+
+The targets configuration appears immediately after the
+`activate :MiddlemanTargets` line.
+
+Note that `:build_dir` is included for the sake of completeness in the list
+below, but it’s not currently used in a _Middleman_ project’s `config.rb` file.
+
+<%= partial 'yard_mmtargets_config' %>
+
+Additional information about the contents of the `targets` hash is available 
+in the [Set up your Help Project][setup] article.
+
+
+* * *
+
+## Middlemac Configuration
+
+The `activate :Middlemac do |options|` block adds some finishing touches.
+
+<%= partial 'yard_middlemac_config' %>

@@ -1,0 +1,295 @@
+---
+title:  Apple Help Book Structure
+blurb:  What is an Apple Help Book composed from, anyway? Why are they so hard
+        to write, and why are they such a mystery?
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+Apple’s [Authoring Apple Help][1] documentation, while still accurate, is
+horribly outdated and a little bit misleading at times. There are countless
+Stack Overflow and Apple Support forum posts requesting help for developing
+Help Books, and several blog posts with instructions on how to build a working
+Help Book (and some of this advice doesn’t always work).
+
+In essence, though, Help Books are just websites put into Apple’s bundle
+format, and registered with macOS via a Cocoa application’s `Info.plist` file
+and matching Help Book bundle `Info.plist` file. Help Books also have a help
+index file so that your Help Book can be searched (even when not running your
+application).
+
+In this topic, we’ll examine some of these inconsistencies, and look at the
+minimum requirements to build a valid Apple Help Book.
+
+
+Inconsistencies
+---------------
+
+Inconsistencies in Apple’s documentation make it burdensome to create Apple
+Help Books. For example, this [Authoring Help Pages][1] paragraph states:
+
+> After you have identified the subjects covered in your help book, you need
+  to create HTML files for your help pages. To ensure that your help displays
+  properly in Help Viewer, _your help files should comply with the HTML 4.01
+  specification_.
+  
+And then:
+  
+> _Your main file—which contains the AppleTitle meta tag—should conform to 
+  the XHTML 1.0 specification_.
+  
+Later:
+
+> Most of the metadata recognized by Help Viewer is optional. However, you 
+  must include the AppleTitle meta tag on one page in the root of your help
+  book for Help Viewer to properly identify and display your help book.
+
+These are nonsense! Apple’s own Help Files have been written in HTML5
+since at least macOS 10.10, and none of them contain some mystical 
+`AppleTitle` meta tag.
+
+Others have tried to demystify the creation of Help Books, too, but they tend to
+muddy the waters. Without embarrassing anyone, a highly-ranked blog article
+states:
+
+> The second thing to note is that in spite of the documentation implying that
+  you can use your help bundle identifier to refer to your help bundle (which
+  would, admittedly, make sense), you can’t. You need to use the `HPDBookTitle`
+  value. 
+
+The `HPDBookTitle` doesn’t work. Or perhaps it did before macOS 10.10, but on
+all of my test systems going back to 10.10, the use of the Help Book’s
+`CFBundleIdentifier` is required to be referenced in your application’s 
+`Info.plist` file.
+
+The same article goes on to state:
+
+> The third thing relates to `HPDBookAccessPath`. The file referred to there
+  must be a valid XHTML file. In particular, it cannot be an HTML5 document —
+  that will simply not work, and the error messages you get on the system
+  console are completely uninformative.
+
+Again, this might have been true in the old days (_Middlemac_ 2.0 and earlier
+made pains to follow this rule), but this hasn’t been the case since at least
+macOS 10.10. Apple’s own help ships with HTML5 files at the `HPDAccessPath`.
+
+
+Working Help Books, Made Simple
+-------------------------------
+
+The make a working Help Book for any macOS Cocoa application, you need simply
+three things:
+
+<% helpbook_task "help_archi_1", "A valid macOS bundle containing your help contents…" do %>
+
+
+Bundles in macOS nearly always have the same structure:
+
+~~~
+Contents/
+  Info.plist
+  {stuff}    
+~~~
+
+An application or extension might look like this:
+
+~~~
+Contents/
+  Info.plist
+  MacOS/
+  Resources/   
+~~~
+
+A Help Bundle should look like similar to an application bundle, but given
+that it has no executable code (in the `MacOS` directory), it will contain
+only resources:
+
+~~~
+Contents/
+  Info.plist
+  Resources/
+    index.html
+~~~
+
+If we put an HTML file into `Resources/` and configure the `.plist` files
+correctly, this will produce a working Help Book. However, bundles can be
+localized, and support for localized resources is built into the operating
+system. Thus, a help bundle should look like this:
+
+~~~
+Contents/
+  Info.plist
+  Resources/
+    en.lproj/
+    {non-localized resources}
+~~~
+
+These “non-localized resources” can be loose files or directories, having any
+name allowed by the operating system.
+
+A Help Book consisting of multiple languages might look like this:
+
+~~~
+Contents/
+  Info.plist
+  Resources/
+    en.lproj/
+    es.lproj/
+    ru.lrpoj/
+    logo.png
+    shared_resources/
+~~~
+
+Now all we have to do is ensure that our valid bundle is truly valid is ensure
+that its `Info.plist` identifies it as a proper bundle, and points the Apple
+help system toward the correct resources.
+
+In contrary to [Apple’s documentation][1], this table only shows keys that are
+used and relevant today:
+
+| Raw Key Name                  | Sample Value (bold values must be as shown) | Comments
+|-------------------------------|---------------------------------------------|---------
+| CFBundleDevelopmentRegion     | en-us                                       | Note the use of a hyphen, whereas Apple demonstrates an underscore.
+| CFBundleIdentifier            | com.balthisar.middlemac.free.help           | To be used in your application’a `CFBundleHelpBookName`.
+| CFBundleInfoDictionaryVersion | **6.0**                                     | Required as is.
+| CFBundleName                  | Middlemac                                   | This name can be localized.
+| CFBundlePackageType           | **BNDL**                                    | Required as is.
+| CFBundleShortVersionString    | 3.0.0                                       | Short version of your version string.
+| CFBundleSignature             | **hbwr**                                    | Required as is.
+| CFBundleVersion               | 3.0.0                                       | Long version of your version string.
+| HPDBookAccessPath             | index.html                                  | The file that should be loaded when Apple Help Viewer starts.
+| HPDBookIconPath               | SharedGlobalArt/free-icon_32x32@2x.png      | Icon used to represent the Help Book, especially during system-wide searches.
+| HPDBookIndexPath              | Middlemac.helpindex                         | The name of your index file, relative to your `.lproj` directory.
+| HPDBookTitle                  | Middlemac Help                              | The title of the Help Book, and it can be localized.
+| HPDBookType                   | **3**                                       | Required as is.
+
+
+<% end %>
+<% helpbook_task "help_archi_2", "Located in the Resources/ directory of your application, and…" do %>
+
+
+The requirement is satisfied by putting the help bundle into your application
+here:
+
+~~~
+YourApp.app/
+  Contents/
+    Resources/
+      YourHelpFile.help/
+~~~
+
+Do _not_ put a help bundle into your localized resources folder in your
+application, even if it’s a `Base.lproj`. It may look like it works for
+your development language, but it will break on other Macs operating with
+different locales:
+
+~~~
+YourApp.app/
+  Contents/
+    Resources/
+      Base.lproj/
+        YourHelpFile.help/   <- don't do this!
+      en.lproj/
+        YourHelpFile.help/   <- don't do this!
+      YourHelpFile.help/     <- this is correct
+        Contents/
+          Resources/
+            en.lproj/
+            es.lproj/
+            ru.lrpoj/
+~~~
+
+To ensure that your Help Book ends up in the correct directory when you build
+your application, make sure you import it to your project as a
+_folder reference_; if it’s shown in the organizer with a disclosure triangle
+that lets you browse the contents, then you’ve done it wrong, and it will not
+copy properly during your “Copy Resources” build phase!
+
+![Import as folder reference][apple_help_books_folder_reference]
+
+Additionally, make sure that the Help Book has the correct target membership,
+in order to ensure that it will be copied during the “Copy Resources” build
+phase, _and_ do _not_ localize this file. It’s already localized internally
+by virtue of being a localized bundle.
+
+![Correct project membership][apple_help_books_project_membership]
+
+
+<% end %>
+<% helpbook_task "help_archi_3", "Two correct keys in your application’s Info.plist" do %>
+
+
+This last point is satisfied by ensuring that your application’s `Info.plist`
+points to the correct help bundle and knows the bundle ID of the bundle.
+
+`CFBundleHelpBookFolder`
+
+  : What’s the name of your help bundle in the file system? In the examples
+    above, we’ve been showing `YourHelpFile.help`. This is the only value
+    you need to specify in your application. No paths are needed; Cocoa knows
+    how to find resources, such as your help bundle, within its own bundle.
+  
+`CFBundleHelpBookName`
+
+  : What’s the `CFBundleIdentifier` of the bundle that you want to use for
+    your application’s help? This is specified in your help bundle’s
+    `Info.plist` file.
+
+<% end %>
+
+
+Special Features
+----------------
+
+Although principally a glorified web browser, Apple Help Viewer and Help Books
+do provide a couple of advantages not enjoyed by standard browser-based systems:
+
+- Anchor-based navigation using Apple’s `NSHelpManager` methods, as well as
+  special anchor `href` values, if desired.
+- The ability to search your Help Book within Apple Help Viewer.
+- The ability for your application’s Help Book to be searched and display
+  results while searching from within another Help Book.
+  
+This is all enabled by including a `.helpindex` file within your Help Book,
+and can be supplemented by including an `ExactMatch.plist` file to aid in
+searching.
+
+The fact is, Apple's `helpd` (Help Data) daemon will create this help index for
+you automatically if you fail to include one, and it will be kept for handy
+reference in its caches. However, you have much more fine-grained control over
+the indexing process if you use `hiutil` yourself in order to create these
+indexes to your own specifications.
+{: .note .callout}
+
+The help index contains, among other things, a list of all of the files and
+anchors in your Help Book and some word frequency lists that provided weighted
+results for searching. In addition, this index contains summary information for
+each of the pages, and some additional metadata. You can use `hiutil` to
+examine most of the contents of a help index, and use a tool such as
+[`hiextract`][2] to examine the word frequency lists.
+
+If you’re using _Middlemac_ on a macOS computer, then `hiutil` will
+be handled automatically for you, and `ExactMatch.plist` will be created for
+you, too.
+{: .tip .callout}
+
+
+
+Style and Functionality
+-----------------------
+
+While these few, simple requirements produce a working Help Book, they won’t
+produce a very pretty or usable one. Like any complex or simple web site,
+everything else is typically up to you. Navigation, styles, JavaScripts,
+correct `<HEAD>` information, and so on. Apple Help Viewer is simply a
+browser with a couple of added features, after all.
+
+And certainly you’re interested in using a tool like _Middlemac_ so that you
+can avoid all of that hassle. If you’re interested in how modern Apple Help
+Books work, though, continue on to the [next section][dissect_modern_help].
+
+
+ [1]: https://developer.apple.com/library/content/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/authoring_help/authoring_help_book.html
+ [2]: https://github.com/balthisar/hiextract

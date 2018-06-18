@@ -1,0 +1,260 @@
+---
+title:  Directory and File Reference
+blurb:  Let us examine all of the files and folders in a standard
+        <em>Middlemac</em> project folder.
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+
+`your_project/`
+
+: This is the self-contained directory containing everything that you need to
+  configure and build your project.
+  
+`your_project/config.rb`
+
+: This file contains most of your project settings for configuring
+  _Middlemac_, _Middleman_, and other _Middleman_ extensions you might add
+  in the future. 
+
+`your_project/Gemfile`
+
+: This file keeps track of the Ruby dependencies that are required for
+  _Middleman_ to work. You can edit this file to add additional _Middleman_
+  extensions, should you wish _Middlemac_/_Middleman_ do something more.
+
+`your_project/Gemfile.lock`
+
+: This is the bundler-generated file specifying the _exact_ dependency
+  configuration used. As Ruby Gems are updated on your system, this file will
+  ensure that updated versions are _not_ used, so that your configuration
+  stays frozen and steady. You can `bundle update` when you are ready to use
+  the newest version of Gems; doing so regenerates this file.
+
+`your_project/middlemac.webloc`
+
+: This is a convenient shortcut that, when used, will open your Help Book
+  in the default browser to the main `index.html` file.
+
+`your_project/Contents/`
+
+: Contains everything in your help project that will be compiled into or
+  contribute to the final `.help` project.
+   
+
+`your_project/Contents/Info.plist.erb`
+
+: The `Info.plist.erb` file is the file that _Middlemac_ will process into the
+  final `Info.plist` that your macOS application needs in order to work with
+  your Help Book. For a basic project you shouldn’t have to modify anything in
+  this file, but if you want or need to have other key-value pairs in the
+  final `Info.plist`, then add them here. 
+   
+
+`your_project/Contents/Resources/index.html`
+
+: This file is the heart of your entire modern Help Book. When the Help Book
+  is open in Apple Help Viewer or being served to your web browser, it is the
+  only page that you will ever truly see. The entire rest of your Help Book,
+  in any language, is loaded by this file for display via AJAX. Consequently,
+  it strips out most of the `<head>` information from your own files, loads
+  all of the JavaScripts and styles, and manages language selection, TOC, and
+  everything else in your Help Book.
+  
+  The data that appear in your generated HTML documents’ `<head>` is still
+  critical to the Apple Help Indexer. Don’t try to simplify things by removing
+  these items from the layout templates.
+  
+  You generally should never have to edit this file, unless you want to
+  include some CSS or JavaScript that is not provided by _Middlemac_.
+
+
+`your_project/Contents/Resources/locale-list.json.erb`
+
+: When served to a web browser, Apple’s JavaScript will refer to this file
+  to determine which languages are available. This file is managed
+  automatically by _Middlemac_ based on the actual `language.lproj` files
+  that are present in your project.
+   
+   
+`your_project/Contents/Resources/SharedGlobalAssets/`
+
+: This directory contains assets that are common between all of your 
+  different help language projects, as well as assets that _Middlemac_
+  requires by convention, such as Apple’s CSS and JavaScripts, certain image
+  files, data files, layouts, and so on.
+   
+   
+`your_project/Contents/Resources/SharedGlobalAssets/_data/`
+
+: This directory contains data files that you can use to supply data for
+  [using local data][local_data]. This directory will not be
+  output in the final build.
+    
+
+`your_project/Contents/Resources/SharedGlobalAssets/_data/locale-list.json`
+
+: This file contains all of the source information for the locales that
+  _Middlemac_ supports “out of the box,” and is the same that Apple
+  generally provides for most of its applications. You should consult this
+  file to determine the correct `language.lproj` directory name to use for
+  developing help for locales other then the default `en.lproj`.
+
+
+`your_project/Contents/Resources/SharedGlobalAssets/_layouts/`
+
+: All layouts and templates should go here. This directory will not be
+  output in the final build.
+
+
+`your_project/Contents/Resources/SharedGlobalAssets/_layouts/layout-apple-modern-aside.haml`
+
+: This is the layout use for “aside” files. Your asides should set their
+  `layout` frontmatter key to this layout.
+
+
+`your_project/Contents/Resources/SharedGlobalAssets/_layouts/layout-apple-modern.haml`
+
+: This is the layout for all content files, and is used by default when
+  the frontmatter does not override it with a different `layout` key.
+
+
+`your_project/Contents/Resources/SharedGlobalAssets/_layouts/layout-blank.haml`
+
+: This is a layout that generates no content, and should be used for group
+  metadata `index.html` files.
+
+
+`your_project/Contents/Resources/SharedGlobalAssets/_partials/`
+
+: Partials can go here, and should be prefaced with an underscore so that
+  they will not generate build output. Partial files can also be included
+  in any other directory, too. This is for organizational convenience of
+  common partials that may be used anywhere.
+
+
+`your_project/Contents/Resources/SharedGlobalAssets/convention/`
+
+: Images that the Apple Help Book and _Middlemac_ require by convention go
+  here. This is separate from the `images/` directory simply to make
+  directory management simpler by avoiding the mixing of required and
+  non-required files.
+  
+  
+`your_project/Contents/Resources/SharedGlobalAssets/css/`
+
+: Your `.css` and `.scss` files should go here.
+  
+
+`your_project/Contents/Resources/SharedGlobalAssets/css/apple/`
+
+: Apple’s CSS and CSS related files exist in this directory.
+  
+
+`your_project/Contents/Resources/SharedGlobalAssets/css/middlemac/`
+
+: _Middlemac_’s CSS and CSS related files exist in this directory.
+  
+
+`your_project/Contents/Resources/SharedGlobalAssets/fonts/`
+
+: Any fonts that you wish to include should go here. In general if you are
+  building an Apple Help Book, additional fonts should not be needed.
+  
+
+`your_project/Contents/Resources/SharedGlobalAssets/images/`
+
+: All images should go here. _Middleman_ will find them automatically if
+  you use the helpers.
+
+
+`your_project/Contents/Resources/SharedGlobalAssets/js/`
+
+: Javascripts, if any, should go here. They will not be included
+  automatically in your project unless you modify the main `index.html`
+  file to include them.
+
+
+`your_project/Contents/Resources/SharedGlobalAssets/js/app.5.1.xx.js`
+`your_project/Contents/Resources/SharedGlobalAssets/js/middlemac-debug.js`
+`your_project/Contents/Resources/SharedGlobalAssets/js/vendor.js`
+
+: These are the Apple and _Middlemac_ JavaScript files that operate the
+  modern Apple Help Book. Note that the `app.5.1.xx.js` file is as Apple
+  originally provides it, with some minor editing to work with `<img>` tag
+  `srcset` attributes.
+  
+  You should add any JavaScripts that your HelpBook requires here, and then
+  modify the main `index.html` file to include them.
+
+   
+`your_project/Contents/Resources/en.lproj`
+
+: This directory serves as your base [group][groups] for the English version
+  of your Help Book, and it contains all of your Help Book’s content,
+  including locale-specific versions of your resources.
+   
+  Any other files that result in `.html` in this directory level, except for
+  `index.html` constitute part of the `en.lproj` group. At this level you
+  should start adding directories to contain your other groups.
+   
+  Certainly, you’re not required to develop in English, and _Middlemac_
+  supports multiple languages simultaneously. Out of the box, you can use
+  any language supported by `SharedGlobalAssets/_data/locale-list.json`.
+
+`your_project/Contents/Resources/en.lproj/ExactMatch.plist.erb`
+
+: This file supplements the `.helpindex` file when the Help Book is viewed in
+  Apple Help Viewer by providing exact word matching. _Middlemac_ generates
+  the finished version of this file based on the `exactmatch` keys in your
+  pages’ frontmatter. See [Apple’s documentation][1] for details.
+
+   
+`your_project/Contents/Resources/en.lproj/InfoPlist.strings`
+
+: The `InfoPlist.strings` file is the file that _Middlemac_ will process into
+ the final `InfoPlist.strings`, which contains the localized version of your
+ applications’ human-readable `Info.plist` data (specifically, `CFBundleName`
+ and `HPDBookTitle`).
+
+
+`your_project/Contents/Resources/en.lproj/locale-info.json.erb`
+
+: This file contains metadata used by Apple’s JavaScript to understand the
+  locale details for this locale’s directory. It is managed automatically by
+  _Middlemac_.  
+
+
+`your_project/Contents/Resources/en.lproj/navigation.json.erb`
+
+: _Middlemac_ builds the output version of this file from your Help Book’s
+  sitemap. It is used by Apple’s JavaScript to make all of the navigation
+  features possible.
+
+
+`your_project/Contents/Resources/en.lproj/searchTree.json..erb`
+
+: This file contains the search index used when your Help Book is viewed in
+  a browser. _Middlemac_ generates the final version of this file when it
+  indexes your Help Book.
+
+
+`your_project/Contents/Resources/en.lproj/asides/`
+
+: This optional folder can be used to hold your aside files. Besides being a
+  convenient organizational location, it has the magic property of not
+  requiring the `aside` category in their frontmatter.
+
+`your_project/Contents/Resources/en.lproj/assets/`
+
+: This directory contains all of the localized assets used in your Help Book.
+ In order for _Middlemac_’s asset helpers such as `image_tag` and `partial`
+ to find localized resources, any subdirectories of `assets/` must mirror
+ the subdirectories of `SharedGlobalAssets/`, e.g., `assets/images/`.  
+{: .nontabular}
+
+
+ [1]: https://developer.apple.com/library/archive/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/authoring_help/authoring_help_book.html#//apple_ref/doc/uid/TP30000903-CH206-SW5

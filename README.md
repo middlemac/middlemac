@@ -1,23 +1,55 @@
-Middlemac, the Middleman Build System for Mac OS X Help Projects
-================================================================
+Middlemac, the Middleman Build System for macOS Help Projects
+=============================================================
 [![Gem Version](https://badge.fury.io/rb/middlemac.svg)](https://badge.fury.io/rb/middlemac)
 
 
 _Middlemac_
 
 This gem provides a complete solution to generating help documentation for
-Mac OS X applications in the form of Help Books, using Middleman and a
+macOS applications in the form of modern Help Books, using Middleman and a
 selection of custom extensions to provide everything a developer needs.
 
+The Help Books you make will be modern Apple Help Books, complete with Apple’s
+native look and feel, and having the same features as Apple’s own Help Books.
+These features aren’t a simulation by _Middlemac_, but are truly Apple native
+Help Book features.
+
 Using this Apple Help Book building system leverages the tools of _Middleman_ to
-make building end-user documentation for your Mac OS X applications a snap.
+make building end-user documentation for your macOS applications a snap.
 Whether you are targeting multiple versions of your application or a single
 version, once properly configured, _Middlemac_ will take all of the pain out of
 building help files.
 
+_Middlemac_ isn’t merely a text-to-HTML tool. It manages multiple languages,
+provides helpers to assist with asset management, supports multiple versions of
+your help (for multiple versions of your application), and more.
+
+
+Alternatives to _Middlemac_
+---------------------------
+
+If your needs are very little and you simply want something that resembles
+Apple’s Help Books without all of the extra features, then you cannot go wrong
+with [jekyll-apple-help](https://github.com/chuckhoupt/jekyll-apple-help). 
+
+
+Middlemac’s Manual
+------------------
+
+The steps below lead you through installing _Middlemac_ and building its manual
+using _Middlemac_. That’s asking an awful lot if you just want to take a look at
+what it does, so feel free to visit the manual on its website:
+
+- The manual built using the “free” target is [right here][1].
+- The manual built using the “pro” target can be looked at [here][2].
+
+ [1]: https://www.balthisar.com/manuals/Middlemac3_(free)/Contents/Resources/index.html
+ [2]: https://www.balthisar.com/manuals/Middlemac3_(pro)/Contents/Resources/index.html
+
 
 Simple README
 -------------
+
 Jump to the [verbose README](#verbose-readme) and instructions below, otherwise…
 
 
@@ -112,7 +144,7 @@ There are multiple ways you could be reading this content now, but for now we
 will assume that you have not yet installed _Middlemac_ and its dependencies.
 
 To get started and read the full documentation, make sure that your system has
-[Ruby](https://www.ruby-lang.org/) installed (it comes pre-installed on Mac OS X
+[Ruby](https://www.ruby-lang.org/) installed (it comes pre-installed on macOS
 and some Linuxes), and follow these steps below. 
 
 We now recommend the use of the Ruby Version Manager [(RVM)](https://rvm.io/).
@@ -143,7 +175,7 @@ xcode-select --install
 
 If that fails or the rest of the installation fails, then install all of XCode.
 It’s available in the App Store. It’s free of charge. And you’re using this
-project to develop help for Mac OS X applications that you’re developing using
+project to develop help for macOS applications that you’re developing using
 XCode anyway. Install it, already!
 
 Dependencies on Linux are left up to you. Most modern Linuxes will prompt you to

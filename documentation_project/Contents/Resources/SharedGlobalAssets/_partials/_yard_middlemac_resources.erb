@@ -1,0 +1,845 @@
+
+
+
+
+
+  <div class="method_details_list">
+    
+    
+      
+        <div class="method_details first">
+  <h3 class="signature first" id="resource.asset_path_type-instance_method">
+  
+    #<strong>resource.asset_path_type</strong>  &#x21d2; <tt>Symbol</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Indicates whether the asset is located in the :locale,
+the :global, the :convention, or an :other_dir folder.
+This can be useful to sort assets in a comparitor by
+priority if there are assets of the same name.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Symbol</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>:locale, :global, :convention, or
+:other_dir (in the event that it’s not expected).</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.breadcrumbs-instance_method">
+  
+    #<strong>resource.breadcrumbs</strong>  &#x21d2; <tt>Array&lt;Sitemap::Resource&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns an array of resources leading to this resource.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Sitemap::Resource&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An array of
+resources.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.brethren-instance_method">
+  
+    #<strong>resource.brethren</strong>  &#x21d2; <tt>Array&lt;Sitemap::Resource&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns an array of all of the siblings of this page,
+taking into account their eligibility for display.</p>
+
+<ul>
+  <li>is not already the current page.</li>
+  <li>has a <code>sort_order</code>.</li>
+  <li>is not ignored.</li>
+</ul>
+
+<p>The returned array will be sorted by each item’s
+<code>sort_order</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Sitemap::Resource&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An array of
+resources.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.brethren_next-instance_method">
+  
+    #<strong>resource.brethren_next</strong>  &#x21d2; <tt>Sitemap::Resource</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the next sibling based on order, or <code>nil</code> if
+there is no next sibling.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Sitemap::Resource</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The resource instance of
+the next sibling.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.brethren_previous-instance_method">
+  
+    #<strong>resource.brethren_previous</strong>  &#x21d2; <tt>Sitemap::Resource</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the previous sibling based on order, or <code>nil</code>
+if there is no previous sibling.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Sitemap::Resource</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The resource instance of
+the previous sibling.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.group_count-instance_method">
+  
+    #<strong>resource.group_count</strong>  &#x21d2; <tt>Integer</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the quantity of pages in the current page’s
+group, including this current page, i.e., the number
+of <code>brethren + 1</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The total number of pages in the
+this page’s current group.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.hb_locale-instance_method">
+  
+    #<strong>resource.hb_locale</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the locale for the current resource, based on
+which language.lproj directory it’s in, or nil if it’s
+not in one.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The locale.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.hb_NavId-instance_method">
+  
+    #<strong>resource.hb_NavId</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the navigation ID suitable for use in the
+modern Help’s <code>navigation.json</code> file. It is either a
+<code>topicId</code> or <code>sectionId</code>, depending on whether the 
+resource is a topic, or a section metadata resource.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The navigation ID of the current
+resource.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.hb_Path-instance_method">
+  
+    #<strong>resource.hb_Path</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the path as it should be used in the help book
+<code>navigation.json</code> file, i.e., relative to the
+<code>language.lproj</code> directory. Note that this is
+incomplete for use in <code>href</code> attributes, which require
+this path to be accessed via a javascript value, e.g.,
+<code>#/hb_path</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The navigation ID of the current
+resource.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.hb_redirect_path-instance_method">
+  
+    #<strong>resource.hb_redirect_path</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns a path to this resource via the main file
+index.html file that runs the entire helpbook. Useful
+for redirecting naked pages in the site to index file
+for proper display in a meta refresh tag. For example,
+../../index.html?localePath=en.lproj#/topic-sample_group_number_one-page_one
+Note that in this case, the link <em>must</em> be relative,
+because the Apple Help Viewer doesn’t seem to work
+with book-absolute paths.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Absolute path of this resource via
+index.html.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.hb_Section?-instance_method">
+  
+    #<strong>resource.hb_Section?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Indicates whether or not a resource is a section entry
+for a modern Apple HelpBook.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>True if the resource represents a
+section heading.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.legitimate?-instance_method">
+  
+    #<strong>resource.legitimate?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Indicates whether or not a page is “legitimate” in
+terms of automatic navigation, based in:</p>
+
+<ul>
+  <li>The resource has a sort order and isn’t zero.</li>
+  <li>The resource isn’t ignored.</li>
+</ul>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Returns <code>true</code> if this pages 
+participates in automatic navigation features.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.legitimate_children-instance_method">
+  
+    #<strong>resource.legitimate_children</strong>  &#x21d2; <tt>Array&lt;Sitemap::Resource&gt;</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns an array of all of the children of this
+resource, taking into account their eligibility for
+display. Each child is legitimate if it:</p>
+
+<ul>
+  <li>has a sort_order.</li>
+  <li>is not ignored.</li>
+</ul>
+
+<p>The returned array will be sorted by each item’s
+<code>sort_order</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Sitemap::Resource&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>An array of
+resources.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.page_group-instance_method">
+  
+    #<strong>resource.page_group</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Make <code>page_group</code> available for each resource.
+Useful for for assigning classes, and/or group
+conditionals. The page group is the enclosing folder;
+if it’s a content index.html alone in a folder, then
+it’s the grandfather folder, in order to preserve
+topics when carrot.html becomes carrot/index.html.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The <code>page_group</code> of the current page.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.page_name-instance_method">
+  
+    #<strong>resource.page_name</strong>  &#x21d2; <tt>String</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Make <code>page_name</code> available for each resource. This is
+the file’s base name after any renaming has occurred,
+unless the file is a content index.html, in which
+case the name is the name of the containing folder.
+This ensures we keep the same name for cases such as
+carrot.html or carrot/index.html.
+Useful for assigning classes, etc.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The <code>page_name</code> of the current page.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.page_sequence-instance_method">
+  
+    #<strong>resource.page_sequence</strong>  &#x21d2; <tt>Integer</tt>, <tt>Nil</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the page sequence amongst all of the brethren,
+and can be used as a page number surrogate. The first
+page is 1. Pages without a sort order will have a <code>nil</code>
+<code>page_sequence</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>, <tt>Nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The current page sequence of
+this resource among its brethren.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.parent-instance_method">
+  
+    #<strong>resource.parent</strong>  &#x21d2; <tt>Sitemap::Resource</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Return the parent of the resource. This implementation
+corrects a bug in <strong>Middleman</strong> as of 4.1.7 wherein
+<strong>Middleman</strong> doesn’t return the parent if the the
+directory has been renamed for output.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Sitemap::Resource</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The resource instance of
+the resource’s parent.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.sort_order-instance_method">
+  
+    #<strong>resource.sort_order</strong>  &#x21d2; <tt>Integer</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the page sort order or 0 if no page sort order
+was applied.</p>
+
+<p>Pages without a sort order can still be linked to;
+they simply aren’t brethren or legitimate children,
+and so don’t participate in any of the automatic
+navigation features.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Integer</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The current resource’s sort order
+within its group, or 0 if no sort order was applied.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+        <div class="method_details ">
+  <h3 class="signature " id="resource.word_frequencies-instance_method">
+  
+    #<strong>resource.word_frequencies</strong>  &#x21d2; <tt>Hash</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns the word frequency hash for the content of 
+the resource.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The :word =&gt; frequency content of the
+resource.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+      
+    
+  </div>
+
+
