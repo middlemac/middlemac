@@ -128,6 +128,13 @@ blurb:  Let us examine all of the files and folders in a standard
   metadata `index.html` files.
 
 
+`your_project/Contents/Resources/SharedGlobalAssets/_layouts/layout-hpd.haml`
+
+: This is a layout used by `index_hpd.html` files at the root level of each of
+  your languages, and simply causes a redirect to the proper `index.html` file
+  in that directory. 
+
+
 `your_project/Contents/Resources/SharedGlobalAssets/_partials/`
 
 : Partials can go here, and should be prefaced with an underscore so that
@@ -213,6 +220,15 @@ blurb:  Let us examine all of the files and folders in a standard
   pages’ frontmatter. See [Apple’s documentation][1] for details.
 
    
+`your_project/Contents/Resources/en.lproj/index_hpd.html.md.erb`
+
+: This is the file pointed to by the `Info.plist` key `HPDBookAccessPath`,
+  and simply redirects to the language’s actual `index.html` file in the built
+  project. This is required to avoid conflicts with recent versions of macOS
+  wherein **Help Viewer** gets confused when there are multiple `index.html`
+  files in both the language level and the `/Resources` directory.
+
+
 `your_project/Contents/Resources/en.lproj/InfoPlist.strings`
 
 : The `InfoPlist.strings` file is the file that _Middlemac_ will process into
