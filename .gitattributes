@@ -1,0 +1,5 @@
+*.html linguist-documentation
+*.css linguist-documentation
+*.erb linguist-documentation
+*.js linguist-documentation
+documentation_project/ linguist-documentation
