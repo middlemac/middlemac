@@ -94,7 +94,7 @@ config[:targets] = {
                 :HPDBookIconPath  => nil,
                 :CFBundleName     => 'New Project',
                 :ProductName      => 'New Project',
-                :ProductVersion   => version_app || '3.0.1',
+                :ProductVersion   => version_app || '3.1.0',
                 :ProductURI       => 'http://www.sample.com',
                 :ProductCopyright => '© 2018 Jim Derry. All rights reserved.',
                 :features =>
@@ -112,7 +112,7 @@ config[:targets] = {
                 :HPDBookIconPath  => nil,
                 :CFBundleName     => 'New Project',
                 :ProductName      => 'New Project Pro',
-                :ProductVersion   => version_app || '3.0.1',
+                :ProductVersion   => version_app || '3.1.0',
                 :ProductURI       => 'http://www.sample.com',
                 :ProductCopyright => '© 2018 Jim Derry. All rights reserved.',
                 :features =>
@@ -151,6 +151,20 @@ activate :Middlemac do |options|
   # the `Resources` directory of your XCode project so that your XCode project
   # is always up to date.
   options.help_output_location = nil
+
+  # Indicates whether or not spaces should be avoided in the name of the help
+  # bundle. The default value for backwards compatibility is `true` because
+  # some tools, such a make, don't like spaces.
+  options.help_output_avoid_spaces = true
+
+  # Indicates whether or not the `help_output_location` includes the `(target)`
+  # prefix in the help book bundle name. The default, `true`, will result in
+  # `#{CFBundleName} (target).help`, which is the historical behavior. Setting
+  # this to `false` will result in a help book named `#{CFBundleName}.help`,
+  # instead. This can be useful if you are building help books from scripts via
+  # XCode, and you set `help_output_location` to `ENV['BUILT_PRODUCTS_DIR']`.
+  # @return [Boolean] `true` or `false` to enable or disable this behavior.
+  options.help_output_use_target = true
 
   # If set to true, then the enhanced image_tag helper will be used
   # to include @2x, @3x, and @4x srcset automatically, if the image assets

@@ -1,12 +1,26 @@
 middlemac change log
 ====================
 
+- Version 3.1.0 / 2019-October-11
+
+  - Version 3.1.0
+    - Introduce a couple of new options in order to influence the file name of the
+      help book.
+  - Added .gitattributes for proper language reporting in GitHub.
+    No version bump.
+    No new gem.
+
 - Version 3.0.1 / 2019-September-08
 
-  - Updated documentation.
-  - Added redirect files, and updated tests.
-  - Fix YAML parsing issue for picky parsers.
-  - Version bump.
+  - Bump to 3.0.1:
+    - Fix YAML parsing issue for picky parsers.
+    - Added redirect files, to avoid recent macOS issue where /Resources/index.html
+      and the language.lproj/index.html files would confuse help viewer.
+    - Updated tests
+    - Updated documentation in the documentation project.
+
+- Version 3.0.0 / 2018-June-18
+
   - All new Middlemac 3.0.
   - Git Commit Issues Fix
       - Ensure that build.sh is captured in version control.
@@ -44,3 +58,4 @@ middlemac change log
   - README, getting started.
   - Overhaul of helpers and sitemap manipulators complete.
   - BRETHREN checkpoint
+  - Continued refactoring resources.

@@ -5,9 +5,53 @@
   <div id="instance_attr_details" class="attr_details">
     
       
-      <span id="options[:help_output_location]=-instance_method"></span>
+      <span id="options[:help_output_avoid_spaces]=-instance_method"></span>
       <div class="method_details first">
-  <h3 class="signature first" id="options[:help_output_location]=-instance_method">
+  <h3 class="signature first" id="options[:help_output_avoid_spaces]=-instance_method">
+  
+    #<strong>options[:help_output_avoid_spaces]=</strong>(value)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Indicates whethr or not the <code>help_output_location</code> includes spaces in its
+filename or not. Some GNU tools, such as make, choke on spaces. The default
+setting for this option is <em>yes</em> in order to maintain backward
+compatibility.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p><code>true</code> or <code>false</code> to enable or disable this behavior.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+      
+      <span id="options[:help_output_location]=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="options[:help_output_location]=-instance_method">
   
     #<strong>options[:help_output_location]=</strong>(value)  &#x21d2; <tt>String</tt> 
   
@@ -43,6 +87,52 @@ built.</p>
       
         &mdash;
         <div class='inline'><p>The directory where the final help bundle will be built.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+      
+      <span id="options[:help_output_use_target]=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="options[:help_output_use_target]=-instance_method">
+  
+    #<strong>options[:help_output_use_target]=</strong>(value)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Indicates whether or not the <code>help_output_location</code> includes the <code>(target)</code>
+prefix in the help book bundle name. The default, <code>true</code>, will result in
+<code>#{CFBundleName} (target).help</code>, which is the historical behavior. Setting
+this to <code>false</code> will result in a help book named <code>#{CFBundleName}.help</code>,
+instead. This can be useful if you are building help books from scripts via
+XCode, and you set <code>help_output_location</code> to <code>ENV['BUILT_PRODUCTS_DIR']</code>.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p><code>true</code> or <code>false</code> to enable or disable this behavior.</p>
 </div>
       
     </li>

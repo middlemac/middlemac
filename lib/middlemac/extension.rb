@@ -53,6 +53,8 @@ class Middlemac < ::Middleman::Extension
   # as extension options.
   ############################################################
   option :help_output_location, nil, 'Directory to place the built helpbook.'
+  option :help_output_avoid_spaces, true, 'If true, spaces in the help book file name bundle will be replaced with underscores.'
+  option :help_output_use_target, true, 'If false, the help book will not include (target) in its bundle name.'
   option :img_auto_extensions, %w(.svg .png .jpg .jpeg .gif .tiff .tif), 'If not empty, then `image_tag` will work without filename extensions.'
   option :retina_srcset, true, 'If true then the image_tag helper will be extended to include automatic @2x images.'
   option :show_debug, false, 'If true, the main layout will show some debug information and site contents.'
@@ -72,6 +74,22 @@ class Middlemac < ::Middleman::Extension
   # Xcode project is automatically up to date every time a help project is
   # built.
   # @return [String] The directory where the final help bundle will be built.
+  
+  # @!attribute [rw] options[:help_output_avoid_spaces]=
+  # Indicates whethr or not the `help_output_location` includes spaces in its
+  # filename or not. Some GNU tools, such as make, choke on spaces. The default
+  # setting for this option is *yes* in order to maintain backward
+  # compatibility.
+  # @return [Boolean] `true` or `false` to enable or disable this behavior.
+  
+  # @!attribute [rw] options[:help_output_use_target]=
+  # Indicates whether or not the `help_output_location` includes the `(target)`
+  # prefix in the help book bundle name. The default, `true`, will result in
+  # `#{CFBundleName} (target).help`, which is the historical behavior. Setting
+  # this to `false` will result in a help book named `#{CFBundleName}.help`,
+  # instead. This can be useful if you are building help books from scripts via
+  # XCode, and you set `help_output_location` to `ENV['BUILT_PRODUCTS_DIR']`.
+  # @return [Boolean] `true` or `false` to enable or disable this behavior.
 
   # @!attribute [rw] options[:img_auto_extensions]=
   # This option determines whether or not to support specifying images without
@@ -136,14 +154,21 @@ class Middlemac < ::Middleman::Extension
     dir = options[:help_output_location] || File.expand_path('./')
     cf_bundle_name = app.config[:targets][app.config[:target]][:CFBundleName]
     target = app.config[:target]
-    output_name = "#{cf_bundle_name} (#{target}).help".gsub(' ', '_')
+    
+    if options[:help_output_use_target]
+      output_name = "#{cf_bundle_name} (#{target}).help"
+    else
+      output_name = "#{cf_bundle_name}.help"
+    end
+    output_name.gsub!(' ', '_') if options[:help_output_avoid_spaces]
+    
     app.config[:build_dir] = File.join(dir, output_name, 'Contents')
 
     return if app.config[:exit_before_ready]
 
     # Set the other directories accordingly.
     app.config[:layouts_dir]    = File.join(app.config[:assets_dir], app.config[:layouts_dir])
-    app.config[:partials_dir]  = File.join(app.config[:assets_dir], app.config[:partials_dir])
+    app.config[:partials_dir]   = File.join(app.config[:assets_dir], app.config[:partials_dir])
     app.config[:convention_dir] = File.join(app.config[:assets_dir], app.config[:convention_dir])
     app.config[:css_dir]        = File.join(app.config[:assets_dir], app.config[:css_dir])
     app.config[:fonts_dir]      = File.join(app.config[:assets_dir], app.config[:fonts_dir])
