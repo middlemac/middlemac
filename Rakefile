@@ -1,3 +1,4 @@
+require "rake/extensiontask"
 require 'bundler/gem_tasks'
 require 'cucumber/rake/task'
 require 'yard'
@@ -6,22 +7,32 @@ require File.expand_path('../lib/middlemac/version.rb', __FILE__)
 
 
 ###############################################################################
+# ExtensionTask.new
+#   Compile the native extensions.
+###############################################################################
+Rake::ExtensionTask.new("trie") do |ext|
+  ext.ext_dir = 'ext/trie'
+  ext.lib_dir = 'lib/trie'
+end
+
+
+###############################################################################
 # :default
 #   Define the default task.
 ###############################################################################
-task :default => :test
+task :default => [:compile, :test]
 
 
 ###############################################################################
 # :test
 #   Perform Cucumber testing.
 ###############################################################################
-Cucumber::Rake::Task.new(:test, 'Features that must pass') do |task|
-  task.cucumber_opts = '--require features --color --tags "not @wip" --strict --format pretty'
+Cucumber::Rake::Task.new(:test, 'Features that must pass; do "rake compile" first!') do |task|
+  task.cucumber_opts = '--publish-quiet --require features --color --tags "not @wip" --strict --format pretty 2>/dev/null'
 end
 
-Cucumber::Rake::Task.new(:testq, 'Features that must pass') do |task|
-  task.cucumber_opts = '--require features --color --tags "not @wip" --strict --format pretty 2>/dev/null'
+Cucumber::Rake::Task.new(:testnoisy, 'Features that must pass; do "rake compile" first!') do |task|
+  task.cucumber_opts = '--publish-quiet --require features --color --tags "not @wip" --strict --format pretty'
 end
 
 

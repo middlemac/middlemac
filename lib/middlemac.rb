@@ -5,6 +5,6 @@ Middleman::Extensions.register :Middlemac, :before_configuration do
   require_relative 'middlemac/sitemap'
   require_relative 'middlemac/helpers'
   require_relative 'middlemac/private'
-  require_relative 'middlemac/trie'
+  require_relative 'middlemac/trie-extension'
   Middlemac
 end

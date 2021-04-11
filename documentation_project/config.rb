@@ -94,9 +94,9 @@ config[:targets] = {
                 :HPDBookIconPath  => 'SharedGlobalArt/free-icon_32x32@2x.png',
                 :CFBundleName     => 'Middlemac',
                 :ProductName      => 'Middlemac',
-                :ProductVersion   => version_app || '3.1.0',
+                :ProductVersion   => version_app || '3.1.1',
                 :ProductURI       => 'http://www.balthisar.com/developer',
-                :ProductCopyright => '© 2019 Jim Derry. All rights reserved.',
+                :ProductCopyright => '© 2021 Jim Derry. All rights reserved.',
                 :features =>
                     {
                         :feature_advertise_pro        => true,
@@ -112,9 +112,9 @@ config[:targets] = {
                 :HPDBookIconPath  => 'SharedGlobalArt/pro-icon_32x32@2x.png',
                 :CFBundleName     => 'Middlemac',
                 :ProductName      => 'Middlemac Pro',
-                :ProductVersion   => version_app || '3.1.0',
+                :ProductVersion   => version_app || '3.1.1',
                 :ProductURI       => 'http://www.balthisar.com/developer',
-                :ProductCopyright => '© 2019 Jim Derry. All rights reserved.',
+                :ProductCopyright => '© 2021 Jim Derry. All rights reserved.',
                 :features =>
                     {
                         :feature_advertise_pro        => false,
@@ -227,11 +227,12 @@ set :strip_index_file, false
 
 #===============================================================
 # Default to HTML5 Layout.
+# Specify layouts from most specific to least specific.
 #===============================================================
 Haml::TempleEngine.disable_option_validator!
 set :haml, :format => :html5
-page 'Resources/*.lproj/*.html', :layout => :'layout-apple-modern'
 page 'Resources/*.lproj/asides/*.html', :layout => :'layout-apple-modern-aside'
+page 'Resources/*.lproj/*.html', :layout => :'layout-apple-modern'
 
 
 #===============================================================

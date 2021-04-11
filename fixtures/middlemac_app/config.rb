@@ -73,8 +73,8 @@ config[:target] = :pro
 # for the current target will be available via the `product_uri` helper.
 
 # :ProductCopyright
-# You should specify a copyright string to be included in the Apple Help Book,
-# and is display on the bottom of each help book page.
+# You should specify a copyright string to be included in the Apple Help Book.
+# This typically appears when you print a Help Book.
 
 # (other)
 # You can specify additional .plist and .strings keys here, too. Have a look
@@ -94,9 +94,9 @@ config[:targets] = {
                 :HPDBookIconPath  => nil,
                 :CFBundleName     => 'New Project',
                 :ProductName      => 'New Project',
-                :ProductVersion   => version_app || '3.1.0',
+                :ProductVersion   => version_app || '3.1.1',
                 :ProductURI       => 'http://www.sample.com',
-                :ProductCopyright => '© 2018 Jim Derry. All rights reserved.',
+                :ProductCopyright => '© 2021 Jim Derry. All rights reserved.',
                 :features =>
                     {
                         :feature_advertise_pro        => true,
@@ -112,9 +112,9 @@ config[:targets] = {
                 :HPDBookIconPath  => nil,
                 :CFBundleName     => 'New Project',
                 :ProductName      => 'New Project Pro',
-                :ProductVersion   => version_app || '3.1.0',
+                :ProductVersion   => version_app || '3.1.1',
                 :ProductURI       => 'http://www.sample.com',
-                :ProductCopyright => '© 2018 Jim Derry. All rights reserved.',
+                :ProductCopyright => '© 2021 Jim Derry. All rights reserved.',
                 :features =>
                     {
                         :feature_advertise_pro        => false,
@@ -127,7 +127,7 @@ config[:targets] = {
     } # targets
 
 # By enabling :target_magic_images, target specific images will be used instead
-# of the image you specify if it's prefixed with :target_magic_word. For
+# of the image you specify if it'ss prefixed with :target_magic_word. For
 # example, you might request "all-my_image.png", and "pro-my_image.png" (if it
 # exists) will be used in your :pro target instead.
 #
@@ -205,8 +205,6 @@ end #activate
 
 #===============================================================
 # Setup directories to mirror Help Book directory layout.
-# All shared assets are subdirectories of :assets_dir, and
-# localized assets are subdirectories of `lang.lproj/assets/`.
 #===============================================================
 set :source,         'Contents'
 set :data_dir,       'Contents/Resources/SharedGlobalAssets/_data'

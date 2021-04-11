@@ -34,19 +34,18 @@ Feature: Provide helpers and resource items to make multiple targets easy to man
     And the file "goodbye_world_file.html" should contain '[hello_world_file]: #/topic-en.lproj-hello_world_file "Hello World"'
     And the file "goodbye_world_file.html" should contain '[testing_world_file]: #/topic-en.lproj-testing_world_file "Testing World"'
     
-    
   Scenario:
     The extended image tag should include srcset automatically if @2x images are
     present, and not include a srcset if not.
     When I cd to "New_Project_(pro).help/Contents/Resources/en.lproj/"
-    And the file "goodbye_world_file.html" should contain 'img src="/Resources/SharedGlobalAssets/convention/icon_32x32.png" srcset="/Resources/SharedGlobalAssets/convention/icon_32x32.png 1x, /Resources/SharedGlobalAssets/convention/icon_32x32@2x.png 2x" alt="Icon 32x32"'
-    And the file "goodbye_world_file.html" should contain 'img src="/Resources/SharedGlobalAssets/convention/icon_256x256.png" srcset="/Resources/SharedGlobalAssets/convention/icon_256x256.png 1x, /Resources/SharedGlobalAssets/convention/icon_256x256@2x.png 2x" alt="Icon 256x256"'
-    And the file "goodbye_world_file.html" should contain 'img src="/Resources/en.lproj/assets/images/subdirectory/logo_32x32.png" alt="Logo 32x32"'
-    And the file "goodbye_world_file.html" should contain 'img src="/Resources/en.lproj/assets/images/neat_thing_32x32.png" alt="Neat thing 32x32"'
-    And the file "goodbye_world_file.html" should contain 'img src="/Resources/en.lproj/assets/images/subdirectory/pro-image_32x32.png" alt="Pro image 32x32"'
-    And the file "goodbye_world_file.html" should contain 'img src="/Resources/en.lproj/assets/images/all-graphic_32x32.png" alt="All graphic 32x32'
-    And the file "goodbye_world_file.html" should contain 'img src="/Resources/SharedGlobalAssets/images/myfile-NOT_IN_SITEMAP" alt="Myfile not in sitemap"'
-    And the file "goodbye_world_file.html" should contain 'img src="/Resources/SharedGlobalAssets/images/myfile-NOT_IN_SITEMAP.png" alt="Myfile not in sitemap"'
+    And the file "goodbye_world_file.html" should contain 'img src="/Resources/SharedGlobalAssets/convention/icon_32x32.png" srcset="/Resources/SharedGlobalAssets/convention/icon_32x32.png 1x, /Resources/SharedGlobalAssets/convention/icon_32x32@2x.png 2x" alt=""'
+    And the file "goodbye_world_file.html" should contain 'img src="/Resources/SharedGlobalAssets/convention/icon_256x256.png" srcset="/Resources/SharedGlobalAssets/convention/icon_256x256.png 1x, /Resources/SharedGlobalAssets/convention/icon_256x256@2x.png 2x" alt=""'
+    And the file "goodbye_world_file.html" should contain 'img src="/Resources/en.lproj/assets/images/subdirectory/logo_32x32.png" alt=""'
+    And the file "goodbye_world_file.html" should contain 'img src="/Resources/en.lproj/assets/images/neat_thing_32x32.png" alt=""'
+    And the file "goodbye_world_file.html" should contain 'img src="/Resources/en.lproj/assets/images/subdirectory/pro-image_32x32.png" alt=""'
+    And the file "goodbye_world_file.html" should contain 'img src="/Resources/en.lproj/assets/images/all-graphic_32x32.png" alt=""'
+    And the file "goodbye_world_file.html" should contain 'img src="/Resources/SharedGlobalAssets/images/myfile-NOT_IN_SITEMAP" alt=""'
+    And the file "goodbye_world_file.html" should contain 'img src="/Resources/SharedGlobalAssets/images/myfile-NOT_IN_SITEMAP.png" alt=""'
 
 
   Scenario:

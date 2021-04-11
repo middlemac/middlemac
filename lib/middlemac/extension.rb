@@ -4,7 +4,7 @@ require 'pathname'
 require 'json'
 require 'nokogiri'
 require 'words_counted'
-require 'trie'
+require 'trie/trie'
 
 ################################################################################
 # **Middlemac** is a tool to build macOS application help book files from 
@@ -149,6 +149,10 @@ class Middlemac < ::Middleman::Extension
   # @visibility private
   #############################################################
   def after_configuration
+
+	puts "****************************************************"
+	puts "after_configuration"
+	puts "****************************************************"
 
     # Set the correct :build_dir based on the options.
     dir = options[:help_output_location] || File.expand_path('./')

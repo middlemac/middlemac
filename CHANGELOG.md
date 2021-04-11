@@ -1,6 +1,23 @@
 middlemac change log
 ====================
 
+- Version 3.1.1 / 2021-April-12
+
+  - Compatibility Updates
+      - Version bump.
+      - Vendor the source of the fast_trie gem, because it's no longer maintained, and I
+        don't want to create another unmaintained Ruby gem. Updates to fast_trie are needed
+        because Clang now has added diagnostics including default C99 which causes the
+        original fast_trie to no longer build. I've also silenced warnings.
+      - Make the landing page use target magic images instead of the static image it uses.
+        This means you should have `target1-icon_256x256` and `target2-icon_256x256` in
+        your images, or to use the same icon for all targets, `all-icon_256x256`.
+      - Enforce a newer minimum Middleman version, because it has removed support for
+        automatic alt attributes, and we've done the same. This keeps us in sync.
+      - Enforce Ruby versions. Right now Ruby 2.6.0 approaching 3.0 is supported. Once
+        Middleman has a numbered release supporting Ruby 3.0, I'll take a look at supporting
+        it.
+
 - Version 3.1.0 / 2019-October-11
 
   - Version 3.1.0
@@ -58,4 +75,3 @@ middlemac change log
   - README, getting started.
   - Overhaul of helpers and sitemap manipulators complete.
   - BRETHREN checkpoint
-  - Continued refactoring resources.

@@ -5,8 +5,8 @@ Feature: Middlemac produces plist and strings files, uses correct HTML formats,
   I want to build useable macOS help books.
   
   Background:
-    Given a built app at "middlemac_app"
-    
+	Given a built app at "middlemac_app"
+   
   Scenario:
     The correct HTML version must be used on generated files.
     When I cd to "New_Project_(pro).help/Contents/Resources/en.lproj/"
@@ -42,7 +42,7 @@ Feature: Middlemac produces plist and strings files, uses correct HTML formats,
     And the file "testing_world_file.html" should contain "com.sample.project.pro.help"
     And the file "testing_world_file.html" should contain "New Project"
     And the file "testing_world_file.html" should contain "New Project Pro"
-    And the file "testing_world_file.html" should contain "3.1.0"
+    And the file "testing_world_file.html" should contain "3.1.1"
     And the file "testing_world_file.html" should contain "http://www.sample.com"
     And the file "testing_world_file.html" should contain "_new_style_partial"
     And the file "testing_world_file.html" should contain "_partials_dir_partial"

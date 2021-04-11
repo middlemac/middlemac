@@ -22,3 +22,9 @@ build/*
 
 # Aruba
 /tmp/
+
+# Native Extension Build
+/lib/trie
+
+# Fixture build folder when testing.
+/fixtures/middlemac_app/New_Project_(pro).help
