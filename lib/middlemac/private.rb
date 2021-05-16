@@ -450,13 +450,16 @@ class Middlemac < ::Middleman::Extension
 
       index_dir = File.expand_path(File.join(app.config[:build_dir], 'Resources', locale))
       index_dst = File.expand_path(File.join(index_dir, "#{cf_bundle_name}.helpindex"))
+      index_dcs = File.expand_path(File.join(index_dir, "#{cf_bundle_name}.cshelpindex"))
       iso_code = File.basename(locale, '.*')
       stopwords = File.expand_path(File.join( '..', 'resources', 'stopwords', "#{iso_code}.plist" ))
 
       say "'…#{index_dir.split(//).last(60).join}' (indexing)", :cyan
       say "'…#{index_dst.split(//).last(60).join}' (final file)", :cyan
+      say "'…#{index_dcs.split(//).last(60).join}' (final file)", :cyan
 
-      `hiutil -Cf "#{index_dst}" -ag -m 3 -s #{stopwords} -l #{iso_code} "#{index_dir}"`
+      `hiutil -I lsm -Cf "#{index_dst}" -ag -m 3 -s #{stopwords} -l #{iso_code} "#{index_dir}"`
+      `hiutil -I corespotlight -Cf "#{index_dcs}" -ag -m 3 -s #{stopwords} -l #{iso_code} "#{index_dir}"`
     else
       say "NOTE: `hiutil` is not found, so no index will exist for target '#{target}'.", :red
     end
